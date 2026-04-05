@@ -14,6 +14,7 @@
     color: #d8e6f6;
     font-family: system-ui, sans-serif;
   }
+
   .loader {
     padding: 24px 28px;
     border: 1px solid rgba(115, 162, 209, 0.25);
@@ -22,6 +23,7 @@
     max-width: 560px;
     text-align: center;
   }
+
   .small {
     opacity: 0.75;
     font-size: 0.95rem;
@@ -33,6 +35,7 @@
     <h1>Cargando perfil...</h1>
     <p class="small">Si tarda demasiado, recarga la página en unos segundos.</p>
   </div>
+
   <script>
     (async () => {
       const parts = [
@@ -44,19 +47,36 @@
         "payload/v2/page.part06.b64"
       ];
 
+      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
+
       const chunks = await Promise.all(
         parts.map((path) =>
           fetch(path, { cache: "no-store" }).then((response) => {
-            if (!response.ok) throw new Error(path);
+            if (!response.ok) throw new Error(`No se pudo cargar ${path}`);
             return response.text();
           })
         )
       );
 
-      const joined = chunks.join("").replace(/\s+/g, "");
+      const normalized = chunks.map((chunk) => chunk.replace(/[^A-Za-z0-9+/=]/g, ""));
+
+      // Hotfix: page.part02.b64 salió truncado en producción (11547 en vez de 12000).
+      if (normalized[1] && normalized[1].length === 11547) {
+        normalized[1] += part02TailPatch;
+      }
+
+      let joined = normalized.join("");
+      if (joined.length % 4 !== 0) {
+        joined = joined.padEnd(joined.length + (4 - (joined.length % 4)), "=");
+      }
+
       const binary = atob(joined);
       const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
       const html = new TextDecoder("utf-8").decode(bytes);
+
+      if (!/^<!doctype html>/i.test(html.trimStart())) {
+        throw new Error("Payload decodificado inválido");
+      }
 
       document.open();
       document.write(html);
