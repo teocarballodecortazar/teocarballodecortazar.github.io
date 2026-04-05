@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Teo Carballo | Network Engineer Profile</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23091422'/%3E%3Cstop offset='1' stop-color='%23132743'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M14 21h36' stroke='%234cc2ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M14 32h20' stroke='%2386e0ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M14 43h30' stroke='%2352d6a2' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='47' cy='32' r='4' fill='%234cc2ff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -458,7 +459,7 @@
   .section-heading {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 16px;
     margin-bottom: 28px;
   }
@@ -469,10 +470,7 @@
   }
 
   .section-heading p {
-    color: var(--muted);
-    font-size: 0.92rem;
-    max-width: 42ch;
-    text-align: right;
+    display: none;
   }
 
   .cards {
@@ -702,61 +700,98 @@
     margin-top: 36px;
   }
 
-  .game-intro {
-    max-width: 62ch;
+  .lab-note {
     color: var(--muted);
-    margin-bottom: 26px;
+    max-width: 62ch;
+    margin-bottom: 24px;
   }
 
-  .game-wrap {
+  .cli-lab {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 20px;
   }
 
-  .route-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .route-card {
-    padding: 18px;
-    border-radius: 18px;
+  .cli-shell {
     border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(4, 12, 21, 0.98), rgba(8, 16, 29, 0.96));
+  }
+
+  .cli-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.02);
-    transition: 180ms ease;
-    cursor: pointer;
   }
 
-  .route-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(134, 224, 255, 0.38);
-    background: rgba(76, 194, 255, 0.07);
-  }
-
-  .route-card.active {
-    border-color: rgba(82, 214, 162, 0.4);
-    background: rgba(82, 214, 162, 0.08);
-  }
-
-  .route-name {
-    display: block;
+  .cli-topbar strong {
     color: var(--title);
-    font-size: 1rem;
-    margin-bottom: 14px;
-    font-weight: 700;
+    font-size: 0.95rem;
   }
 
-  .route-stats {
-    display: grid;
-    gap: 8px;
-    color: var(--muted);
+  .cli-screen {
+    min-height: 420px;
+    max-height: 420px;
+    overflow: auto;
+    padding: 18px;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.78rem;
+    font-size: 0.83rem;
+    line-height: 1.8;
+    color: #c9def5;
   }
 
-  .game-side {
+  .cli-entry {
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .cli-entry.command {
+    color: var(--accent-strong);
+  }
+
+  .cli-entry.output {
+    color: var(--muted);
+  }
+
+  .cli-entry.success {
+    color: var(--good);
+  }
+
+  .cli-entry.error {
+    color: #ff8f8f;
+  }
+
+  .cli-composer {
+    display: flex;
+    gap: 10px;
+    padding: 14px 18px 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .cli-input {
+    flex: 1;
+    min-height: 46px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--title);
+    padding: 0 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    outline: none;
+  }
+
+  .cli-input:focus {
+    border-color: rgba(134, 224, 255, 0.36);
+  }
+
+  .cli-side {
     padding: 20px;
     border-radius: 18px;
     border: 1px solid var(--line);
@@ -773,38 +808,23 @@
     margin-bottom: 10px;
   }
 
-  .packet-track {
-    position: relative;
-    height: 14px;
+  .lab-hints {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0 22px;
+  }
+
+  .hint-chip {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 8px 12px;
     border-radius: 999px;
-    overflow: hidden;
-    margin: 18px 0 14px;
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .packet-progress {
-    width: 0;
-    height: 100%;
-    border-radius: inherit;
-    background: linear-gradient(90deg, var(--accent), var(--good));
-    transition: width 0.9s ease;
-  }
-
-  .packet-nodes {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
     color: var(--muted);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.72rem;
-    margin-bottom: 18px;
-  }
-
-  .game-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 18px 0;
+    font-size: 0.76rem;
   }
 
   .btn-small {
@@ -831,7 +851,7 @@
 
   .score-box {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     margin-top: 18px;
   }
@@ -859,7 +879,7 @@
   }
 
   .game-status {
-    min-height: 78px;
+    min-height: 96px;
     color: var(--muted);
   }
 
@@ -883,7 +903,7 @@
   @media (max-width: 1080px) {
     .hero,
     .layout,
-    .game-wrap {
+    .cli-lab {
       grid-template-columns: 1fr;
     }
   }
@@ -911,7 +931,6 @@
     .meta-grid,
     .cards,
     .dashboard,
-    .route-grid,
     .score-box {
       grid-template-columns: 1fr;
     }
@@ -1268,55 +1287,54 @@
     <section class="panel section reveal playground" id="lab">
       <div class="section-heading">
         <h2>Mini-Lab de Red</h2>
-        <p>Un guiño final: elige la mejor ruta para enviar el paquete. Menos latencia y menos pérdida suele ser mejor ingeniería.</p>
       </div>
 
-      <p class="game-intro">
-        Cada simulación genera tres rutas entre Barcelona y un datacenter. Tu misión es escoger el camino más sano antes de lanzar el tráfico. Si aciertas, sumas una buena decisión de routing.
+      <p class="lab-note">
+        Un guiño más acorde al perfil: una mini CLI estilo Cisco donde puedes probar comandos básicos como `enable`, `conf t`, `interface g0/1`, `ip address`, `no shutdown`, `show ip interface brief` o `write memory`.
       </p>
 
-      <div class="game-wrap">
-        <div>
-          <div class="route-grid" id="route-grid"></div>
+      <div class="cli-lab">
+        <div class="cli-shell">
+          <div class="cli-topbar">
+            <strong>teo-rtr01 terminal</strong>
+            <span class="pill good">interactive</span>
+          </div>
+          <div class="cli-screen" id="cli-game-screen"></div>
+          <div class="cli-composer">
+            <input class="cli-input" id="cli-game-input" type="text" autocomplete="off" spellcheck="false" placeholder="Escribe un comando Cisco...">
+            <button class="btn-small primary" id="cli-run" type="button">Ejecutar</button>
+          </div>
         </div>
 
-        <div class="game-side">
+        <div class="cli-side">
           <div class="lab-line">
-            <span>source: BCN-EDGE-01</span>
-            <span>destination: CORE-DC-01</span>
+            <span>device: teo-rtr01</span>
+            <span>lab: basic ios</span>
           </div>
-          <div class="packet-track">
-            <div class="packet-progress" id="packet-progress"></div>
-          </div>
-          <div class="packet-nodes">
-            <span>host</span>
-            <span>edge</span>
-            <span>core</span>
-            <span>dc</span>
+
+          <div class="lab-hints">
+            <span class="hint-chip">enable</span>
+            <span class="hint-chip">conf t</span>
+            <span class="hint-chip">interface g0/1</span>
+            <span class="hint-chip">ip address 192.168.10.1 255.255.255.0</span>
+            <span class="hint-chip">no shutdown</span>
+            <span class="hint-chip">show ip interface brief</span>
+            <span class="hint-chip">write memory</span>
           </div>
 
           <div class="game-status" id="game-status">
-            <strong>Esperando ruta</strong>
-            <span>Selecciona una ruta y pulsa “Enviar paquete” para probar tu criterio.</span>
-          </div>
-
-          <div class="game-actions">
-            <button class="btn-small primary" id="send-packet" type="button">Enviar paquete</button>
-            <button class="btn-small" id="new-round" type="button">Nueva simulación</button>
+            <strong>Reto</strong>
+            <span>Levanta la interfaz `GigabitEthernet0/1`, asígnale IP y guarda la configuración. La consola te irá respondiendo como un IOS simplificado.</span>
           </div>
 
           <div class="score-box">
             <div class="score-item">
-              <strong id="score-good">0</strong>
-              <span>Buenas rutas</span>
+              <strong id="lab-mode">user</strong>
+              <span>Modo actual</span>
             </div>
             <div class="score-item">
-              <strong id="score-total">0</strong>
-              <span>Intentos</span>
-            </div>
-            <div class="score-item">
-              <strong id="score-rate">0%</strong>
-              <span>Acierto</span>
+              <strong id="lab-progress">0/3</strong>
+              <span>Objetivos</span>
             </div>
           </div>
         </div>
@@ -1331,14 +1349,12 @@
     const navLinks = document.querySelectorAll(".nav a");
     const revealItems = document.querySelectorAll(".reveal");
     const rotatingLine = document.getElementById("cli-rotating");
-    const routeGrid = document.getElementById("route-grid");
-    const packetProgress = document.getElementById("packet-progress");
     const gameStatus = document.getElementById("game-status");
-    const sendPacket = document.getElementById("send-packet");
-    const newRoundButton = document.getElementById("new-round");
-    const scoreGood = document.getElementById("score-good");
-    const scoreTotal = document.getElementById("score-total");
-    const scoreRate = document.getElementById("score-rate");
+    const cliGameScreen = document.getElementById("cli-game-screen");
+    const cliGameInput = document.getElementById("cli-game-input");
+    const cliRun = document.getElementById("cli-run");
+    const labMode = document.getElementById("lab-mode");
+    const labProgress = document.getElementById("lab-progress");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1379,90 +1395,144 @@
       rotatingLine.textContent = cliMessages[cliIndex];
     }, 2200);
 
-    const routeNames = [
-      "BCN > MAD > CORE",
-      "BCN > PAR > CORE",
-      "BCN > AMS > CORE",
-      "BCN > MIL > CORE",
-      "BCN > LIS > CORE"
-    ];
+    const lab = {
+      mode: "user",
+      hostname: "teo-rtr01",
+      currentInterface: null,
+      interfaceUp: false,
+      interfaceIp: null,
+      startupSaved: false
+    };
 
-    let routes = [];
-    let selectedRouteId = null;
-    let score = { good: 0, total: 0 };
-
-    function computeHealth(route) {
-      return route.latency + route.loss * 18 + route.hops * 4;
+    function promptText() {
+      if (lab.mode === "user") return `${lab.hostname}>`;
+      if (lab.mode === "privileged") return `${lab.hostname}#`;
+      if (lab.mode === "config") return `${lab.hostname}(config)#`;
+      return `${lab.hostname}(config-if)#`;
     }
 
-    function renderRoutes() {
-      routeGrid.innerHTML = "";
-      routes.forEach((route) => {
-        const card = document.createElement("button");
-        card.type = "button";
-        card.className = `route-card${selectedRouteId === route.id ? " active" : ""}`;
-        card.innerHTML = `
-          <span class="route-name">${route.name}</span>
-          <div class="route-stats">
-            <span>latency........ ${route.latency} ms</span>
-            <span>packet_loss.... ${route.loss}%</span>
-            <span>hop_count...... ${route.hops}</span>
-          </div>
-        `;
-        card.addEventListener("click", () => {
-          selectedRouteId = route.id;
-          renderRoutes();
-          gameStatus.innerHTML = `<strong>Ruta seleccionada</strong><span>${route.name} lista para enviar tráfico.</span>`;
-        });
-        routeGrid.appendChild(card);
-      });
+    function appendLine(text, type = "output") {
+      const line = document.createElement("div");
+      line.className = `cli-entry ${type}`;
+      line.textContent = text;
+      cliGameScreen.appendChild(line);
+      cliGameScreen.scrollTop = cliGameScreen.scrollHeight;
     }
 
-    function refreshScore() {
-      scoreGood.textContent = score.good;
-      scoreTotal.textContent = score.total;
-      scoreRate.textContent = score.total ? `${Math.round((score.good / score.total) * 100)}%` : "0%";
+    function updateLabUi() {
+      const completed = [
+        Boolean(lab.interfaceIp),
+        lab.interfaceUp,
+        lab.startupSaved
+      ].filter(Boolean).length;
+
+      labMode.textContent = lab.mode === "config-if" ? "config-if" : lab.mode;
+      labProgress.textContent = `${completed}/3`;
+
+      if (completed === 3) {
+        gameStatus.innerHTML = "<strong>Lab completado</strong><span>Interfaz configurada, activada y guardada. Ese es exactamente el tipo de guiño técnico que sí suma en una landing de redes.</span>";
+      }
     }
 
-    function newRound() {
-      packetProgress.style.width = "0%";
-      selectedRouteId = null;
-      routes = Array.from({ length: 3 }, (_, index) => ({
-        id: index + 1,
-        name: routeNames[Math.floor(Math.random() * routeNames.length)],
-        latency: Math.floor(Math.random() * 55) + 12,
-        loss: Math.floor(Math.random() * 7),
-        hops: Math.floor(Math.random() * 4) + 2
-      })).sort(() => Math.random() - 0.5);
-      renderRoutes();
-      gameStatus.innerHTML = "<strong>Nueva simulación cargada</strong><span>Busca la ruta más eficiente y luego envía el paquete.</span>";
+    function bootCli() {
+      cliGameScreen.innerHTML = "";
+      appendLine("Cisco IOS Software, Teo Lab Edition", "success");
+      appendLine("Type ? for help. Suggested path: enable -> conf t -> interface g0/1", "output");
+      appendLine(promptText(), "command");
+      updateLabUi();
     }
 
-    sendPacket.addEventListener("click", () => {
-      if (!selectedRouteId) {
-        gameStatus.innerHTML = "<strong>Falta ruta</strong><span>Antes de lanzar tráfico, selecciona una opción de encaminamiento.</span>";
+    function runCliCommand(rawInput) {
+      const input = rawInput.trim();
+      appendLine(`${promptText()} ${input}`, "command");
+
+      if (!input) {
+        appendLine(promptText(), "command");
         return;
       }
 
-      const selected = routes.find((route) => route.id === selectedRouteId);
-      const best = [...routes].sort((a, b) => computeHealth(a) - computeHealth(b))[0];
-      const isBest = selected.id === best.id;
+      const normalized = input.toLowerCase();
 
-      packetProgress.style.width = "100%";
-      score.total += 1;
-      if (isBest) score.good += 1;
-      refreshScore();
+      if (normalized === "?" || normalized === "help") {
+        appendLine("Available: enable, disable, conf t, interface g0/1, ip address A.B.C.D MASK, no shutdown, end, exit, show ip interface brief, write memory", "output");
+      } else if (lab.mode === "user") {
+        if (normalized === "enable") {
+          lab.mode = "privileged";
+          appendLine("Entering privileged EXEC mode...", "success");
+        } else if (normalized.startsWith("show")) {
+          appendLine("% Privileged mode required for show commands.", "error");
+        } else {
+          appendLine("% Unknown command. Try 'enable'.", "error");
+        }
+      } else if (lab.mode === "privileged") {
+        if (normalized === "disable") {
+          lab.mode = "user";
+        } else if (normalized === "conf t" || normalized === "configure terminal") {
+          lab.mode = "config";
+          appendLine("Enter configuration commands, one per line. End with CNTL/Z.", "success");
+        } else if (normalized === "show ip interface brief") {
+          appendLine("Interface              IP-Address      OK? Method Status                Protocol", "output");
+          appendLine(`GigabitEthernet0/1     ${lab.interfaceIp || "unassigned".padEnd(15)} YES manual ${lab.interfaceUp ? "up".padEnd(20) : "administratively down"} ${lab.interfaceUp ? "up" : "down"}`, "output");
+        } else if (normalized === "write memory" || normalized === "copy run start") {
+          lab.startupSaved = true;
+          appendLine("Building configuration...", "output");
+          appendLine("[OK]", "success");
+        } else {
+          appendLine("% Invalid command in privileged mode.", "error");
+        }
+      } else if (lab.mode === "config") {
+        if (normalized === "end") {
+          lab.mode = "privileged";
+        } else if (normalized === "exit") {
+          lab.mode = "privileged";
+        } else if (normalized === "interface g0/1" || normalized === "interface gigabitethernet0/1") {
+          lab.mode = "config-if";
+          lab.currentInterface = "GigabitEthernet0/1";
+          appendLine(`Configuring ${lab.currentInterface}`, "success");
+        } else {
+          appendLine("% Expected 'interface g0/1' or 'end'.", "error");
+        }
+      } else if (lab.mode === "config-if") {
+        if (normalized === "exit") {
+          lab.mode = "config";
+          lab.currentInterface = null;
+        } else if (normalized === "end") {
+          lab.mode = "privileged";
+          lab.currentInterface = null;
+        } else if (normalized.startsWith("ip address ")) {
+          const parts = input.split(/\s+/);
+          if (parts.length === 4) {
+            lab.interfaceIp = parts[2];
+            appendLine(`Assigned ${parts[2]} ${parts[3]} to GigabitEthernet0/1`, "success");
+          } else {
+            appendLine("% Usage: ip address 192.168.10.1 255.255.255.0", "error");
+          }
+        } else if (normalized === "no shutdown") {
+          lab.interfaceUp = true;
+          appendLine("Interface GigabitEthernet0/1 changed state to up", "success");
+        } else {
+          appendLine("% Available here: ip address ..., no shutdown, exit, end", "error");
+        }
+      }
 
-      setTimeout(() => {
-        gameStatus.innerHTML = isBest
-          ? `<strong>Buen routing</strong><span>Has elegido ${selected.name}. Era la ruta más sana de la ronda: baja latencia y buen perfil de entrega.</span>`
-          : `<strong>Ruta mejorable</strong><span>${selected.name} funciona, pero la mejor era ${best.name}. En redes, unos pocos ms y algo de pérdida sí importan.</span>`;
-      }, 320);
+      updateLabUi();
+      appendLine(promptText(), "command");
+    }
+
+    cliRun.addEventListener("click", () => {
+      runCliCommand(cliGameInput.value);
+      cliGameInput.value = "";
+      cliGameInput.focus();
     });
 
-    newRoundButton.addEventListener("click", newRound);
-    refreshScore();
-    newRound();
+    cliGameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        cliRun.click();
+      }
+    });
+
+    bootCli();
   </script>
 </body>
 </html>
