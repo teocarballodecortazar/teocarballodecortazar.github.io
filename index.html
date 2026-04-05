@@ -49,6 +49,40 @@
 
       const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
 
+      const desktopPatch = `
+section[id] { scroll-margin-top: 118px; }
+@media (min-width: 1081px) {
+  .shell { max-width: 1320px !important; padding: 34px 36px 72px !important; }
+  .topbar { gap: 24px !important; padding: 18px 24px !important; margin-bottom: 48px !important; }
+  .nav { gap: 14px !important; }
+  .nav a { padding: 10px 14px !important; }
+  .hero { gap: 40px !important; margin-bottom: 56px !important; }
+  .hero-main { padding: 46px !important; }
+  .hero-side { padding: 34px !important; gap: 28px !important; }
+  .meta-grid { gap: 22px !important; margin-bottom: 38px !important; }
+  .meta-card, .card, .status-card, .cert-item, .edu-item, .info-item { padding: 24px !important; }
+  .hero-actions { margin-bottom: 34px !important; }
+  .layout { gap: 40px !important; }
+  .stack { gap: 38px !important; }
+  .section { padding: 40px !important; }
+  .section-heading { margin-bottom: 32px !important; }
+  .cards, .timeline, .cert-list, .edu-list, .info-list { gap: 22px !important; }
+  .dashboard { gap: 16px !important; }
+  .stat { padding: 24px 20px !important; }
+  .cli { padding: 24px !important; }
+  .cli-lab { gap: 24px !important; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .card, .timeline-item, .cert-item, .edu-item, .info-item, .status-card, .stat {
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease !important;
+  }
+  .card:hover, .timeline-item:hover, .cert-item:hover, .edu-item:hover, .info-item:hover, .status-card:hover, .stat:hover {
+    transform: translateY(-3px);
+    border-color: rgba(134, 224, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+  }
+}`;
+
       const chunks = await Promise.all(
         parts.map((path) =>
           fetch(path, { cache: "no-store" }).then((response) => {
@@ -60,7 +94,6 @@
 
       const normalized = chunks.map((chunk) => chunk.replace(/[^A-Za-z0-9+/=]/g, ""));
 
-      // Hotfix: page.part02.b64 salió truncado en producción (11547 en vez de 12000).
       if (normalized[1] && normalized[1].length === 11547) {
         normalized[1] += part02TailPatch;
       }
@@ -72,10 +105,17 @@
 
       const binary = atob(joined);
       const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
-      const html = new TextDecoder("utf-8").decode(bytes);
+      let html = new TextDecoder("utf-8").decode(bytes);
 
       if (!/^<!doctype html>/i.test(html.trimStart())) {
         throw new Error("Payload decodificado inválido");
+      }
+
+      html = html.replace("<strong>Soporte</strong>", "<strong>L1/L2</strong>");
+      html = html.replace("<span>Atención técnica y resolución</span>", "<span>Soporte técnico y resolución</span>");
+
+      if (!html.includes("scroll-margin-top: 118px")) {
+        html = html.replace("</style>", `${desktopPatch}\n</style>`);
       }
 
       document.open();
