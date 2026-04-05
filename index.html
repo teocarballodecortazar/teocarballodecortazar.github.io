@@ -44,7 +44,7 @@
       linear-gradient(180deg, #07111d 0%, #091422 50%, #07101c 100%);
     color: var(--text);
     font-family: "Space Grotesk", system-ui, sans-serif;
-    line-height: 1.6;
+    line-height: 1.72;
     overflow-x: hidden;
   }
 
@@ -76,7 +76,7 @@
     z-index: 1;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 24px;
+    padding: 28px 28px 56px;
   }
 
   .topbar {
@@ -88,7 +88,7 @@
     justify-content: space-between;
     gap: 18px;
     padding: 14px 18px;
-    margin-bottom: 28px;
+    margin-bottom: 38px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: rgba(8, 16, 29, 0.72);
@@ -187,8 +187,8 @@
   .hero {
     display: grid;
     grid-template-columns: 1.25fr 0.85fr;
-    gap: 24px;
-    margin-bottom: 28px;
+    gap: 32px;
+    margin-bottom: 44px;
   }
 
   .panel {
@@ -223,7 +223,7 @@
   }
 
   .hero-main {
-    padding: 28px;
+    padding: 38px;
   }
 
   .badge {
@@ -256,8 +256,8 @@
   .lede {
     max-width: 60ch;
     color: var(--muted);
-    font-size: 1.08rem;
-    margin-bottom: 22px;
+    font-size: 1.12rem;
+    margin-bottom: 30px;
   }
 
   .highlight {
@@ -267,12 +267,12 @@
   .meta-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    margin-bottom: 26px;
+    gap: 18px;
+    margin-bottom: 32px;
   }
 
   .meta-card {
-    padding: 16px;
+    padding: 20px;
     border: 1px solid var(--line);
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.02);
@@ -296,8 +296,8 @@
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 28px;
   }
 
   .btn {
@@ -331,23 +331,23 @@
 
   .hero-note {
     color: var(--muted);
-    font-size: 0.94rem;
+    font-size: 0.98rem;
   }
 
   .hero-side {
-    padding: 20px;
+    padding: 28px;
     display: grid;
-    gap: 18px;
+    gap: 22px;
   }
 
   .dashboard {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 14px;
   }
 
   .stat {
-    padding: 18px 16px;
+    padding: 22px 18px;
     border: 1px solid var(--line);
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.025);
@@ -367,7 +367,7 @@
   }
 
   .cli {
-    padding: 18px;
+    padding: 22px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: linear-gradient(180deg, rgba(5, 13, 23, 0.96), rgba(8, 16, 28, 0.92));
@@ -405,7 +405,7 @@
   }
 
   .status-card {
-    padding: 16px;
+    padding: 20px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: rgba(76, 194, 255, 0.05);
@@ -443,16 +443,16 @@
   .layout {
     display: grid;
     grid-template-columns: 1fr 0.72fr;
-    gap: 24px;
+    gap: 32px;
   }
 
   .stack {
     display: grid;
-    gap: 24px;
+    gap: 32px;
   }
 
   .section {
-    padding: 24px;
+    padding: 34px;
   }
 
   .section-heading {
@@ -460,7 +460,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
 
   .section-heading h2 {
@@ -478,11 +478,11 @@
   .cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 18px;
   }
 
   .card {
-    padding: 18px;
+    padding: 22px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.02);
@@ -506,7 +506,7 @@
   .card p {
     color: var(--muted);
     font-size: 0.95rem;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .tags {
@@ -527,12 +527,12 @@
 
   .timeline {
     display: grid;
-    gap: 16px;
+    gap: 18px;
   }
 
   .timeline-item {
     position: relative;
-    padding: 18px 18px 18px 22px;
+    padding: 24px 22px 24px 26px;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: rgba(255, 255, 255, 0.02);
@@ -574,6 +574,7 @@
   .timeline-item ul {
     padding-left: 18px;
     color: var(--muted);
+    margin-top: 12px;
   }
 
   .timeline-item li + li {
@@ -584,13 +585,13 @@
   .edu-list,
   .info-list {
     display: grid;
-    gap: 14px;
+    gap: 18px;
   }
 
   .cert-item,
   .edu-item,
   .info-item {
-    padding: 16px;
+    padding: 20px;
     border: 1px solid var(--line);
     border-radius: 16px;
     background: rgba(255, 255, 255, 0.02);
@@ -659,8 +660,8 @@
 
   .contact-list {
     display: grid;
-    gap: 10px;
-    margin-top: 8px;
+    gap: 14px;
+    margin-top: 10px;
   }
 
   .contact-link {
@@ -668,7 +669,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 13px 14px;
+    padding: 15px 16px;
     border-radius: 14px;
     border: 1px solid var(--line);
     color: var(--text);
@@ -688,13 +689,184 @@
   }
 
   .footer {
-    margin-top: 28px;
+    margin-top: 44px;
     padding: 18px 4px 8px;
     text-align: center;
     color: var(--muted);
     font-size: 0.76rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  .playground {
+    margin-top: 36px;
+  }
+
+  .game-intro {
+    max-width: 62ch;
+    color: var(--muted);
+    margin-bottom: 26px;
+  }
+
+  .game-wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 20px;
+  }
+
+  .route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .route-card {
+    padding: 18px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+    transition: 180ms ease;
+    cursor: pointer;
+  }
+
+  .route-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(134, 224, 255, 0.38);
+    background: rgba(76, 194, 255, 0.07);
+  }
+
+  .route-card.active {
+    border-color: rgba(82, 214, 162, 0.4);
+    background: rgba(82, 214, 162, 0.08);
+  }
+
+  .route-name {
+    display: block;
+    color: var(--title);
+    font-size: 1rem;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .route-stats {
+    display: grid;
+    gap: 8px;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+  }
+
+  .game-side {
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .lab-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    margin-bottom: 10px;
+  }
+
+  .packet-track {
+    position: relative;
+    height: 14px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 18px 0 14px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .packet-progress {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent), var(--good));
+    transition: width 0.9s ease;
+  }
+
+  .packet-nodes {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    margin-bottom: 18px;
+  }
+
+  .game-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 18px 0;
+  }
+
+  .btn-small {
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--title);
+    font-family: "IBM Plex Mono", monospace;
+    cursor: pointer;
+    transition: 160ms ease;
+  }
+
+  .btn-small:hover {
+    border-color: rgba(134, 224, 255, 0.38);
+    transform: translateY(-1px);
+  }
+
+  .btn-small.primary {
+    background: linear-gradient(135deg, rgba(76, 194, 255, 0.92), rgba(65, 157, 255, 0.82));
+    color: #04101c;
+  }
+
+  .score-box {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .score-item {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+  }
+
+  .score-item strong {
+    display: block;
+    color: var(--title);
+    font-size: 1.3rem;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .score-item span {
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+  }
+
+  .game-status {
+    min-height: 78px;
+    color: var(--muted);
+  }
+
+  .game-status strong {
+    display: block;
+    color: var(--title);
+    margin-bottom: 8px;
   }
 
   .reveal {
@@ -710,7 +882,8 @@
 
   @media (max-width: 1080px) {
     .hero,
-    .layout {
+    .layout,
+    .game-wrap {
       grid-template-columns: 1fr;
     }
   }
@@ -732,12 +905,14 @@
     .hero-main,
     .hero-side,
     .section {
-      padding: 20px;
+      padding: 22px;
     }
 
     .meta-grid,
     .cards,
-    .dashboard {
+    .dashboard,
+    .route-grid,
+    .score-box {
       grid-template-columns: 1fr;
     }
 
@@ -815,7 +990,7 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="mailto:carballoteo@gmail.com">Contactar</a>
-            <a class="btn btn-secondary" href="https://linkedin.com/in/Teo" target="_blank" rel="noreferrer">Ver LinkedIn</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/teo-carballo-de-cortazar" target="_blank" rel="noreferrer">Ver LinkedIn</a>
           </div>
 
           <p class="hero-note">
@@ -1077,9 +1252,9 @@
               <span>Teléfono</span>
               <span>608 161 579</span>
             </a>
-            <a class="contact-link" href="https://linkedin.com/in/Teo" target="_blank" rel="noreferrer">
+            <a class="contact-link" href="https://www.linkedin.com/in/teo-carballo-de-cortazar" target="_blank" rel="noreferrer">
               <span>LinkedIn</span>
-              <span>linkedin.com/in/Teo</span>
+              <span>linkedin.com/in/teo-carballo-de-cortazar</span>
             </a>
             <div class="contact-link">
               <span>Ubicación</span>
@@ -1090,6 +1265,64 @@
       </aside>
     </div>
 
+    <section class="panel section reveal playground" id="lab">
+      <div class="section-heading">
+        <h2>Mini-Lab de Red</h2>
+        <p>Un guiño final: elige la mejor ruta para enviar el paquete. Menos latencia y menos pérdida suele ser mejor ingeniería.</p>
+      </div>
+
+      <p class="game-intro">
+        Cada simulación genera tres rutas entre Barcelona y un datacenter. Tu misión es escoger el camino más sano antes de lanzar el tráfico. Si aciertas, sumas una buena decisión de routing.
+      </p>
+
+      <div class="game-wrap">
+        <div>
+          <div class="route-grid" id="route-grid"></div>
+        </div>
+
+        <div class="game-side">
+          <div class="lab-line">
+            <span>source: BCN-EDGE-01</span>
+            <span>destination: CORE-DC-01</span>
+          </div>
+          <div class="packet-track">
+            <div class="packet-progress" id="packet-progress"></div>
+          </div>
+          <div class="packet-nodes">
+            <span>host</span>
+            <span>edge</span>
+            <span>core</span>
+            <span>dc</span>
+          </div>
+
+          <div class="game-status" id="game-status">
+            <strong>Esperando ruta</strong>
+            <span>Selecciona una ruta y pulsa “Enviar paquete” para probar tu criterio.</span>
+          </div>
+
+          <div class="game-actions">
+            <button class="btn-small primary" id="send-packet" type="button">Enviar paquete</button>
+            <button class="btn-small" id="new-round" type="button">Nueva simulación</button>
+          </div>
+
+          <div class="score-box">
+            <div class="score-item">
+              <strong id="score-good">0</strong>
+              <span>Buenas rutas</span>
+            </div>
+            <div class="score-item">
+              <strong id="score-total">0</strong>
+              <span>Intentos</span>
+            </div>
+            <div class="score-item">
+              <strong id="score-rate">0%</strong>
+              <span>Acierto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="footer">teo-profile# session closed without errors</div>
   </div>
 
@@ -1098,6 +1331,14 @@
     const navLinks = document.querySelectorAll(".nav a");
     const revealItems = document.querySelectorAll(".reveal");
     const rotatingLine = document.getElementById("cli-rotating");
+    const routeGrid = document.getElementById("route-grid");
+    const packetProgress = document.getElementById("packet-progress");
+    const gameStatus = document.getElementById("game-status");
+    const sendPacket = document.getElementById("send-packet");
+    const newRoundButton = document.getElementById("new-round");
+    const scoreGood = document.getElementById("score-good");
+    const scoreTotal = document.getElementById("score-total");
+    const scoreRate = document.getElementById("score-rate");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1137,6 +1378,91 @@
       cliIndex = (cliIndex + 1) % cliMessages.length;
       rotatingLine.textContent = cliMessages[cliIndex];
     }, 2200);
+
+    const routeNames = [
+      "BCN > MAD > CORE",
+      "BCN > PAR > CORE",
+      "BCN > AMS > CORE",
+      "BCN > MIL > CORE",
+      "BCN > LIS > CORE"
+    ];
+
+    let routes = [];
+    let selectedRouteId = null;
+    let score = { good: 0, total: 0 };
+
+    function computeHealth(route) {
+      return route.latency + route.loss * 18 + route.hops * 4;
+    }
+
+    function renderRoutes() {
+      routeGrid.innerHTML = "";
+      routes.forEach((route) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = `route-card${selectedRouteId === route.id ? " active" : ""}`;
+        card.innerHTML = `
+          <span class="route-name">${route.name}</span>
+          <div class="route-stats">
+            <span>latency........ ${route.latency} ms</span>
+            <span>packet_loss.... ${route.loss}%</span>
+            <span>hop_count...... ${route.hops}</span>
+          </div>
+        `;
+        card.addEventListener("click", () => {
+          selectedRouteId = route.id;
+          renderRoutes();
+          gameStatus.innerHTML = `<strong>Ruta seleccionada</strong><span>${route.name} lista para enviar tráfico.</span>`;
+        });
+        routeGrid.appendChild(card);
+      });
+    }
+
+    function refreshScore() {
+      scoreGood.textContent = score.good;
+      scoreTotal.textContent = score.total;
+      scoreRate.textContent = score.total ? `${Math.round((score.good / score.total) * 100)}%` : "0%";
+    }
+
+    function newRound() {
+      packetProgress.style.width = "0%";
+      selectedRouteId = null;
+      routes = Array.from({ length: 3 }, (_, index) => ({
+        id: index + 1,
+        name: routeNames[Math.floor(Math.random() * routeNames.length)],
+        latency: Math.floor(Math.random() * 55) + 12,
+        loss: Math.floor(Math.random() * 7),
+        hops: Math.floor(Math.random() * 4) + 2
+      })).sort(() => Math.random() - 0.5);
+      renderRoutes();
+      gameStatus.innerHTML = "<strong>Nueva simulación cargada</strong><span>Busca la ruta más eficiente y luego envía el paquete.</span>";
+    }
+
+    sendPacket.addEventListener("click", () => {
+      if (!selectedRouteId) {
+        gameStatus.innerHTML = "<strong>Falta ruta</strong><span>Antes de lanzar tráfico, selecciona una opción de encaminamiento.</span>";
+        return;
+      }
+
+      const selected = routes.find((route) => route.id === selectedRouteId);
+      const best = [...routes].sort((a, b) => computeHealth(a) - computeHealth(b))[0];
+      const isBest = selected.id === best.id;
+
+      packetProgress.style.width = "100%";
+      score.total += 1;
+      if (isBest) score.good += 1;
+      refreshScore();
+
+      setTimeout(() => {
+        gameStatus.innerHTML = isBest
+          ? `<strong>Buen routing</strong><span>Has elegido ${selected.name}. Era la ruta más sana de la ronda: baja latencia y buen perfil de entrega.</span>`
+          : `<strong>Ruta mejorable</strong><span>${selected.name} funciona, pero la mejor era ${best.name}. En redes, unos pocos ms y algo de pérdida sí importan.</span>`;
+      }, 320);
+    });
+
+    newRoundButton.addEventListener("click", newRound);
+    refreshScore();
+    newRound();
   </script>
 </body>
 </html>
