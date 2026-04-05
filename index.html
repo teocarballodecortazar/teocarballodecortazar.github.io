@@ -3,753 +3,1140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>teo@carballo:~$ whoami</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+<title>Teo Carballo | Network Engineer Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:    #000000;
-  --bg2:   #020a02;
-  --bg3:   #031003;
-  --g1:    #00ff41;   /* matrix green */
-  --g2:    #00cc33;
-  --g3:    #008f11;
-  --dim:   #005500;
-  --text:  #00dd33;
-  --text2: #007722;
-  --white: #ccffcc;
-  --warn:  #ffcc00;
-  --err:   #ff3300;
-}
+  :root {
+    --bg: #08111f;
+    --bg-soft: #0d1829;
+    --panel: rgba(10, 20, 35, 0.84);
+    --panel-strong: rgba(13, 27, 46, 0.96);
+    --line: rgba(115, 162, 209, 0.2);
+    --line-strong: rgba(120, 175, 232, 0.42);
+    --text: #d8e6f6;
+    --muted: #8ca4bf;
+    --accent: #4cc2ff;
+    --accent-strong: #86e0ff;
+    --good: #52d6a2;
+    --warn: #ffca6a;
+    --title: #f3f7fb;
+    --shadow: 0 18px 70px rgba(0, 0, 0, 0.35);
+    --radius: 22px;
+  }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'Share Tech Mono',monospace;
-  font-size:15px;
-  line-height:1.7;
-  overflow-x:hidden;
-  cursor:default;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-/* ── SCANLINES ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background:repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,0.12) 3px,
-    rgba(0,0,0,0.12) 4px
-  );
-  pointer-events:none;z-index:9999;
-}
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top right, rgba(76, 194, 255, 0.14), transparent 28%),
+      radial-gradient(circle at bottom left, rgba(82, 214, 162, 0.08), transparent 24%),
+      linear-gradient(180deg, #07111d 0%, #091422 50%, #07101c 100%);
+    color: var(--text);
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-/* ── CRT FLICKER ── */
-@keyframes flicker{
-  0%,100%{opacity:1;}
-  92%{opacity:1;}
-  93%{opacity:.85;}
-  94%{opacity:1;}
-  96%{opacity:.9;}
-  97%{opacity:1;}
-}
-body{animation:flicker 8s infinite;}
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(97, 146, 194, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(97, 146, 194, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 90%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* ── MATRIX RAIN canvas ── */
-#matrix{position:fixed;top:0;left:0;z-index:0;opacity:.13;pointer-events:none;}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(0,0,0,0.92);
-  border-bottom:1px solid var(--g3);
-  padding:0 40px;
-  display:flex;align-items:center;
-  height:44px;
-  backdrop-filter:blur(4px);
-}
-.nav-bar-left{
-  display:flex;align-items:center;gap:0;
-}
-.nav-tab{
-  font-size:12px;color:var(--text2);
-  padding:0 18px;height:44px;
-  display:flex;align-items:center;
-  border-right:1px solid var(--g3);
-  text-decoration:none;
-  transition:all .15s;
-  letter-spacing:1px;
-}
-.nav-tab:first-child{border-left:1px solid var(--g3);}
-.nav-tab:hover,.nav-tab.active{color:var(--g1);background:rgba(0,255,65,.05);}
-.nav-prompt{
-  margin-left:auto;
-  font-size:12px;color:var(--dim);
-  letter-spacing:1px;
-}
-.nav-prompt span{color:var(--g1);animation:blink .9s step-end infinite;}
-@keyframes blink{50%{opacity:0;}}
+  img {
+    max-width: 100%;
+    display: block;
+  }
 
-/* ── HERO / TERMINAL ── */
-#hero{
-  position:relative;z-index:1;
-  min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:80px 40px 60px;
-  max-width:1100px;margin:0 auto;
-}
+  .shell {
+    position: relative;
+    z-index: 1;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 24px;
+  }
 
-.term-window{
-  border:1px solid var(--g3);
-  background:var(--bg2);
-  margin-bottom:40px;
-  position:relative;
-}
-.term-titlebar{
-  background:var(--bg3);
-  border-bottom:1px solid var(--g3);
-  padding:8px 16px;
-  display:flex;align-items:center;gap:10px;
-  font-size:12px;color:var(--text2);
-  letter-spacing:2px;
-}
-.term-dot{
-  width:10px;height:10px;border-radius:50%;
-  display:inline-block;
-  background:var(--err);
-  margin-right:2px;
-  opacity:.7;
-}
-.term-dot.y{background:var(--warn);}
-.term-dot.g{background:var(--g2);}
-.term-body{padding:28px 32px;line-height:1.9;}
+  .topbar {
+    position: sticky;
+    top: 16px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(8, 16, 29, 0.72);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+  }
 
-.prompt{color:var(--g3);}
-.prompt .user{color:var(--g1);}
-.prompt .sep{color:var(--text2);}
-.prompt .path{color:var(--g2);}
-.cmd{color:var(--white);}
-.output{color:var(--text);margin-left:0;margin-bottom:8px;}
-.output.dim{color:var(--text2);}
-.output.hi{color:var(--white);font-size:17px;}
-.output.warn{color:var(--warn);}
-.output.big{
-  font-family:'VT323',monospace;
-  font-size:clamp(32px,5vw,62px);
-  color:var(--g1);
-  line-height:1.1;
-  text-shadow:0 0 20px rgba(0,255,65,.6),0 0 40px rgba(0,255,65,.3);
-  letter-spacing:2px;
-  margin:10px 0;
-}
-.output.role{
-  font-size:14px;color:var(--g3);letter-spacing:5px;text-transform:uppercase;
-  margin-bottom:16px;
-}
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
 
-/* available badge */
-.avail{
-  display:inline-flex;align-items:center;gap:10px;
-  border:1px solid var(--g2);
-  background:rgba(0,255,65,.06);
-  padding:6px 16px;
-  font-size:12px;color:var(--g1);
-  letter-spacing:2px;margin-top:8px;
-  text-shadow:0 0 10px var(--g1);
-}
-.avail-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--g1);
-  box-shadow:0 0 8px var(--g1);
-  animation:pulse 1.8s infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.8);opacity:.5;}}
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(134, 224, 255, 0.28);
+    background: linear-gradient(135deg, rgba(76, 194, 255, 0.18), rgba(82, 214, 162, 0.08));
+    color: var(--accent-strong);
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+  }
 
-/* contact row */
-.contact-row{
-  display:flex;flex-wrap:wrap;gap:0;margin-top:24px;
-}
-.cr{
-  font-size:12px;color:var(--text2);
-  padding:9px 18px;border:1px solid var(--g3);
-  margin:-1px -1px 0 0;
-  text-decoration:none;
-  transition:all .15s;
-  display:flex;align-items:center;gap:8px;
-}
-.cr:hover{color:var(--g1);border-color:var(--g2);background:rgba(0,255,65,.05);}
+  .brand-copy strong {
+    display: block;
+    color: var(--title);
+    font-size: 0.98rem;
+  }
 
-/* KPI row */
-.kpi-row{
-  display:flex;flex-wrap:wrap;gap:18px;margin-top:36px;
-}
-.kpi{
-  border:1px solid var(--g3);
-  background:var(--bg2);
-  padding:16px 28px;
-  text-align:center;
-  transition:all .2s;
-  min-width:130px;
-}
-.kpi:hover{border-color:var(--g2);background:rgba(0,255,65,.04);}
-.kv{
-  font-family:'VT323',monospace;
-  font-size:36px;color:var(--g1);
-  text-shadow:0 0 12px rgba(0,255,65,.5);
-  display:block;line-height:1;
-}
-.kl{font-size:11px;color:var(--text2);letter-spacing:2px;text-transform:uppercase;margin-top:2px;display:block;}
+  .brand-copy span,
+  .topbar-status,
+  .nav a,
+  .meta-label,
+  .badge,
+  .chip,
+  .tag,
+  .mini-label,
+  .timeline-date,
+  .cli-line,
+  .footer {
+    font-family: "IBM Plex Mono", monospace;
+  }
 
-/* cta buttons */
-.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
-.btn-green{
-  font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:12px 28px;
-  background:var(--g1);color:#000;
-  border:none;cursor:pointer;text-decoration:none;
-  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
-  box-shadow:0 0 24px rgba(0,255,65,.4);
-  transition:all .2s;
-}
-.btn-green:hover{background:#fff;box-shadow:0 0 40px rgba(0,255,65,.7);transform:translateY(-1px);}
-.btn-out{
-  font-size:13px;letter-spacing:2px;text-transform:uppercase;
-  padding:11px 28px;
-  background:transparent;color:var(--g1);
-  border:1px solid var(--g2);
-  cursor:pointer;text-decoration:none;
-  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
-  transition:all .2s;
-}
-.btn-out:hover{background:rgba(0,255,65,.08);box-shadow:0 0 16px rgba(0,255,65,.3);}
+  .brand-copy span {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
 
-/* ── SECTION ── */
-.sec{
-  position:relative;z-index:1;
-  padding:70px 40px;max-width:1100px;margin:0 auto;
-}
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 
-.sec-head{
-  display:flex;align-items:center;gap:0;
-  margin-bottom:44px;
-  border-bottom:1px solid var(--g3);
-  padding-bottom:12px;
-}
-.sec-prompt{
-  font-size:13px;color:var(--text2);
-  padding-right:16px;
-  letter-spacing:1px;
-}
-.sec-prompt .dollar{color:var(--g1);}
-.sec-title{
-  font-family:'VT323',monospace;
-  font-size:28px;color:var(--g1);
-  letter-spacing:3px;text-transform:uppercase;
-  text-shadow:0 0 14px rgba(0,255,65,.4);
-}
-.sec-line{flex:1;margin-left:20px;height:1px;background:linear-gradient(90deg,var(--g3),transparent);}
+  .nav a {
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid transparent;
+    transition: 160ms ease;
+  }
 
-/* ── SKILLS ── */
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--g3);}
-.sk{
-  background:var(--bg);
-  padding:24px;
-  transition:background .2s;
-  position:relative;overflow:hidden;
-}
-.sk::before{
-  content:'';position:absolute;top:0;left:0;
-  width:0;height:2px;
-  background:var(--g1);
-  transition:width .35s;
-  box-shadow:0 0 8px var(--g1);
-}
-.sk:hover{background:var(--bg3);}
-.sk:hover::before{width:100%;}
-.sk-icon{font-size:24px;margin-bottom:8px;}
-.sk-title{
-  font-size:11px;color:var(--g1);
-  letter-spacing:3px;text-transform:uppercase;
-  margin-bottom:14px;
-}
-.tags{display:flex;flex-wrap:wrap;gap:7px;}
-.tag{
-  font-size:11px;padding:3px 11px;letter-spacing:1px;
-  border:1px solid var(--g3);color:var(--text2);
-  transition:all .15s;
-}
-.tag:hover,.tag.h{
-  border-color:var(--g2);color:var(--g1);
-  background:rgba(0,255,65,.07);
-  text-shadow:0 0 8px rgba(0,255,65,.5);
-}
+  .nav a:hover,
+  .nav a.active {
+    color: var(--accent-strong);
+    border-color: rgba(134, 224, 255, 0.22);
+    background: rgba(76, 194, 255, 0.08);
+  }
 
-/* ── TIMELINE ── */
-.tl{margin-left:20px;padding-left:30px;border-left:1px solid var(--g3);}
-.ti{position:relative;padding-bottom:48px;}
-.ti:last-child{padding-bottom:0;}
-.ti::before{
-  content:'>';
-  position:absolute;left:-42px;top:0;
-  font-size:18px;color:var(--g1);
-  text-shadow:0 0 10px var(--g1);
-}
-.td{font-size:11px;color:var(--g3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
-.tc{font-family:'VT323',monospace;font-size:22px;color:var(--white);letter-spacing:2px;margin-bottom:2px;}
-.tr{font-size:13px;color:var(--g2);letter-spacing:1px;margin-bottom:12px;}
-.tli{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.tli li{font-size:14px;color:var(--text2);display:flex;align-items:flex-start;gap:8px;}
-.tli li::before{content:'//';color:var(--g3);flex-shrink:0;}
+  .topbar-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 0.76rem;
+    white-space: nowrap;
+  }
 
-/* ── CERTS ── */
-.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--g3);}
-.cert{
-  background:var(--bg);padding:28px;position:relative;overflow:hidden;
-  transition:background .2s;
-}
-.cert:hover{background:var(--bg3);}
-.cert::after{
-  content:'';position:absolute;bottom:0;left:0;
-  width:100%;height:2px;
-  background:var(--g3);
-  transition:background .3s;
-}
-.cert.wip::after{background:linear-gradient(90deg,var(--warn),transparent);}
-.cert.done::after{background:linear-gradient(90deg,var(--g1),transparent);}
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--good);
+    box-shadow: 0 0 14px rgba(82, 214, 162, 0.85);
+  }
 
-.cbadge{
-  display:inline-block;
-  font-size:10px;letter-spacing:2px;
-  padding:2px 10px;margin-bottom:12px;
-  border:1px solid;
-}
-.cert.done .cbadge{color:var(--g1);border-color:var(--g2);background:rgba(0,255,65,.07);}
-.cert.wip  .cbadge{color:var(--warn);border-color:rgba(255,204,0,.4);background:rgba(255,204,0,.06);}
+  .hero {
+    display: grid;
+    grid-template-columns: 1.25fr 0.85fr;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
 
-.co{font-size:11px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;}
-.cn{font-family:'VT323',monospace;font-size:22px;color:var(--white);margin-bottom:8px;padding-right:0;line-height:1.2;}
-.cd{font-size:13px;color:var(--text2);line-height:1.6;}
-.pw{margin-top:16px;}
-.pm{font-size:11px;color:var(--text2);display:flex;justify-content:space-between;margin-bottom:5px;}
-.pb{height:3px;background:rgba(255,255,255,.06);overflow:hidden;}
-.pf{height:100%;animation:grow 1.4s ease forwards;}
-.pf.g{background:linear-gradient(90deg,var(--g3),var(--g1));box-shadow:0 0 6px var(--g1);}
-.pf.w{background:linear-gradient(90deg,#886600,var(--warn));box-shadow:0 0 6px var(--warn);}
-@keyframes grow{from{width:0;}}
+  .panel {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
 
-/* ── EDU ── */
-.eg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--g3);}
-.edu{background:var(--bg);padding:24px;transition:background .2s;}
-.edu:hover{background:var(--bg3);}
-.ep{font-size:11px;color:var(--g3);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
-.en{font-family:'VT323',monospace;font-size:20px;color:var(--white);margin-bottom:4px;line-height:1.3;}
-.ec{font-size:13px;color:var(--text2);}
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.02);
+  }
 
-/* ── LANGS ── */
-.lr{display:flex;flex-wrap:wrap;gap:1px;background:var(--g3);margin-bottom:1px;}
-.lang{flex:1;min-width:160px;background:var(--bg);padding:20px 28px;text-align:center;transition:background .2s;}
-.lang:hover{background:var(--bg3);}
-.ln{font-family:'VT323',monospace;font-size:22px;color:var(--white);margin-bottom:4px;}
-.ll{font-size:11px;color:var(--g2);letter-spacing:2px;}
+  .panel-title {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--accent-strong);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
 
-.et{display:flex;flex-wrap:wrap;gap:1px;background:var(--g3);}
-.etag{
-  font-size:12px;padding:10px 20px;letter-spacing:1px;
-  background:var(--bg);color:var(--text2);
-  transition:all .15s;
-}
-.etag:hover{background:var(--bg3);color:var(--g1);}
+  .panel-head .badge {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
 
-/* ── HR ── */
-hr.dv{border:none;height:1px;background:var(--g3);position:relative;z-index:1;}
+  .hero-main {
+    padding: 28px;
+  }
 
-/* ── FOOTER ── */
-footer{
-  position:relative;z-index:1;
-  border-top:1px solid var(--g3);
-  background:var(--bg);
-  padding:20px 40px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;
-}
-.f1{font-size:13px;color:var(--text2);letter-spacing:2px;}
-.f1 span{color:var(--g1);}
-.f2{font-size:12px;color:var(--dim);letter-spacing:1px;}
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(76, 194, 255, 0.2);
+    background: rgba(76, 194, 255, 0.08);
+    color: var(--accent-strong);
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
 
-/* ── FADE IN ── */
-.fi{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s;}
-.fi.on{opacity:1;transform:none;}
+  .eyebrow {
+    margin-bottom: 18px;
+  }
 
-/* ── TYPING CURSOR ── */
-.cur{display:inline-block;width:9px;height:16px;background:var(--g1);vertical-align:middle;animation:blink .8s step-end infinite;margin-left:2px;}
+  h1 {
+    max-width: 12ch;
+    font-size: clamp(2.8rem, 8vw, 5.7rem);
+    line-height: 0.95;
+    color: var(--title);
+    letter-spacing: -0.04em;
+    margin-bottom: 18px;
+  }
 
-/* ── RESPONSIVE ── */
-@media(max-width:768px){
-  nav{padding:0 16px;}
-  .nav-tab{padding:0 12px;font-size:11px;}
-  #hero,.sec{padding-left:20px;padding-right:20px;}
-  .term-body{padding:18px 18px;}
-  footer{padding:20px 20px;}
-}
+  .lede {
+    max-width: 60ch;
+    color: var(--muted);
+    font-size: 1.08rem;
+    margin-bottom: 22px;
+  }
+
+  .highlight {
+    color: var(--accent-strong);
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 26px;
+  }
+
+  .meta-card {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .meta-label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    color: var(--title);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 14px;
+    border: 1px solid var(--line-strong);
+    transition: 180ms ease;
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, rgba(76, 194, 255, 0.92), rgba(65, 157, 255, 0.82));
+    color: #04101c;
+    box-shadow: 0 14px 34px rgba(76, 194, 255, 0.2);
+  }
+
+  .btn-secondary {
+    color: var(--title);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(134, 224, 255, 0.38);
+  }
+
+  .hero-note {
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .hero-side {
+    padding: 20px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .stat {
+    padding: 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 2rem;
+    color: var(--title);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .cli {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(5, 13, 23, 0.96), rgba(8, 16, 28, 0.92));
+  }
+
+  .cli-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .cli-header span {
+    width: 11px;
+    height: 11px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+
+  .cli-line {
+    color: #bdd8f3;
+    font-size: 0.84rem;
+    margin-bottom: 10px;
+  }
+
+  .cli-line.prompt {
+    color: var(--accent-strong);
+  }
+
+  .cli-line.output {
+    color: var(--muted);
+  }
+
+  .cli-line.good {
+    color: var(--good);
+  }
+
+  .status-card {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(76, 194, 255, 0.05);
+  }
+
+  .status-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .status-top strong {
+    color: var(--title);
+    font-size: 1rem;
+  }
+
+  .chip {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(82, 214, 162, 0.24);
+    color: var(--good);
+    background: rgba(82, 214, 162, 0.08);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .status-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 0.72fr;
+    gap: 24px;
+  }
+
+  .stack {
+    display: grid;
+    gap: 24px;
+  }
+
+  .section {
+    padding: 24px;
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .section-heading h2 {
+    color: var(--title);
+    font-size: 1.35rem;
+  }
+
+  .section-heading p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    max-width: 42ch;
+    text-align: right;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .mini-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--accent-strong);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card h3 {
+    color: var(--title);
+    font-size: 1.02rem;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 7px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(115, 162, 209, 0.24);
+    color: var(--muted);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .timeline {
+    display: grid;
+    gap: 16px;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 18px 18px 18px 22px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 4px;
+    height: calc(100% - 48px);
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent), rgba(76, 194, 255, 0));
+  }
+
+  .timeline-date {
+    display: inline-block;
+    color: var(--accent-strong);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .timeline-item h3 {
+    color: var(--title);
+    font-size: 1.06rem;
+    margin-bottom: 4px;
+  }
+
+  .timeline-role {
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .timeline-item ul {
+    padding-left: 18px;
+    color: var(--muted);
+  }
+
+  .timeline-item li + li {
+    margin-top: 8px;
+  }
+
+  .cert-list,
+  .edu-list,
+  .info-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .cert-item,
+  .edu-item,
+  .info-item {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .cert-top,
+  .info-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .cert-item h3,
+  .edu-item h3,
+  .info-item h3 {
+    color: var(--title);
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .cert-item p,
+  .edu-item p,
+  .info-item p {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pill.good {
+    color: var(--good);
+    background: rgba(82, 214, 162, 0.08);
+    border: 1px solid rgba(82, 214, 162, 0.22);
+  }
+
+  .pill.warn {
+    color: var(--warn);
+    background: rgba(255, 202, 106, 0.09);
+    border: 1px solid rgba(255, 202, 106, 0.22);
+  }
+
+  .progress {
+    margin-top: 12px;
+    height: 8px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .progress span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #74b7ff, #86e0ff);
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.02);
+    transition: 160ms ease;
+  }
+
+  .contact-link:hover {
+    border-color: rgba(134, 224, 255, 0.34);
+    background: rgba(76, 194, 255, 0.08);
+  }
+
+  .contact-link span:last-child {
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding: 18px 4px 8px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 1080px) {
+    .hero,
+    .layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .shell {
+      padding: 16px;
+    }
+
+    .topbar {
+      position: static;
+      padding: 16px;
+    }
+
+    .nav {
+      justify-content: flex-start;
+    }
+
+    .hero-main,
+    .hero-side,
+    .section {
+      padding: 20px;
+    }
+
+    .meta-grid,
+    .cards,
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .section-heading p {
+      text-align: left;
+    }
+  }
 </style>
 </head>
 <body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">TC</div>
+        <div class="brand-copy">
+          <strong>Teo Carballo de Cortazar</strong>
+          <span>Network & Systems Profile Interface</span>
+        </div>
+      </div>
 
-<!-- MATRIX RAIN -->
-<canvas id="matrix"></canvas>
+      <nav class="nav">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#certs">Certs</a>
+        <a href="#education">Formación</a>
+        <a href="#contact">Contacto</a>
+      </nav>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-bar-left">
-    <a href="#hero"  class="nav-tab active">~/home</a>
-    <a href="#skills" class="nav-tab">skills</a>
-    <a href="#exp"    class="nav-tab">exp</a>
-    <a href="#certs"  class="nav-tab">certs</a>
-    <a href="#edu"    class="nav-tab">edu</a>
-    <a href="mailto:carballoteo@gmail.com" class="nav-tab">contact</a>
+      <div class="topbar-status">
+        <span class="dot"></span>
+        <span>AVAILABLE FOR HIRE</span>
+      </div>
+    </header>
+
+    <section class="hero" id="overview">
+      <article class="panel reveal">
+        <div class="panel-head">
+          <span class="panel-title">show profile summary</span>
+          <span class="badge">NOC MODE</span>
+        </div>
+        <div class="hero-main">
+          <div class="eyebrow">
+            <span class="badge">Sysadmin · Networks · Infrastructure</span>
+          </div>
+          <h1>Teo Carballo de Cortazar</h1>
+          <p class="lede">
+            Técnico en Administración de Sistemas y Redes con experiencia en producción, soporte L1/L2 y gestión de hosting. Enfocado en
+            <span class="highlight">infraestructura, conectividad, resolución de incidencias</span> y evolución hacia un perfil de ingeniería de redes.
+          </p>
+
+          <div class="meta-grid">
+            <div class="meta-card">
+              <span class="meta-label">Ubicación</span>
+              <div class="meta-value">Barcelona, España</div>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Certificación foco</span>
+              <div class="meta-value">Cisco CCNA en preparación</div>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Idiomas</span>
+              <div class="meta-value">Castellano · Català · English B2</div>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Disponibilidad</span>
+              <div class="meta-value">Incorporación laboral activa</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:carballoteo@gmail.com">Contactar</a>
+            <a class="btn btn-secondary" href="https://linkedin.com/in/Teo" target="_blank" rel="noreferrer">Ver LinkedIn</a>
+          </div>
+
+          <p class="hero-note">
+            Objetivo: aportar valor en entornos IT donde la estabilidad de red, la administración de sistemas y la atención técnica tengan impacto real en operación.
+          </p>
+        </div>
+      </article>
+
+      <aside class="panel reveal">
+        <div class="panel-head">
+          <span class="panel-title">show system health</span>
+          <span class="badge">LIVE PROFILE</span>
+        </div>
+        <div class="hero-side">
+          <div class="dashboard">
+            <div class="stat">
+              <strong>2+</strong>
+              <span>Años en IT y operaciones</span>
+            </div>
+            <div class="stat">
+              <strong>L1/L2</strong>
+              <span>Soporte técnico y atención</span>
+            </div>
+            <div class="stat">
+              <strong>CCNA</strong>
+              <span>Ruta profesional prioritaria</span>
+            </div>
+            <div class="stat">
+              <strong>B2</strong>
+              <span>Comunicación en inglés</span>
+            </div>
+          </div>
+
+          <div class="cli">
+            <div class="cli-header">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="cli-line prompt">teo-rtr01# show candidate-profile</div>
+            <div class="cli-line output">role: junior network / systems engineer</div>
+            <div class="cli-line output">focus: routing, switching, tcp/ip, support</div>
+            <div class="cli-line output">environment: linux, windows server, hosting, dns</div>
+            <div class="cli-line good" id="cli-rotating">status: ready_for_next_challenge</div>
+          </div>
+
+          <div class="status-card">
+            <div class="status-top">
+              <strong>Perfil operativo</strong>
+              <span class="chip">stable</span>
+            </div>
+            <p>
+              Buena base técnica, experiencia real con usuarios y sistemas en producción, y una narrativa profesional más alineada con operaciones de red que con ciber estética genérica.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <div class="layout">
+      <main class="stack">
+        <section class="panel section reveal" id="skills">
+          <div class="section-heading">
+            <h2>Capacidades técnicas</h2>
+            <p>Ordenadas como áreas de trabajo más que como lista plana, para que el perfil se lea como un panel de especialidad.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <span class="mini-label">Routing & Switching</span>
+              <h3>Base de red sólida</h3>
+              <p>Fundamentos de TCP/IP, switching, direccionamiento, topologías, diagnóstico y preparación orientada a entorno Cisco.</p>
+              <div class="tags">
+                <span class="tag">Cisco CCNA</span>
+                <span class="tag">TCP/IP</span>
+                <span class="tag">Routing</span>
+                <span class="tag">Switching</span>
+                <span class="tag">DNS</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Systems Administration</span>
+              <h3>Operación y soporte</h3>
+              <p>Administración de sistemas, soporte técnico L1/L2, mantenimiento de servidores y atención a incidencias con foco en continuidad del servicio.</p>
+              <div class="tags">
+                <span class="tag">Linux</span>
+                <span class="tag">Windows Server</span>
+                <span class="tag">Help Desk</span>
+                <span class="tag">Producción</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Hosting & Services</span>
+              <h3>Infraestructura de cliente</h3>
+              <p>Gestión de dominios, DNS, hosting y tareas operativas relacionadas con alta, renovación, transferencia y soporte del servicio.</p>
+              <div class="tags">
+                <span class="tag">Hosting</span>
+                <span class="tag">Dominios</span>
+                <span class="tag">DNS Management</span>
+                <span class="tag">Odoo</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Security Awareness</span>
+              <h3>Visión de ciberseguridad</h3>
+              <p>Capacidad para detectar fallos, analizar tráfico y colaborar en tareas de revisión técnica sin convertir el portfolio en una estética “hacker”.</p>
+              <div class="tags">
+                <span class="tag">Wireshark</span>
+                <span class="tag">Nmap</span>
+                <span class="tag">Escaneo</span>
+                <span class="tag">Hardening</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel section reveal" id="experience">
+          <div class="section-heading">
+            <h2>Experiencia</h2>
+            <p>La parte más importante para vender tu perfil: qué hacías, en qué entorno y cómo eso te acerca a redes e infraestructura.</p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="timeline-date">2025 - Actualidad</span>
+              <h3>Empresa actual</h3>
+              <div class="timeline-role">Administrador de Sistemas · Help Desk & Hosting</div>
+              <ul>
+                <li>Administración y mantenimiento de sistemas y servidores en producción.</li>
+                <li>Soporte técnico a usuarios y clientes en incidencias de nivel 1 y 2.</li>
+                <li>Gestión operativa de dominios, hosting y registros DNS.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-date">2023 - 2024</span>
+              <h3>INEEW</h3>
+              <div class="timeline-role">Prácticas · Desarrollo web con Odoo</div>
+              <ul>
+                <li>Gestión de usuarios y privilegios dentro de plataforma Odoo.</li>
+                <li>Búsqueda de fallos funcionales y revisión básica de seguridad web.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item">
+              <span class="timeline-date">Experiencia transversal</span>
+              <h3>Atención al cliente y coordinación</h3>
+              <div class="timeline-role">Bar Familia Kikis · Revista Mongolia</div>
+              <ul>
+                <li>Comunicación efectiva, respuesta bajo presión y trabajo en equipo.</li>
+                <li>Experiencia remota y disciplina de entrega en entornos de trabajo reales.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <aside class="stack">
+        <section class="panel section reveal" id="certs">
+          <div class="section-heading">
+            <h2>Certificaciones</h2>
+            <p>Dan credibilidad a la dirección de carrera.</p>
+          </div>
+
+          <div class="cert-list">
+            <article class="cert-item">
+              <div class="cert-top">
+                <div>
+                  <h3>Cisco Certified Network Associate</h3>
+                  <p>Preparación centrada en routing, switching, seguridad y fundamentos operativos de red.</p>
+                </div>
+                <span class="pill warn">En progreso</span>
+              </div>
+              <div class="progress"><span style="width: 85%"></span></div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-top">
+                <div>
+                  <h3>Cisco Networking Basics</h3>
+                  <p>Fundamentos de redes, protocolos, topologías y comunicación de datos.</p>
+                </div>
+                <span class="pill good">Completada</span>
+              </div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-top">
+                <div>
+                  <h3>Implantación y Gestión de la Ciberseguridad</h3>
+                  <p>Formación en amenazas, protección de infraestructuras y prácticas de seguridad.</p>
+                </div>
+                <span class="pill good">Completada</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel section reveal" id="education">
+          <div class="section-heading">
+            <h2>Formación</h2>
+            <p>Base académica del perfil.</p>
+          </div>
+
+          <div class="edu-list">
+            <article class="edu-item">
+              <h3>Grado Superior ASIX</h3>
+              <p>Administración de Sistemas Informáticos en Red · Ciberseguridad</p>
+            </article>
+            <article class="edu-item">
+              <h3>Curso de Ciberseguridad</h3>
+              <p>Implantación y Gestión · Tecnocampus</p>
+            </article>
+            <article class="edu-item">
+              <h3>Bachillerato Científico Tecnológico</h3>
+              <p>Base analítica y técnica previa a la especialización IT.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel section reveal">
+          <div class="section-heading">
+            <h2>Perfil adicional</h2>
+            <p>Pequeños datos que ayudan a cerrar candidatura.</p>
+          </div>
+
+          <div class="info-list">
+            <article class="info-item">
+              <div class="info-top">
+                <h3>Idiomas</h3>
+                <span class="pill good">Multilingual</span>
+              </div>
+              <p>Castellano nativo, Català natiu y English nivel B2.</p>
+            </article>
+
+            <article class="info-item">
+              <div class="info-top">
+                <h3>Movilidad</h3>
+                <span class="pill good">Ready</span>
+              </div>
+              <p>Carnet B, vehículo propio y disponibilidad para incorporación.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel section reveal" id="contact">
+          <div class="section-heading">
+            <h2>Contacto</h2>
+            <p>Accesos rápidos para recruiter o hiring manager.</p>
+          </div>
+
+          <div class="contact-list">
+            <a class="contact-link" href="mailto:carballoteo@gmail.com">
+              <span>Email</span>
+              <span>carballoteo@gmail.com</span>
+            </a>
+            <a class="contact-link" href="tel:608161579">
+              <span>Teléfono</span>
+              <span>608 161 579</span>
+            </a>
+            <a class="contact-link" href="https://linkedin.com/in/Teo" target="_blank" rel="noreferrer">
+              <span>LinkedIn</span>
+              <span>linkedin.com/in/Teo</span>
+            </a>
+            <div class="contact-link">
+              <span>Ubicación</span>
+              <span>Barcelona, España</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="footer">teo-profile# session closed without errors</div>
   </div>
-  <div class="nav-prompt">teo@carballo:~$ <span>█</span></div>
-</nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="term-window fi">
-    <div class="term-titlebar">
-      <span class="term-dot"></span>
-      <span class="term-dot y"></span>
-      <span class="term-dot g"></span>
-      &nbsp;&nbsp;teo@carballo: ~ — bash — 120×38
-    </div>
-    <div class="term-body">
+  <script>
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav a");
+    const revealItems = document.querySelectorAll(".reveal");
+    const rotatingLine = document.getElementById("cli-rotating");
 
-      <div style="margin-bottom:6px;">
-        <span class="prompt"><span class="user">teo</span><span class="sep">@</span><span class="user">carballo</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span></span>
-        <span class="cmd"> cat whoami.txt</span>
-      </div>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.12 });
 
-      <div class="output big">TEO CARBALLO</div>
-      <div class="output big" style="font-size:clamp(22px,3.5vw,44px);color:var(--g2);margin-top:-6px;">DE CORTAZAR</div>
-      <div class="output role">SYSADMIN · NETWORKS · CYBERSECURITY</div>
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 40}ms`;
+      observer.observe(item);
+    });
 
-      <div class="output" style="margin-top:4px;">Técnico en Administración de Sistemas y Redes con experiencia real en producción.</div>
-      <div class="output">Preparando la certificación <span style="color:var(--white);text-shadow:0 0 8px var(--g1);">Cisco CCNA</span> — próxima a obtenerse.</div>
-      <div class="output dim">Proactividad // Resolución de problemas // Aprendizaje continuo</div>
+    window.addEventListener("scroll", () => {
+      let current = "overview";
+      sections.forEach((section) => {
+        if (window.scrollY >= section.offsetTop - 180) {
+          current = section.id;
+        }
+      });
 
-      <div class="avail" style="margin-top:14px;">
-        <span class="avail-dot"></span>
-        STATUS: DISPONIBLE PARA CONTRATACIÓN
-      </div>
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      });
+    });
 
-      <div class="contact-row">
-        <a href="tel:608161579"               class="cr">📞 608 161 579</a>
-        <a href="mailto:carballoteo@gmail.com" class="cr">✉ carballoteo@gmail.com</a>
-        <a href="https://linkedin.com/in/Teo" target="_blank" class="cr">🔗 linkedin.com/Teo</a>
-        <span class="cr">📍 Barcelona, España</span>
-      </div>
+    const cliMessages = [
+      "status: ready_for_next_challenge",
+      "focus: routing_switching_and_support",
+      "availability: interviewing_now",
+      "signal: practical_and_reliable_operator"
+    ];
 
-      <div class="cta-row">
-        <a href="mailto:carballoteo@gmail.com" class="btn-green">▶ CONTRÁTAME</a>
-        <a href="https://linkedin.com/in/Teo"  target="_blank" class="btn-out">~ LinkedIn</a>
-      </div>
-
-      <div style="margin-top:32px;margin-bottom:6px;">
-        <span class="prompt"><span class="user">teo</span><span class="sep">@</span><span class="user">carballo</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span></span>
-        <span class="cmd"> ./stats.sh</span>
-      </div>
-
-      <div class="kpi-row">
-        <div class="kpi"><span class="kv">2+</span><span class="kl">años en IT</span></div>
-        <div class="kpi"><span class="kv">CCNA</span><span class="kl">en progreso</span></div>
-        <div class="kpi"><span class="kv">B2</span><span class="kl">English</span></div>
-        <div class="kpi"><span class="kv">100%</span><span class="kl">disponible</span></div>
-      </div>
-
-      <div style="margin-top:24px;color:var(--text2);">
-        <span class="prompt"><span class="user">teo</span><span class="sep">@</span><span class="user">carballo</span><span class="sep">:</span><span class="path">~</span><span class="sep">$</span></span>
-        <span class="cur"></span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="dv">
-
-<!-- SKILLS -->
-<section class="sec" id="skills">
-  <div class="sec-head fi">
-    <div class="sec-prompt"><span class="dollar">$</span> ls --skills</div>
-    <div class="sec-title">habilidades</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="sg">
-    <div class="sk fi">
-      <div class="sk-icon">🛡️</div>
-      <div class="sk-title">// security</div>
-      <div class="tags">
-        <span class="tag h">Nmap</span>
-        <span class="tag h">Wireshark</span>
-        <span class="tag h">Vulnerability Scan</span>
-        <span class="tag h">Pentesting web</span>
-        <span class="tag">Jira</span>
-      </div>
-    </div>
-    <div class="sk fi">
-      <div class="sk-icon">🌐</div>
-      <div class="sk-title">// networking</div>
-      <div class="tags">
-        <span class="tag h">Cisco CCNA</span>
-        <span class="tag h">TCP/IP</span>
-        <span class="tag h">Routing & Switching</span>
-        <span class="tag">DNS</span>
-        <span class="tag">Hosting</span>
-      </div>
-    </div>
-    <div class="sk fi">
-      <div class="sk-icon">🖥️</div>
-      <div class="sk-title">// sysadmin</div>
-      <div class="tags">
-        <span class="tag h">Linux</span>
-        <span class="tag h">Windows Server</span>
-        <span class="tag h">Help Desk L1/L2</span>
-        <span class="tag">Servidores producción</span>
-      </div>
-    </div>
-    <div class="sk fi">
-      <div class="sk-icon">⚙️</div>
-      <div class="sk-title">// tools</div>
-      <div class="tags">
-        <span class="tag">Odoo</span>
-        <span class="tag">Adobe Premiere</span>
-        <span class="tag">DNS Management</span>
-        <span class="tag">Dominios & Hosting</span>
-      </div>
-    </div>
-    <div class="sk fi">
-      <div class="sk-icon">💡</div>
-      <div class="sk-title">// soft skills</div>
-      <div class="tags">
-        <span class="tag h">Resolución problemas</span>
-        <span class="tag h">Trabajo en equipo</span>
-        <span class="tag h">Proactividad</span>
-        <span class="tag h">Comunicación eficaz</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="dv">
-
-<!-- EXPERIENCIA -->
-<section class="sec" id="exp">
-  <div class="sec-head fi">
-    <div class="sec-prompt"><span class="dollar">$</span> cat experience.log</div>
-    <div class="sec-title">experiencia</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="tl">
-
-    <div class="ti fi">
-      <div class="td">[2025-04 → now]</div>
-      <div class="tc">EMPRESA ACTUAL</div>
-      <div class="tr">Administrador de Sistemas — Help Desk & Hosting</div>
-      <ul class="tli">
-        <li>Administración y mantenimiento de sistemas y servidores en producción</li>
-        <li>Soporte técnico a usuarios y clientes (Help Desk nivel 1 y 2)</li>
-        <li>Gestión de dominios y hosting: altas, renovaciones, transferencias y DNS</li>
-      </ul>
-    </div>
-
-    <div class="ti fi">
-      <div class="td">[2024-07 → 2025-02]</div>
-      <div class="tc">BAR FAMILIA KIKIS</div>
-      <div class="tr">Camarero</div>
-      <ul class="tli">
-        <li>Comunicación eficaz en entorno de alta demanda</li>
-        <li>Resolución de problemas en tiempo real y trabajo en equipo</li>
-      </ul>
-    </div>
-
-    <div class="ti fi">
-      <div class="td">[2023-11 → 2024-04]</div>
-      <div class="tc">INEEW</div>
-      <div class="tr">Prácticas — Desarrollo Web con Odoo</div>
-      <ul class="tli">
-        <li>Gestión de usuarios y privilegios en Odoo</li>
-        <li>Búsqueda de fallos web y escaneo de vulnerabilidades</li>
-      </ul>
-    </div>
-
-    <div class="ti fi">
-      <div class="td">[2019-09 → 2023-05]</div>
-      <div class="tc">REVISTA MONGOLIA</div>
-      <div class="tr">Editor de Vídeo — Adobe Premiere</div>
-      <ul class="tli">
-        <li>Flujo de trabajo digital y postproducción</li>
-        <li>Comunicación remota con clientes</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<hr class="dv">
-
-<!-- CERTIFICACIONES -->
-<section class="sec" id="certs">
-  <div class="sec-head fi">
-    <div class="sec-prompt"><span class="dollar">$</span> ./verify --certs</div>
-    <div class="sec-title">certificaciones</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="cg">
-
-    <div class="cert wip fi">
-      <div class="cbadge">[STATUS: IN PROGRESS]</div>
-      <div class="co">// Cisco</div>
-      <div class="cn">Cisco Certified Network Associate (CCNA)</div>
-      <div class="cd">Routing, switching, seguridad de red, automatización. Próxima a obtenerse.</div>
-      <div class="pw">
-        <div class="pm"><span>// preparación</span><span>85%</span></div>
-        <div class="pb"><div class="pf w" style="width:85%"></div></div>
-      </div>
-    </div>
-
-    <div class="cert done fi">
-      <div class="cbadge">[STATUS: VERIFIED ✓]</div>
-      <div class="co">// Cisco</div>
-      <div class="cn">Cisco Networking Basics</div>
-      <div class="cd">Fundamentos de redes, protocolos TCP/IP, topologías y comunicación de datos.</div>
-      <div class="pw">
-        <div class="pb"><div class="pf g" style="width:100%"></div></div>
-      </div>
-    </div>
-
-    <div class="cert done fi">
-      <div class="cbadge">[STATUS: VERIFIED ✓]</div>
-      <div class="co">// Tecnocampus</div>
-      <div class="cn">Implantación y Gestión de la Ciberseguridad</div>
-      <div class="cd">Seguridad informática, gestión de amenazas y protección de infraestructuras. Sep–Dic 2024.</div>
-      <div class="pw">
-        <div class="pb"><div class="pf g" style="width:100%"></div></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="dv">
-
-<!-- EDUCACIÓN -->
-<section class="sec" id="edu">
-  <div class="sec-head fi">
-    <div class="sec-prompt"><span class="dollar">$</span> grep -r education /</div>
-    <div class="sec-title">formación</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="eg">
-    <div class="edu fi">
-      <div class="ep">[2022-09 → 2024-06]</div>
-      <div class="en">Grado Superior ASIX</div>
-      <div class="ec">Administración de Sistemas Informáticos en Red · Ciberseguridad</div>
-    </div>
-    <div class="edu fi">
-      <div class="ep">[2024-09 → 2024-12]</div>
-      <div class="en">Curso Ciberseguridad</div>
-      <div class="ec">Implantación y Gestión · Tecnocampus</div>
-    </div>
-    <div class="edu fi">
-      <div class="ep">[2020-09 → 2022-07]</div>
-      <div class="en">Bachillerato</div>
-      <div class="ec">Científico Tecnológico</div>
-    </div>
-  </div>
-</section>
-
-<hr class="dv">
-
-<!-- IDIOMAS -->
-<section class="sec" id="extra">
-  <div class="sec-head fi">
-    <div class="sec-prompt"><span class="dollar">$</span> env | grep LANG</div>
-    <div class="sec-title">idiomas & más</div>
-    <div class="sec-line"></div>
-  </div>
-  <div class="lr fi">
-    <div class="lang"><div class="ln">CASTELLANO</div><div class="ll">NATIVO</div></div>
-    <div class="lang"><div class="ln">CATALÀ</div><div class="ll">NATIU</div></div>
-    <div class="lang"><div class="ln">ENGLISH</div><div class="ll">B2 MID-HIGH</div></div>
-  </div>
-  <div class="et fi" style="margin-top:1px;">
-    <span class="etag">🚗 Carnet B · Vehículo propio</span>
-    <span class="etag">📅 Disponibilidad total</span>
-    <span class="etag">📍 Barcelona, España</span>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="f1">teo@carballo:~$ <span>exit 0</span></div>
-  <div class="f2">// sysadmin · networks · cybersecurity · bcn · 2025</div>
-</footer>
-
-<script>
-// ── MATRIX RAIN ──
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-resize();
-window.addEventListener('resize', resize);
-
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/\\アイウエオカキクケコ';
-const fontSize = 14;
-let cols = Math.floor(canvas.width / fontSize);
-let drops = Array(cols).fill(1);
-
-function draw(){
-  ctx.fillStyle = 'rgba(0,0,0,0.05)';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.font = fontSize + 'px Share Tech Mono';
-  for(let i=0;i<drops.length;i++){
-    const c = chars[Math.floor(Math.random()*chars.length)];
-    const bright = Math.random() > 0.95;
-    ctx.fillStyle = bright ? '#ffffff' : (Math.random()>.7 ? '#00ff41' : '#008f11');
-    ctx.fillText(c, i*fontSize, drops[i]*fontSize);
-    if(drops[i]*fontSize > canvas.height && Math.random()>.975) drops[i]=0;
-    drops[i]++;
-  }
-}
-setInterval(draw, 45);
-
-// ── FADE IN ──
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); }
-  });
-}, {threshold: 0.07});
-document.querySelectorAll('.fi').forEach((el,i) => {
-  el.style.transitionDelay = (i%5)*60+'ms';
-  obs.observe(el);
-});
-
-// ── ACTIVE NAV ──
-const secs = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  secs.forEach(s => { if(window.scrollY >= s.offsetTop - 160) cur = s.id; });
-  document.querySelectorAll('.nav-tab').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
-  });
-});
-
-// ── TYPING EFFECT on hero on load ──
-const lines = [
-  {el: null, text: null} // placeholder, animation via CSS
-];
-</script>
+    let cliIndex = 0;
+    setInterval(() => {
+      cliIndex = (cliIndex + 1) % cliMessages.length;
+      rotatingLine.textContent = cliMessages[cliIndex];
+    }, 2200);
+  </script>
 </body>
 </html>
