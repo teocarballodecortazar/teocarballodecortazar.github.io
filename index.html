@@ -734,6 +734,14 @@
     font-size: 0.95rem;
   }
 
+  .cli-topbar span {
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
   .cli-screen {
     min-height: 420px;
     max-height: 420px;
@@ -765,6 +773,10 @@
 
   .cli-entry.error {
     color: #ff8f8f;
+  }
+
+  .cli-entry.banner {
+    color: var(--accent-strong);
   }
 
   .cli-composer {
@@ -809,7 +821,8 @@
   }
 
   .lab-hints {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     margin: 16px 0 22px;
   }
@@ -817,7 +830,6 @@
   .hint-chip {
     display: inline-flex;
     align-items: center;
-    width: fit-content;
     padding: 8px 12px;
     border-radius: 999px;
     border: 1px solid var(--line);
@@ -825,6 +837,14 @@
     color: var(--muted);
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.76rem;
+    cursor: pointer;
+    transition: 160ms ease;
+  }
+
+  .hint-chip:hover {
+    color: var(--accent-strong);
+    border-color: rgba(134, 224, 255, 0.34);
+    background: rgba(76, 194, 255, 0.08);
   }
 
   .btn-small {
@@ -847,6 +867,47 @@
   .btn-small.primary {
     background: linear-gradient(135deg, rgba(76, 194, 255, 0.92), rgba(65, 157, 255, 0.82));
     color: #04101c;
+  }
+
+  .lab-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 22px;
+  }
+
+  .lab-checklist {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.76rem;
+  }
+
+  .check-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+  }
+
+  .check-item.done {
+    color: var(--good);
+  }
+
+  .check-item.done .check-dot {
+    border-color: rgba(82, 214, 162, 0.28);
+    background: var(--good);
+    box-shadow: 0 0 12px rgba(82, 214, 162, 0.35);
   }
 
   .score-box {
@@ -1297,7 +1358,7 @@
         <div class="cli-shell">
           <div class="cli-topbar">
             <strong>teo-rtr01 terminal</strong>
-            <span class="pill good">interactive</span>
+            <span>ios sandbox</span>
           </div>
           <div class="cli-screen" id="cli-game-screen"></div>
           <div class="cli-composer">
@@ -1313,18 +1374,25 @@
           </div>
 
           <div class="lab-hints">
-            <span class="hint-chip">enable</span>
-            <span class="hint-chip">conf t</span>
-            <span class="hint-chip">interface g0/1</span>
-            <span class="hint-chip">ip address 192.168.10.1 255.255.255.0</span>
-            <span class="hint-chip">no shutdown</span>
-            <span class="hint-chip">show ip interface brief</span>
-            <span class="hint-chip">write memory</span>
+            <button class="hint-chip" type="button" data-command="enable">enable</button>
+            <button class="hint-chip" type="button" data-command="conf t">conf t</button>
+            <button class="hint-chip" type="button" data-command="interface g0/1">interface g0/1</button>
+            <button class="hint-chip" type="button" data-command="ip address 192.168.10.1 255.255.255.0">ip address 192.168.10.1 255.255.255.0</button>
+            <button class="hint-chip" type="button" data-command="description Uplink to access switch">description Uplink</button>
+            <button class="hint-chip" type="button" data-command="no shutdown">no shutdown</button>
+            <button class="hint-chip" type="button" data-command="show ip interface brief">show ip interface brief</button>
+            <button class="hint-chip" type="button" data-command="show running-config">show running-config</button>
+            <button class="hint-chip" type="button" data-command="write memory">write memory</button>
           </div>
 
           <div class="game-status" id="game-status">
             <strong>Reto</strong>
-            <span>Levanta la interfaz `GigabitEthernet0/1`, asígnale IP y guarda la configuración. La consola te irá respondiendo como un IOS simplificado.</span>
+            <span>Entra en modo privilegiado, configura `GigabitEthernet0/1`, levántala y guarda la configuración. La consola soporta varios comandos básicos de IOS.</span>
+          </div>
+
+          <div class="lab-actions">
+            <button class="btn-small" id="cli-reset" type="button">Reset lab</button>
+            <button class="btn-small" id="cli-demo" type="button">Cargar demo</button>
           </div>
 
           <div class="score-box">
@@ -1333,9 +1401,24 @@
               <span>Modo actual</span>
             </div>
             <div class="score-item">
-              <strong id="lab-progress">0/3</strong>
+              <strong id="lab-progress">0/4</strong>
               <span>Objetivos</span>
             </div>
+            <div class="score-item">
+              <strong id="lab-ifstate">down</strong>
+              <span>Gi0/1</span>
+            </div>
+            <div class="score-item">
+              <strong id="lab-save">unsaved</strong>
+              <span>NVRAM</span>
+            </div>
+          </div>
+
+          <div class="lab-checklist">
+            <div class="check-item" id="task-priv"><span class="check-dot"></span><span>Entrar en privileged EXEC</span></div>
+            <div class="check-item" id="task-ip"><span class="check-dot"></span><span>Asignar IP a Gi0/1</span></div>
+            <div class="check-item" id="task-up"><span class="check-dot"></span><span>Levantar interfaz</span></div>
+            <div class="check-item" id="task-save"><span class="check-dot"></span><span>Guardar configuración</span></div>
           </div>
         </div>
       </div>
@@ -1353,8 +1436,17 @@
     const cliGameScreen = document.getElementById("cli-game-screen");
     const cliGameInput = document.getElementById("cli-game-input");
     const cliRun = document.getElementById("cli-run");
+    const cliReset = document.getElementById("cli-reset");
+    const cliDemo = document.getElementById("cli-demo");
     const labMode = document.getElementById("lab-mode");
     const labProgress = document.getElementById("lab-progress");
+    const labIfState = document.getElementById("lab-ifstate");
+    const labSave = document.getElementById("lab-save");
+    const taskPriv = document.getElementById("task-priv");
+    const taskIp = document.getElementById("task-ip");
+    const taskUp = document.getElementById("task-up");
+    const taskSave = document.getElementById("task-save");
+    const hintChips = document.querySelectorAll(".hint-chip");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1399,8 +1491,11 @@
       mode: "user",
       hostname: "teo-rtr01",
       currentInterface: null,
+      privilegedUnlocked: false,
       interfaceUp: false,
       interfaceIp: null,
+      interfaceMask: null,
+      interfaceDescription: null,
       startupSaved: false
     };
 
@@ -1419,25 +1514,54 @@
       cliGameScreen.scrollTop = cliGameScreen.scrollHeight;
     }
 
+    function markTask(element, done) {
+      element.classList.toggle("done", done);
+    }
+
+    function showInterfaceBrief() {
+      appendLine("Interface              IP-Address      OK? Method Status                Protocol", "output");
+      appendLine(`GigabitEthernet0/1     ${(lab.interfaceIp || "unassigned").padEnd(15)} YES manual ${(lab.interfaceUp ? "up" : "administratively down").padEnd(21)} ${lab.interfaceUp ? "up" : "down"}`, "output");
+    }
+
+    function showRunningConfig() {
+      appendLine(`hostname ${lab.hostname}`, "output");
+      appendLine("!", "output");
+      appendLine("interface GigabitEthernet0/1", "output");
+      if (lab.interfaceDescription) appendLine(` description ${lab.interfaceDescription}`, "output");
+      if (lab.interfaceIp) appendLine(` ip address ${lab.interfaceIp} ${lab.interfaceMask || "255.255.255.0"}`, "output");
+      appendLine(` ${lab.interfaceUp ? "no shutdown" : "shutdown"}`, "output");
+      appendLine("!", "output");
+      appendLine("end", "output");
+    }
+
     function updateLabUi() {
       const completed = [
+        lab.privilegedUnlocked,
         Boolean(lab.interfaceIp),
         lab.interfaceUp,
         lab.startupSaved
       ].filter(Boolean).length;
 
       labMode.textContent = lab.mode === "config-if" ? "config-if" : lab.mode;
-      labProgress.textContent = `${completed}/3`;
+      labProgress.textContent = `${completed}/4`;
+      labIfState.textContent = lab.interfaceUp ? "up/up" : "down";
+      labSave.textContent = lab.startupSaved ? "saved" : "unsaved";
 
-      if (completed === 3) {
-        gameStatus.innerHTML = "<strong>Lab completado</strong><span>Interfaz configurada, activada y guardada. Ese es exactamente el tipo de guiño técnico que sí suma en una landing de redes.</span>";
+      markTask(taskPriv, lab.privilegedUnlocked);
+      markTask(taskIp, Boolean(lab.interfaceIp));
+      markTask(taskUp, lab.interfaceUp);
+      markTask(taskSave, lab.startupSaved);
+
+      if (completed === 4) {
+        gameStatus.innerHTML = "<strong>Lab completado</strong><span>Entraste en modo privilegiado, configuraste la interfaz, la activaste y guardaste en NVRAM. Mucho más red engineer que un minijuego genérico.</span>";
       }
     }
 
     function bootCli() {
       cliGameScreen.innerHTML = "";
       appendLine("Cisco IOS Software, Teo Lab Edition", "success");
-      appendLine("Type ? for help. Suggested path: enable -> conf t -> interface g0/1", "output");
+      appendLine("Copyright (c) 2026 Teo Routing Labs", "banner");
+      appendLine("Type ? for context help. Suggested flow: enable -> conf t -> interface g0/1", "output");
       appendLine(promptText(), "command");
       updateLabUi();
     }
@@ -1453,11 +1577,14 @@
 
       const normalized = input.toLowerCase();
 
-      if (normalized === "?" || normalized === "help") {
-        appendLine("Available: enable, disable, conf t, interface g0/1, ip address A.B.C.D MASK, no shutdown, end, exit, show ip interface brief, write memory", "output");
+      if (normalized === "clear") {
+        cliGameScreen.innerHTML = "";
+      } else if (normalized === "?" || normalized === "help") {
+        appendLine("Available: enable, disable, conf t, interface g0/1, hostname NAME, description TEXT, ip address A.B.C.D MASK, no shutdown, show ip interface brief, show running-config, write memory, clear", "output");
       } else if (lab.mode === "user") {
         if (normalized === "enable") {
           lab.mode = "privileged";
+          lab.privilegedUnlocked = true;
           appendLine("Entering privileged EXEC mode...", "success");
         } else if (normalized.startsWith("show")) {
           appendLine("% Privileged mode required for show commands.", "error");
@@ -1471,8 +1598,13 @@
           lab.mode = "config";
           appendLine("Enter configuration commands, one per line. End with CNTL/Z.", "success");
         } else if (normalized === "show ip interface brief") {
-          appendLine("Interface              IP-Address      OK? Method Status                Protocol", "output");
-          appendLine(`GigabitEthernet0/1     ${lab.interfaceIp || "unassigned".padEnd(15)} YES manual ${lab.interfaceUp ? "up".padEnd(20) : "administratively down"} ${lab.interfaceUp ? "up" : "down"}`, "output");
+          showInterfaceBrief();
+        } else if (normalized === "show running-config" || normalized === "show run") {
+          showRunningConfig();
+        } else if (normalized === "show version") {
+          appendLine("Cisco IOS XE Software, Version 17.9.1a, RELEASE SOFTWARE", "output");
+          appendLine("ROM: IOS-XE ROMMON", "output");
+          appendLine(`${lab.hostname} uptime is 3 days, 4 hours, 12 minutes`, "output");
         } else if (normalized === "write memory" || normalized === "copy run start") {
           lab.startupSaved = true;
           appendLine("Building configuration...", "output");
@@ -1485,12 +1617,24 @@
           lab.mode = "privileged";
         } else if (normalized === "exit") {
           lab.mode = "privileged";
+        } else if (normalized.startsWith("hostname ")) {
+          const newHost = input.split(/\s+/).slice(1).join("-");
+          if (newHost) {
+            lab.hostname = newHost;
+            appendLine(`Hostname set to ${lab.hostname}`, "success");
+          } else {
+            appendLine("% Hostname requires a value.", "error");
+          }
         } else if (normalized === "interface g0/1" || normalized === "interface gigabitethernet0/1") {
           lab.mode = "config-if";
           lab.currentInterface = "GigabitEthernet0/1";
           appendLine(`Configuring ${lab.currentInterface}`, "success");
+        } else if (normalized === "do show ip interface brief") {
+          showInterfaceBrief();
+        } else if (normalized === "do show running-config" || normalized === "do show run") {
+          showRunningConfig();
         } else {
-          appendLine("% Expected 'interface g0/1' or 'end'.", "error");
+          appendLine("% Valid here: hostname NAME, interface g0/1, do show ..., end", "error");
         }
       } else if (lab.mode === "config-if") {
         if (normalized === "exit") {
@@ -1499,10 +1643,14 @@
         } else if (normalized === "end") {
           lab.mode = "privileged";
           lab.currentInterface = null;
+        } else if (normalized.startsWith("description ")) {
+          lab.interfaceDescription = input.slice("description ".length);
+          appendLine(`Description set on GigabitEthernet0/1`, "success");
         } else if (normalized.startsWith("ip address ")) {
           const parts = input.split(/\s+/);
           if (parts.length === 4) {
             lab.interfaceIp = parts[2];
+            lab.interfaceMask = parts[3];
             appendLine(`Assigned ${parts[2]} ${parts[3]} to GigabitEthernet0/1`, "success");
           } else {
             appendLine("% Usage: ip address 192.168.10.1 255.255.255.0", "error");
@@ -1510,8 +1658,13 @@
         } else if (normalized === "no shutdown") {
           lab.interfaceUp = true;
           appendLine("Interface GigabitEthernet0/1 changed state to up", "success");
+        } else if (normalized === "shutdown") {
+          lab.interfaceUp = false;
+          appendLine("Interface GigabitEthernet0/1 changed state to administratively down", "output");
+        } else if (normalized === "do show ip interface brief") {
+          showInterfaceBrief();
         } else {
-          appendLine("% Available here: ip address ..., no shutdown, exit, end", "error");
+          appendLine("% Available here: description ..., ip address ..., shutdown, no shutdown, do show ..., exit, end", "error");
         }
       }
 
@@ -1530,6 +1683,45 @@
         event.preventDefault();
         cliRun.click();
       }
+    });
+
+    hintChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        cliGameInput.value = chip.dataset.command;
+        cliGameInput.focus();
+      });
+    });
+
+    cliReset.addEventListener("click", () => {
+      lab.mode = "user";
+      lab.hostname = "teo-rtr01";
+      lab.currentInterface = null;
+      lab.privilegedUnlocked = false;
+      lab.interfaceUp = false;
+      lab.interfaceIp = null;
+      lab.interfaceMask = null;
+      lab.interfaceDescription = null;
+      lab.startupSaved = false;
+      gameStatus.innerHTML = "<strong>Lab reiniciado</strong><span>Empieza de nuevo y prueba otro flujo de comandos. También puedes cambiar el hostname y consultar el running-config.</span>";
+      bootCli();
+      cliGameInput.focus();
+    });
+
+    cliDemo.addEventListener("click", () => {
+      cliReset.click();
+      [
+        "enable",
+        "conf t",
+        "hostname teo-edge01",
+        "interface g0/1",
+        "description Uplink to access switch",
+        "ip address 192.168.10.1 255.255.255.0",
+        "no shutdown",
+        "end",
+        "show ip interface brief",
+        "write memory"
+      ].forEach((command) => runCliCommand(command));
+      cliGameInput.focus();
     });
 
     bootCli();
