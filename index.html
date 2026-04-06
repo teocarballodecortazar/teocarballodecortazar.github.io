@@ -33,7 +33,7 @@
 <body>
   <div class="loader">
     <h1>Cargando perfil...</h1>
-    <p class="small">Si tarda demasiado, recarga la página en unos segundos.</p>
+    <p class="small">Si tarda demasiado, recarga la p&aacute;gina en unos segundos.</p>
   </div>
 
   <script>
@@ -48,6 +48,75 @@
       ];
 
       const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
+
+      const heroPhotoPatch = `
+@media (min-width: 1081px) {
+  .hero-intro { gap: 30px !important; margin-bottom: 24px !important; }
+  .profile-shot-wrap { width: 170px !important; }
+}
+.hero-intro {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.profile-shot-wrap {
+  position: relative;
+  width: 154px;
+  flex-shrink: 0;
+}
+.profile-shot-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 28px;
+  border: 1px solid rgba(134, 224, 255, 0.18);
+  background:
+    linear-gradient(135deg, rgba(76, 194, 255, 0.12), rgba(82, 214, 162, 0.06)),
+    rgba(255, 255, 255, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+  z-index: 0;
+}
+.profile-shot-wrap::after {
+  content: "PROFILE ID";
+  position: absolute;
+  right: 10px;
+  bottom: -16px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(134, 224, 255, 0.22);
+  background: rgba(7, 17, 29, 0.92);
+  color: var(--accent-strong);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.profile-shot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 1px solid rgba(134, 224, 255, 0.24);
+  filter: saturate(1.02) contrast(1.03);
+}
+.hero-copy {
+  min-width: 0;
+}
+@media (max-width: 1080px) {
+  .hero-intro {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .profile-shot-wrap {
+    width: 132px;
+  }
+}`;
 
       const desktopPatch = `
 section[id] { scroll-margin-top: 118px; }
@@ -108,14 +177,35 @@ section[id] { scroll-margin-top: 118px; }
       let html = new TextDecoder("utf-8").decode(bytes);
 
       if (!/^<!doctype html>/i.test(html.trimStart())) {
-        throw new Error("Payload decodificado inválido");
+        throw new Error("Payload decodificado inv\u00e1lido");
       }
 
       html = html.replace("<strong>Soporte</strong>", "<strong>L1/L2</strong>");
-      html = html.replace("<span>Atención técnica y resolución</span>", "<span>Soporte técnico y resolución</span>");
+      html = html.replace("<span>Atenci\u00f3n t\u00e9cnica y resoluci\u00f3n</span>", "<span>Soporte t\u00e9cnico y resoluci\u00f3n</span>");
 
       if (!html.includes("scroll-margin-top: 118px")) {
         html = html.replace("</style>", `${desktopPatch}\n</style>`);
+      }
+
+      if (!html.includes(".profile-shot-wrap")) {
+        html = html.replace("</style>", `${heroPhotoPatch}\n</style>`);
+      }
+
+      if (!html.includes("assets/teo-profile.jfif")) {
+        html = html.replace(
+          /<div class="eyebrow">[\s\S]*?<h1>Teo Carballo de Cortazar<\/h1>/,
+          `<div class="hero-intro">
+            <div class="profile-shot-wrap">
+              <img class="profile-shot" src="assets/teo-profile.jfif" alt="Foto de perfil de Teo Carballo de Cortazar">
+            </div>
+            <div class="hero-copy">
+              <div class="eyebrow">
+                <span class="badge">Sysadmin \u00b7 Networks \u00b7 Infrastructure</span>
+              </div>
+              <h1>Teo Carballo de Cortazar</h1>
+            </div>
+          </div>`
+        );
       }
 
       document.open();
