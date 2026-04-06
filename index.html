@@ -131,6 +131,57 @@
     width: 132px;
   }
 }`;
+  const mobileHeaderPatch = `
+@media (max-width: 760px) {
+  .topbar {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px !important;
+    padding: 14px !important;
+  }
+  .brand {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+  .brand-copy strong {
+    max-width: none !important;
+    font-size: 0.95rem !important;
+    line-height: 1.08 !important;
+  }
+  .brand-copy span {
+    display: none !important;
+  }
+  .topbar-status {
+    order: 2;
+    width: auto !important;
+    max-width: none !important;
+    margin-left: auto;
+    padding: 8px 10px !important;
+    font-size: 0.64rem !important;
+    white-space: nowrap !important;
+  }
+  .topbar-status .dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-top: 2px;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    padding-bottom: 2px;
+  }
+  .nav a {
+    flex: 0 0 auto;
+  }
+}`;
   const heroOld = `<div class="eyebrow">
             <span class="badge">Sysadmin · Networks · Infrastructure</span>
           </div>
@@ -150,7 +201,7 @@
               <h1>Teo Carballo de Cortazar</h1>
             </div>
           </div>`;
-  const partUrls = Array.from({ length: 6 }, (_, i) => `payload/v2/page.part${String(i + 1).padStart(2, '0')}.b64?v=20260406-photofix`);
+  const partUrls = Array.from({ length: 6 }, (_, i) => `payload/v2/page.part${String(i + 1).padStart(2, '0')}.b64?v=20260406-mobileheader`);
   const setStatus = (text) => { status.textContent = text; };
   const decodeBase64Utf8 = (b64) => {
     const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
@@ -175,6 +226,9 @@
     }
     if (!html.includes('assets/teo-profile.jfif')) {
       html = html.replace(heroOld, heroNew).replace(heroOldFallback, heroNew);
+    }
+    if (!html.includes('mobileHeaderPatchMarker')) {
+      html = html.replace('</style>', `\n/* mobileHeaderPatchMarker */${mobileHeaderPatch}\n</style>`);
     }
     if (!html.includes('<div class="shell">') || !html.includes('Teo Carballo')) {
       throw new Error('decoded-html-invalid');
