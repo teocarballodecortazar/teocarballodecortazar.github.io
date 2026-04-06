@@ -118,6 +118,68 @@
   }
 }`;
 
+      const projectsNavPatch = `<a href="#experience">Experiencia</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#certs">Certs</a>`;
+
+      const projectsSectionPatch = `
+        <section class="panel section reveal" id="projects">
+          <div class="section-heading">
+            <h2>Proyectos y casos prácticos</h2>
+            <p>Bloques concretos para enseñar criterio técnico, práctica operativa y foco real en redes.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <span class="mini-label">Cisco Lab</span>
+              <h3>Práctica de configuración IOS</h3>
+              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuración de interfaces, direccionamiento IP, verificación y guardado de configuración.</p>
+              <div class="tags">
+                <span class="tag">Enable</span>
+                <span class="tag">Conf T</span>
+                <span class="tag">Gi0/1</span>
+                <span class="tag">Show Run</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">DNS & Hosting</span>
+              <h3>Gestión operativa de servicios</h3>
+              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resolución de incidencias y seguimiento técnico a cliente.</p>
+              <div class="tags">
+                <span class="tag">DNS</span>
+                <span class="tag">Dominios</span>
+                <span class="tag">Hosting</span>
+                <span class="tag">Soporte</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Systems Ops</span>
+              <h3>Entornos en producción</h3>
+              <p>Mantenimiento de sistemas y servidores, atención a incidencias y soporte técnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
+              <div class="tags">
+                <span class="tag">Linux</span>
+                <span class="tag">Windows Server</span>
+                <span class="tag">Producción</span>
+                <span class="tag">L1/L2</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Security Support</span>
+              <h3>Revisión y diagnóstico técnico</h3>
+              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de análisis con una visión práctica de infraestructura.</p>
+              <div class="tags">
+                <span class="tag">Wireshark</span>
+                <span class="tag">Nmap</span>
+                <span class="tag">Troubleshooting</span>
+                <span class="tag">Análisis</span>
+              </div>
+            </article>
+          </div>
+        </section>`;
+
       const desktopPatch = `
 section[id] { scroll-margin-top: 118px; }
 @media (min-width: 1081px) {
@@ -205,6 +267,21 @@ section[id] { scroll-margin-top: 118px; }
               <h1>Teo Carballo de Cortazar</h1>
             </div>
           </div>`
+        );
+      }
+
+      if (!html.includes('href="#projects"')) {
+        html = html.replace(
+          `<a href="#experience">Experiencia</a>
+        <a href="#certs">Certs</a>`,
+          projectsNavPatch
+        );
+      }
+
+      if (!html.includes('id="projects"')) {
+        html = html.replace(
+          /(<section class="panel section reveal" id="experience">[\s\S]*?<\/section>)(\s*<\/main>)/,
+          `$1\n\n${projectsSectionPatch}$2`
         );
       }
 
