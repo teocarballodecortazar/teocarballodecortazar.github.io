@@ -47,7 +47,7 @@
         "payload/v2/page.part06.b64"
       ];
 
-      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
+      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM;CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcG?gMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
 
       const heroPhotoPatch = `
 @media (min-width: 1081px) {
@@ -180,6 +180,86 @@
           </div>
         </section>`;
 
+      const navResponsivePatch = `
+.topbar {
+  flex-wrap: nowrap !important;
+}
+.nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+}
+.topbar-status {
+  flex: 0 0 auto !important;
+}
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(134, 224, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(76, 194, 255, 0.08);
+  color: var(--accent-strong);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-toggle-bars {
+  display: inline-grid;
+  gap: 4px;
+}
+.nav-toggle-bars span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+@media (min-width: 761px) and (max-width: 1180px) {
+  .topbar { gap: 12px !important; padding: 14px 16px !important; }
+  .brand { gap: 10px !important; }
+  .brand-mark { width: 38px !important; height: 38px !important; }
+  .brand-copy strong { font-size: 0.92rem !important; }
+  .brand-copy span { font-size: 0.7rem !important; }
+  .nav { gap: 4px !important; }
+  .nav a { padding: 8px 9px !important; font-size: 0.68rem !important; letter-spacing: 0.05em !important; }
+  .topbar-status { gap: 8px !important; font-size: 0.68rem !important; }
+}
+@media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: 1fr auto !important;
+    align-items: start !important;
+    gap: 12px !important;
+  }
+  .brand { order: 1 !important; }
+  .nav-toggle { order: 2 !important; display: inline-flex !important; }
+  .topbar-status { order: 3 !important; grid-column: 1 / -1 !important; }
+  .nav {
+    order: 4 !important;
+    grid-column: 1 / -1 !important;
+    display: none !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    padding-top: 4px !important;
+  }
+  .nav.is-open { display: flex !important; }
+  .nav a { width: 100% !important; }
+}
+@media (max-width: 480px) {
+  .nav-toggle {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.68rem;
+  }
+}`;
+
       const desktopPatch = `
 section[id] { scroll-margin-top: 118px; }
 @media (min-width: 1081px) {
@@ -253,6 +333,10 @@ section[id] { scroll-margin-top: 118px; }
         html = html.replace("</style>", `${heroPhotoPatch}\n</style>`);
       }
 
+      if (!html.includes(".nav-toggle")) {
+        html = html.replace("</style>", `${navResponsivePatch}\n</style>`);
+      }
+
       if (!html.includes("assets/teo-profile.jfif")) {
         html = html.replace(
           /<div class="eyebrow">[\s\S]*?<h1>Teo Carballo de Cortazar<\/h1>/,
@@ -278,10 +362,65 @@ section[id] { scroll-margin-top: 118px; }
         );
       }
 
-      if (!html.includes('id="projects"')) {
+      if (!html.includes('class="nav-toggle"')) {
         html = html.replace(
-          /(<section class="panel section reveal" id="experience">[\s\S]*?<\/section>)(\s*<\/main>)/,
-          `$1\n\n${projectsSectionPatch}$2`
+          /<nav class="nav">[\s\S]*?<\/nav>/,
+          `<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+
+      $&`.replace("$&", (html.match(/<nav class="nav">[\s\S]*?<\/nav>/) || [""])[0]).replace('<nav class="nav">', '<nav class="nav" id="site-nav">')
+        );
+      }
+
+      if (!html.includes('class="nav-toggle"')) {
+        html = html.replace(
+          /<nav class="nav">[\s\S]*?<\/nav>/,
+          `<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+
+      $&`.replace("$&", (html.match(/<nav class="nav">[\s\S]*?<\/nav>/) || [""])[0]).replace('<nav class="nav">', '<nav class="nav" id="site-nav">')
+        );
+      }
+
+      if (!html.includes('const nav = document.getElementById("site-nav");')) {
+        html = html.replace(
+          'const navLinks = document.querySelectorAll(".nav a");',
+          'const navLinks = document.querySelectorAll(".nav a");\n    const nav = document.getElementById("site-nav");\n    const navToggle = document.querySelector(".nav-toggle");'
+        );
+      }
+
+      if (!html.includes('function syncMobileNav()')) {
+        html = html.replace(
+          '    window.addEventListener("scroll", () => {',
+          `    function syncMobileNav() {
+      if (window.innerWidth > 760) {
+        nav?.classList.remove("is-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    navToggle?.addEventListener("click", () => {
+      const isOpen = nav?.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 760) {
+          nav?.classList.remove("is-open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    window.addEventListener("resize", syncMobileNav);
+    syncMobileNav();
+
+    window.addEventListener("scroll", () => {`
         );
       }
 
