@@ -40,6 +40,167 @@
     (async () => {
       const ref = "b04a3572629c1299d9706688944779001a6dfcb8";
       const apiUrl = "https://api.github.com/repos/teocarballodecortazar/teocarballodecortazar.github.io/contents/index.html?ref=" + ref;
+      const finalPatchJs = `
+      (() => {
+        const faviconSvg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='#08111f'/><rect x='6' y='6' width='52' height='52' rx='12' fill='#0b1d33' stroke='#6bd5ff' stroke-width='2'/><path d='M18 32h10M36 20v24M36 20h10M36 44h10' stroke='#6bd5ff' stroke-width='3' stroke-linecap='round'/><circle cx='18' cy='32' r='4' fill='#4ee7a6'/><circle cx='46' cy='20' r='4' fill='#6bd5ff'/><circle cx='46' cy='44' r='4' fill='#6bd5ff'/><text x='32' y='38' font-size='16' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' fill='white'>TC</text></svg>";
+
+        const applyPatch = () => {
+          if (!document.querySelector(".hero-main .lede")) return false;
+
+          document.title = "Teo Carballo | Redes Cisco y CCNA";
+
+          let icon = document.querySelector("link[rel='icon']");
+          if (!icon) {
+            icon = document.createElement("link");
+            icon.rel = "icon";
+            document.head.appendChild(icon);
+          }
+          icon.type = "image/svg+xml";
+          icon.href = "data:image/svg+xml," + encodeURIComponent(faviconSvg);
+
+          let style = document.getElementById("codex-final-patch");
+          if (!style) {
+            style = document.createElement("style");
+            style.id = "codex-final-patch";
+            style.textContent = \`
+              .topbar {
+                display: grid !important;
+                grid-template-columns: minmax(240px, 300px) minmax(0, 1fr) auto !important;
+                align-items: center !important;
+                gap: 16px !important;
+              }
+              .brand {
+                min-width: 0 !important;
+              }
+              .brand-copy {
+                min-width: 0 !important;
+              }
+              .brand-copy strong {
+                font-size: 0.96rem !important;
+                line-height: 1.2 !important;
+              }
+              .brand-copy span {
+                display: block !important;
+                margin-top: 6px !important;
+                font-size: 0.74rem !important;
+                line-height: 1.45 !important;
+              }
+              .nav {
+                min-width: 0 !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                flex-wrap: nowrap !important;
+              }
+              .nav a {
+                padding: 10px 10px !important;
+                font-size: 0.69rem !important;
+                letter-spacing: 0.05em !important;
+                white-space: nowrap !important;
+              }
+              .topbar-status {
+                white-space: nowrap !important;
+                gap: 8px !important;
+                font-size: 0.68rem !important;
+              }
+              .hero-main h1 {
+                font-size: clamp(2.7rem, 5.6vw, 4.6rem) !important;
+                max-width: 12ch !important;
+              }
+              @media (max-width: 1280px) {
+                .topbar {
+                  grid-template-columns: minmax(220px, 270px) minmax(0, 1fr) auto !important;
+                  gap: 12px !important;
+                  padding: 16px 18px !important;
+                }
+                .nav {
+                  gap: 4px !important;
+                }
+                .nav a {
+                  padding: 8px 8px !important;
+                  font-size: 0.66rem !important;
+                }
+                .topbar-status {
+                  font-size: 0.64rem !important;
+                }
+              }
+              @media (max-width: 760px) {
+                .topbar {
+                  display: grid !important;
+                  grid-template-columns: 1fr auto !important;
+                }
+              }
+            \`;
+            document.head.appendChild(style);
+          }
+
+          const subtitle = document.querySelector(".brand-copy span");
+          if (subtitle) {
+            subtitle.innerHTML = "Especializaci&oacute;n en redes Cisco,<br>conectividad e infraestructura";
+          }
+
+          const availability = document.querySelector(".topbar-status span:last-child");
+          if (availability) {
+            availability.textContent = "DISPONIBLE";
+          }
+
+          const lede = document.querySelector(".hero-main .lede");
+          if (lede) {
+            lede.innerHTML = 'T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT, especializado en redes. Certificado en <span class="highlight">Cisco Certified Network Associate (CCNA)</span>, enfoco mi desarrollo profesional en &aacute;reas clave como conectividad, routing y resoluci&oacute;n de incidencias. Combino experiencia pr&aacute;ctica en entornos reales con una clara orientaci&oacute;n hacia el desarrollo y la mejora continua de infraestructuras de red.';
+          }
+
+          document.querySelector(".focus-strip")?.remove();
+
+          const metaCards = document.querySelectorAll(".hero-main .meta-card");
+          if (metaCards[1]) {
+            const label = metaCards[1].querySelector(".meta-label");
+            const value = metaCards[1].querySelector(".meta-value");
+            if (label) label.innerHTML = "Certificaci&oacute;n foco";
+            if (value) value.innerHTML = "CCNP Enterprise en progreso";
+          }
+
+          const experienceItems = document.querySelectorAll("#experience .timeline-item");
+          if (experienceItems[0]) {
+            const date = experienceItems[0].querySelector(".timeline-date");
+            const title = experienceItems[0].querySelector("h3");
+            const role = experienceItems[0].querySelector(".timeline-role");
+            const list = experienceItems[0].querySelector("ul");
+            if (date) date.textContent = "Abril 2025 - Actualidad";
+            if (title) title.textContent = "Doria";
+            if (role) role.innerHTML = "Administrador de Sistemas &middot; Help Desk &amp; Hosting";
+            if (list) {
+              list.innerHTML = '<li>Administraci&oacute;n y mantenimiento de sistemas y servidores en producci&oacute;n.</li><li>Soporte t&eacute;cnico a usuarios y clientes, resoluci&oacute;n de incidencias y validaci&oacute;n de conectividad.</li><li>Gesti&oacute;n operativa de dominios, hosting y registros DNS, asegurando continuidad del servicio.</li>';
+            }
+          }
+          if (experienceItems[1]) {
+            const date = experienceItems[1].querySelector(".timeline-date");
+            const role = experienceItems[1].querySelector(".timeline-role");
+            if (date) date.textContent = "Noviembre 2023 - Agosto 2024";
+            if (role) role.innerHTML = "Pr&aacute;cticas &middot; Soporte t&eacute;cnico y validaci&oacute;n de conectividad";
+          }
+
+          const certNote = document.querySelector("#certs .cert-item.featured .cert-note");
+          if (certNote) {
+            certNote.innerHTML = "Certificaci&oacute;n clave dentro de mi perfil, porque valida conocimientos s&oacute;lidos en routing, switching, direccionamiento IP y resoluci&oacute;n de incidencias en entornos Cisco.";
+          }
+
+          const educationItems = document.querySelectorAll("#education .edu-item");
+          if (educationItems[1]) {
+            const title = educationItems[1].querySelector("h3");
+            const text = educationItems[1].querySelector("p");
+            if (title) title.innerHTML = "Curso de Ciberseguridad &middot; Tecnocampus";
+            if (text) text.innerHTML = "Implantaci&oacute;n y Gesti&oacute;n";
+          }
+
+          return true;
+        };
+
+        let tries = 0;
+        const timer = setInterval(() => {
+          tries += 1;
+          if (applyPatch() || tries > 40) clearInterval(timer);
+        }, 120);
+      })();
+      `;
       const response = await fetch(apiUrl, {
         cache: "no-store",
         headers: { "Accept": "application/vnd.github+json" }
@@ -54,6 +215,7 @@
       let html = new TextDecoder("utf-8").decode(bytes);
 
       html = html.replace("document.writehtml;", "document.write(html);");
+      html = html.replace("document.close();", "document.close();\n" + finalPatchJs);
 
       if (!html.includes("document.write(html);")) {
         throw new Error("No se pudo reparar el loader");
