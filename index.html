@@ -47,7 +47,7 @@
         "payload/v2/page.part06.b64"
       ];
 
-      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
+      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM;CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
 
       const heroPhotoPatch = `
 @media (min-width: 1081px) {
@@ -149,6 +149,15 @@
   display: grid;
   gap: 34px;
 }
+.dual-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+  align-items: stretch;
+}
+.dual-panels > .panel {
+  height: 100%;
+}
 #skills .cards {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -188,6 +197,9 @@
   flex: 1;
   min-width: 0;
 }
+#certs .cert-content .mini-label {
+  margin-bottom: 8px;
+}
 #certs .cert-top {
   margin-bottom: 10px !important;
 }
@@ -219,6 +231,9 @@
   }
 }
 @media (max-width: 760px) {
+  .dual-panels {
+    grid-template-columns: 1fr;
+  }
   #certs .cert-row {
     flex-direction: column;
   }
@@ -231,7 +246,7 @@
         <section class="panel section reveal" id="certs">
           <div class="section-heading">
             <h2>Certificaciones</h2>
-            <p>Ruta clara hacia ingeniería de redes, con el CCNA como credencial principal del perfil.</p>
+            <p>Ruta formativa claramente orientada a redes, con especial foco en entorno Cisco, conectividad, routing y switching.</p>
           </div>
 
           <div class="cert-list">
@@ -248,13 +263,14 @@
                 <div class="cert-content">
                   <div class="cert-top">
                     <div>
+                      <span class="mini-label">Cisco</span>
                       <h3>Cisco Certified Network Associate (CCNA)</h3>
-                      <p>Mi certificación más fuerte y la base principal de mi perfil de redes: routing, switching, direccionamiento IP, troubleshooting y fundamentos sólidos de infraestructura Cisco.</p>
+                      <p>Certificación eje del perfil y referencia principal de mi orientación a routing, switching, direccionamiento IP, troubleshooting y fundamentos sólidos de infraestructura Cisco.</p>
                     </div>
-                    <span class="pill core">Completada</span>
+                    <span class="pill core">Objetivo principal</span>
                   </div>
-                  <span class="cert-note">Certificación clave sobre la que estoy construyendo mi evolución hacia entornos de networking con más responsabilidad técnica.</span>
-                  <div class="progress"><span style="width: 100%"></span></div>
+                  <span class="cert-note">Es la línea de especialización que mejor representa mi evolución hacia un perfil profesional de redes.</span>
+                  <div class="progress"><span style="width: 88%"></span></div>
                 </div>
               </div>
             </article>
@@ -263,13 +279,37 @@
               <div class="cert-row">
                 <div class="cert-logo" aria-hidden="true">
                   <svg viewBox="0 0 32 32">
-                    <path d="M6 10h20M10 16h12M8 22h16"></path>
-                    <rect x="5" y="6" width="22" height="20" rx="4"></rect>
+                    <path d="M6 24h8l4-8h8"></path>
+                    <path d="M20 10h6v6"></path>
+                    <path d="M14 18l12-12"></path>
                   </svg>
                 </div>
                 <div class="cert-content">
                   <div class="cert-top">
                     <div>
+                      <span class="mini-label">Cisco</span>
+                      <h3>Cisco Certified Network Professional (CCNP)</h3>
+                      <p>Siguiente objetivo de especialización para seguir creciendo en routing, switching y diseño de soluciones de red con mayor profundidad técnica.</p>
+                    </div>
+                    <span class="pill warn">En progreso</span>
+                  </div>
+                  <div class="progress"><span style="width: 42%"></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <path d="M16 4l8 3v7c0 5-3.4 9.1-8 11-4.6-1.9-8-6-8-11V7l8-3z"></path>
+                    <path d="M12 16l2.6 2.6L20 13"></path>
+                  </svg>
+                </div>
+                <div class="cert-content">
+                  <div class="cert-top">
+                    <div>
+                      <span class="mini-label">Cisco</span>
                       <h3>Cisco Networking Basics</h3>
                       <p>Fundamentos de redes, protocolos, topologías y conceptos de comunicación de datos aplicados a entornos Cisco.</p>
                     </div>
@@ -290,6 +330,7 @@
                 <div class="cert-content">
                   <div class="cert-top">
                     <div>
+                      <span class="mini-label">Cisco</span>
                       <h3>Cisco Cybersecurity Basics</h3>
                       <p>Base de seguridad orientada a amenazas, buenas prácticas, protección de servicios y visión complementaria para entornos de infraestructura.</p>
                     </div>
@@ -298,34 +339,12 @@
                 </div>
               </div>
             </article>
-
-            <article class="cert-item">
-              <div class="cert-row">
-                <div class="cert-logo" aria-hidden="true">
-                  <svg viewBox="0 0 32 32">
-                    <path d="M6 24h8l4-8h8"></path>
-                    <path d="M20 10h6v6"></path>
-                    <path d="M14 18l12-12"></path>
-                  </svg>
-                </div>
-                <div class="cert-content">
-                  <div class="cert-top">
-                    <div>
-                      <h3>Cisco Certified Network Professional (CCNP)</h3>
-                      <p>Siguiente paso formativo para seguir creciendo en routing, switching y diseño de soluciones de red con mayor profundidad técnica.</p>
-                    </div>
-                    <span class="pill warn">En progreso</span>
-                  </div>
-                  <div class="progress"><span style="width: 42%"></span></div>
-                </div>
-              </div>
-            </article>
           </div>
         </section>`;
 
       const projectsNavPatch = `<a href="#experience">Experiencia</a>
         <a href="#projects">Proyectos</a>
-        <a href="#certs">Certs</a>`;
+        <a href="#certs">Certificaciones</a>`;
 
       const projectsSectionPatch = `
         <section class="panel section reveal" id="projects">
@@ -565,35 +584,48 @@ section[id] { scroll-margin-top: 118px; }
       html = html.replace(
         /<nav class="nav">[\s\S]*?<\/nav>/,
         `<nav class="nav">
-        <a href="#overview" class="active">Overview</a>
+        <a href="#overview" class="active">Inicio</a>
         <a href="#experience">Experiencia</a>
         <a href="#projects">Proyectos</a>
-        <a href="#certs">Certs</a>
+        <a href="#certs">Certificaciones</a>
         <a href="#education">Formaci&oacute;n</a>
-        <a href="#skills">Skills</a>
+        <a href="#skills">Capacidades</a>
         <a href="#contact">Contacto</a>
       </nav>`
       );
+      html = html.replace("Network & Systems Profile Interface", "Perfil profesional de redes y sistemas");
+      html = html.replace("AVAILABLE FOR HIRE", "DISPONIBLE PARA INCORPORARME");
 
       html = html.replace("show profile summary", "Sobre m&iacute;");
       html = html.replace('<span class="badge">PROFILE</span>', '<span class="badge">Perfil</span>');
       html = html.replace(
         /<span class="badge">Sysadmin[\s\S]*?Infrastructure<\/span>/,
-        '<span class="badge">Sistemas &middot; Soporte IT &middot; Infraestructura</span>'
+        '<span class="badge">Redes &middot; Soporte IT &middot; Infraestructura</span>'
       );
       html = html.replace(
         /<p class="lede">[\s\S]*?<\/p>/,
-        `<p class="lede">T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT y operaciones, soporte t&eacute;cnico y gesti&oacute;n de hosting. Me caracteriza la <span class="highlight">atenci&oacute;n al usuario, la resoluci&oacute;n de incidencias y la capacidad de adaptaci&oacute;n</span>, mientras sigo reforzando mi perfil con la preparaci&oacute;n del CCNA y un nivel B2 de ingl&eacute;s.</p>`
+        `<p class="lede">T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT y operaciones, soporte t&eacute;cnico, hosting y una orientaci&oacute;n cada vez m&aacute;s clara hacia redes. Me caracteriza la <span class="highlight">resoluci&oacute;n de incidencias, la atenci&oacute;n al usuario y el inter&eacute;s real por routing, switching y conectividad</span>, con foco profesional en infraestructura Cisco y evoluci&oacute;n hacia un perfil de redes.</p>`
       );
       html = html.replace(
-        /<div class="timeline-role">Pr[\s\S]*?Odoo<\/div>/,
-        '<div class="timeline-role">Pr&aacute;cticas &middot; Soporte t&eacute;cnico y validaci&oacute;n de conectividad</div>'
+        /<article class="timeline-item">\s*<span class="timeline-date">2023 - 2024<\/span>[\s\S]*?<h3>INEEW<\/h3>[\s\S]*?<\/article>/,
+        `<article class="timeline-item">
+              <span class="timeline-date">2023 - 2024</span>
+              <h3>INEEW</h3>
+              <div class="timeline-role">Pr&aacute;cticas &middot; Soporte t&eacute;cnico y validaci&oacute;n de conectividad</div>
+              <ul>
+                <li>Apoyo en comprobaciones de conectividad, acceso a servicios internos y validaci&oacute;n del funcionamiento de red en entorno de trabajo real.</li>
+                <li>Preparaci&oacute;n b&aacute;sica de equipos, soporte al usuario y resoluci&oacute;n de incidencias funcionales junto al equipo t&eacute;cnico.</li>
+                <li>Primer contacto con revisi&oacute;n de configuraciones, comprobaci&oacute;n de direccionamiento y validaci&oacute;n b&aacute;sica de comunicaciones entre equipos y servicios.</li>
+              </ul>
+            </article>`
       );
       html = html.replace(
-        /<li>Gesti[\s\S]*?plataforma Odoo\.<\/li>\s*<li>B[\s\S]*?seguridad web\.<\/li>/,
-        `<li>Apoyo en comprobaciones de conectividad, red local y acceso a servicios internos en entorno de trabajo real.</li>
-                <li>Preparaci&oacute;n b&aacute;sica de equipos, soporte t&eacute;cnico al usuario y resoluci&oacute;n de incidencias funcionales junto al equipo.</li>
-                <li>Primer contacto con validaci&oacute;n de comunicaciones, revisi&oacute;n de configuraciones y l&oacute;gica operativa de red.</li>`
+        /<div class="meta-value">Cisco[\s\S]*?<\/div>/,
+        '<div class="meta-value">Networking Cisco &middot; Ruta CCNA</div>'
+      );
+      html = html.replace(
+        /Objetivo: aportar valor[\s\S]*?operaci&oacute;n\./,
+        'Objetivo: aportar valor en entornos IT donde la conectividad, la estabilidad de red, el soporte t&eacute;cnico y la administraci&oacute;n de sistemas tengan impacto real en la operaci&oacute;n.'
       );
       html = html.replace(
         /\s*<aside class="panel reveal">[\s\S]*?<\/aside>(\s*<\/section>)/,
@@ -624,9 +656,11 @@ ${rebuiltCertsSection}
 
         ${skillsSection}
 
-        ${extraInfoSection}
+        <div class="dual-panels">
+          ${extraInfoSection}
 
-        ${contactSection}
+          ${contactSection}
+        </div>
       </main>
     </div>
 
@@ -660,7 +694,7 @@ ${rebuiltCertsSection}
           /<nav class="nav">[\s\S]*?<\/nav>/,
           `<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
-        <span>Menu</span>
+        <span>Men&uacute;</span>
       </button>
 
       $&`.replace("$&", (html.match(/<nav class="nav">[\s\S]*?<\/nav>/) || [""])[0]).replace('<nav class="nav">', '<nav class="nav" id="site-nav">')
@@ -677,7 +711,7 @@ ${rebuiltCertsSection}
       if (!html.includes('const nav = document.getElementById("site-nav");')) {
         html = html.replace(
           'const navLinks = document.querySelectorAll(".nav a");',
-          'const navLinks = document.querySelectorAll(".nav a");\n    const nav = document.getElementById("site-nav");\n    const navToggle = document.querySelector(".nav-toggle");'
+          'const navLinks = document.querySelector(".nav a");\n    const nav = document.getElementById("site-nav");\n    const navToggle = document.querySelector(".nav-toggle");'
         );
       }
 
