@@ -3,67 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teo Carballo | Network Engineer Profile</title>
+<title>Teo Carballo | Perfil profesional</title>
 <style>
-  :root {
-    --bg: #08111f;
-    --panel: rgba(10, 20, 35, 0.84);
-    --line: rgba(115, 162, 209, 0.22);
-    --text: #d8e6f6;
-    --muted: #8ca4bf;
-    --accent: #86e0ff;
-  }
-  * { box-sizing: border-box; }
   body {
     margin: 0;
     min-height: 100vh;
     display: grid;
     place-items: center;
-    padding: 24px;
-    color: var(--text);
+    background: #08111f;
+    color: #d8e6f6;
     font-family: system-ui, sans-serif;
-    background:
-      radial-gradient(circle at top right, rgba(76, 194, 255, 0.14), transparent 28%),
-      radial-gradient(circle at bottom left, rgba(82, 214, 162, 0.08), transparent 24%),
-      linear-gradient(180deg, #07111d 0%, #091422 50%, #07101c 100%);
   }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(97, 146, 194, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(97, 146, 194, 0.08) 1px, transparent 1px);
-    background-size: 36px 36px;
-    mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.55), transparent 90%);
-    pointer-events: none;
-  }
+
   .loader {
-    position: relative;
-    z-index: 1;
-    width: min(100%, 560px);
-    padding: 28px;
-    border: 1px solid var(--line);
-    border-radius: 24px;
-    background: var(--panel);
-    box-shadow: 0 18px 70px rgba(0,0,0,.35);
+    padding: 24px 28px;
+    border: 1px solid rgba(115, 162, 209, 0.25);
+    border-radius: 16px;
+    background: rgba(13, 27, 46, 0.75);
+    max-width: 560px;
+    text-align: center;
   }
-  h1 { margin: 0 0 10px; font-size: clamp(1.8rem, 4vw, 2.5rem); }
-  p { margin: 0; color: var(--muted); line-height: 1.6; }
-  .status { margin-top: 14px; color: var(--accent); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .95rem; }
+
+  .small {
+    opacity: 0.75;
+    font-size: 0.95rem;
+  }
 </style>
 </head>
 <body>
   <div class="loader">
-    <h1>Cargando perfil</h1>
-    <p>Reconstruyendo la landing desde el repositorio. Si tarda demasiado, haz una recarga fuerte dentro de unos segundos.</p>
-    <div id="status" class="status">Iniciando carga...</div>
+    <h1>Cargando perfil...</h1>
+    <p class="small">Si tarda demasiado, recarga la p&aacute;gina en unos segundos.</p>
   </div>
-<script>
-(async () => {
-  const status = document.getElementById('status');
-  const tailPatch = 'sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi';
-  const heroPhotoPatch = `
+
+  <script>
+    (async () => {
+      const parts = [
+        "payload/v2/page.part01.b64",
+        "payload/v2/page.part02.b64",
+        "payload/v2/page.part03.b64",
+        "payload/v2/page.part04.b64",
+        "payload/v2/page.part05.b64",
+        "payload/v2/page.part06.b64"
+      ];
+
+      const part02TailPatch = "sIDI1NSwgMC44MikpOwogICAgY29sb3I6ICMwNDEwMWM7CiAgfQoKICAubGFiLWFjdGlvbnMgewogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtd3JhcDogd3JhcDsKICAgIGdhcDogMTBweDsKICAgIG1hcmdpbjogMThweCAwIDIycHg7CiAgfQoKICAubGFiLWNoZWNrbGlzdCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ2FwOiAxMHB4OwogICAgbWFyZ2luLXRvcDogMjBweDsKICB9CgogIC5jaGVjay1pdGVtIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiAxMHB4OwogICAgY29sb3I6IHZhcigtLW11dGVkKTsKICAgIGZvbnQtZmFtaWx5OiAi";
+
+      const heroPhotoPatch = `
 @media (min-width: 1081px) {
   .hero-intro { gap: 30px !important; margin-bottom: 24px !important; }
   .profile-shot-wrap { width: 170px !important; }
@@ -93,7 +79,7 @@
   z-index: 0;
 }
 .profile-shot-wrap::after {
-  content: "PROFILE ID";
+  content: "PERFIL";
   position: absolute;
   right: 10px;
   bottom: -16px;
@@ -131,179 +117,365 @@
     width: 132px;
   }
 }`;
-  const mobileHeaderPatch = `
-.nav-toggle-mobile {
+
+      const hrProfilePatch = `
+.hero {
+  grid-template-columns: 1fr !important;
+}
+.hero-main {
+  max-width: none !important;
+}
+.hero-main h1 {
+  max-width: 13ch !important;
+  font-size: clamp(2.55rem, 6.7vw, 5rem) !important;
+}
+.hero-main .lede {
+  max-width: 72ch !important;
+}
+@media (min-width: 1081px) {
+  .hero-main {
+    padding: 46px 48px !important;
+  }
+}`;
+
+      const projectsNavPatch = `<a href="#experience">Experiencia</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#certs">Certs</a>`;
+
+      const projectsSectionPatch = `
+        <section class="panel section reveal" id="projects">
+          <div class="section-heading">
+            <h2>Proyectos y casos pr&aacute;cticos</h2>
+            <p>Bloques concretos para ense&ntilde;ar criterio t&eacute;cnico, pr&aacute;ctica operativa y foco real en redes.</p>
+          </div>
+
+          <div class="cards">
+            <article class="card">
+              <span class="mini-label">Cisco Lab</span>
+              <h3>Pr&aacute;ctica de configuraci&oacute;n IOS</h3>
+              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuraci&oacute;n de interfaces, direccionamiento IP, verificaci&oacute;n y guardado de configuraci&oacute;n.</p>
+              <div class="tags">
+                <span class="tag">Enable</span>
+                <span class="tag">Conf T</span>
+                <span class="tag">Gi0/1</span>
+                <span class="tag">Show Run</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">DNS &amp; Hosting</span>
+              <h3>Gesti&oacute;n operativa de servicios</h3>
+              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resoluci&oacute;n de incidencias y seguimiento t&eacute;cnico a cliente.</p>
+              <div class="tags">
+                <span class="tag">DNS</span>
+                <span class="tag">Dominios</span>
+                <span class="tag">Hosting</span>
+                <span class="tag">Soporte</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Systems Ops</span>
+              <h3>Entornos en producci&oacute;n</h3>
+              <p>Mantenimiento de sistemas y servidores, atenci&oacute;n a incidencias y soporte t&eacute;cnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
+              <div class="tags">
+                <span class="tag">Linux</span>
+                <span class="tag">Windows Server</span>
+                <span class="tag">Producci&oacute;n</span>
+                <span class="tag">L1/L2</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <span class="mini-label">Security Support</span>
+              <h3>Revisi&oacute;n y diagn&oacute;stico t&eacute;cnico</h3>
+              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de an&aacute;lisis con una visi&oacute;n pr&aacute;ctica de infraestructura.</p>
+              <div class="tags">
+                <span class="tag">Wireshark</span>
+                <span class="tag">Nmap</span>
+                <span class="tag">Troubleshooting</span>
+                <span class="tag">An&aacute;lisis</span>
+              </div>
+            </article>
+          </div>
+        </section>`;
+
+      const navResponsivePatch = `
+.topbar {
+  flex-wrap: nowrap !important;
+}
+.nav {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+}
+.topbar-status {
+  flex: 0 0 auto !important;
+}
+.nav-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(134, 224, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(76, 194, 255, 0.08);
+  color: var(--accent-strong);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.nav-toggle-bars {
+  display: inline-grid;
+  gap: 4px;
+}
+.nav-toggle-bars span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+@media (min-width: 761px) and (max-width: 1180px) {
+  .topbar { gap: 12px !important; padding: 14px 16px !important; }
+  .brand { gap: 10px !important; }
+  .brand-mark { width: 38px !important; height: 38px !important; }
+  .brand-copy strong { font-size: 0.92rem !important; }
+  .brand-copy span { font-size: 0.7rem !important; }
+  .nav { gap: 4px !important; }
+  .nav a { padding: 8px 9px !important; font-size: 0.68rem !important; letter-spacing: 0.05em !important; }
+  .topbar-status { gap: 8px !important; font-size: 0.68rem !important; }
 }
 @media (max-width: 760px) {
   .topbar {
-    display: grid !important;
-    grid-template-columns: 1fr auto;
-    gap: 10px !important;
-    padding: 14px !important;
-    align-items: center;
+    grid-template-columns: 1fr auto !important;
+    align-items: start !important;
+    gap: 12px !important;
   }
-  .brand {
-    grid-column: 1 / 2;
-    min-width: 0;
-    align-items: center !important;
-    gap: 10px !important;
-  }
-  .brand-copy strong {
-    max-width: none !important;
-    font-size: 0.95rem !important;
-    line-height: 1.08 !important;
-  }
-  .brand-copy span {
-    display: none !important;
-  }
-  .topbar-status {
-    grid-column: 1 / 2;
-    width: fit-content !important;
-    max-width: 100%;
-    padding: 8px 10px !important;
-    font-size: 0.64rem !important;
-    white-space: nowrap !important;
-    margin: 0 !important;
-  }
-  .topbar-status .dot {
-    width: 8px !important;
-    height: 8px !important;
-  }
-  .nav-toggle-mobile {
-    grid-column: 2 / 3;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 38px;
-    padding: 0 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(134, 224, 255, 0.22);
-    background: rgba(76, 194, 255, 0.08);
-    color: var(--accent-strong);
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  .brand { order: 1 !important; }
+  .nav-toggle { order: 2 !important; display: inline-flex !important; }
+  .topbar-status { order: 3 !important; grid-column: 1 / -1 !important; }
   .nav {
-    grid-column: 1 / -1;
+    order: 4 !important;
+    grid-column: 1 / -1 !important;
     display: none !important;
-    width: 100%;
-    margin-top: 2px;
-    flex-direction: column;
+    width: 100% !important;
+    flex-direction: column !important;
     align-items: stretch !important;
     gap: 8px !important;
+    padding-top: 4px !important;
   }
-  .topbar.nav-open .nav {
-    display: flex !important;
-  }
-  .nav a {
-    width: 100%;
-    padding: 10px 12px !important;
-    white-space: normal !important;
+  .nav.is-open { display: flex !important; }
+  .nav a { width: 100% !important; }
+}
+@media (max-width: 480px) {
+  .nav-toggle {
+    min-height: 40px;
+    padding: 0 12px;
+    font-size: 0.68rem;
   }
 }`;
-  const mobileNavScript = `<script>
-(function () {
-  function setupMobileHeader() {
-    const topbar = document.querySelector('.topbar');
-    const nav = document.querySelector('.topbar .nav');
-    if (!topbar || !nav) return;
-    let toggle = topbar.querySelector('.nav-toggle-mobile');
-    if (!toggle) {
-      toggle = document.createElement('button');
-      toggle.type = 'button';
-      toggle.className = 'nav-toggle-mobile';
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.textContent = 'Menu';
-      nav.before(toggle);
-      toggle.addEventListener('click', () => {
-        const isOpen = topbar.classList.toggle('nav-open');
-        toggle.setAttribute('aria-expanded', String(isOpen));
-      });
-      nav.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 760) {
-            topbar.classList.remove('nav-open');
-            toggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-    if (window.innerWidth > 760) {
-      topbar.classList.remove('nav-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
+
+      const desktopPatch = `
+section[id] { scroll-margin-top: 118px; }
+@media (min-width: 1081px) {
+  .shell { max-width: 1320px !important; padding: 34px 36px 72px !important; }
+  .topbar { gap: 24px !important; padding: 18px 24px !important; margin-bottom: 48px !important; }
+  .nav { gap: 14px !important; }
+  .nav a { padding: 10px 14px !important; }
+  .hero { gap: 40px !important; margin-bottom: 56px !important; }
+  .hero-main { padding: 46px !important; }
+  .hero-side { padding: 34px !important; gap: 28px !important; }
+  .meta-grid { gap: 22px !important; margin-bottom: 38px !important; }
+  .meta-card, .card, .status-card, .cert-item, .edu-item, .info-item { padding: 24px !important; }
+  .hero-actions { margin-bottom: 34px !important; }
+  .layout { gap: 40px !important; }
+  .stack { gap: 38px !important; }
+  .section { padding: 40px !important; }
+  .section-heading { margin-bottom: 32px !important; }
+  .cards, .timeline, .cert-list, .edu-list, .info-list { gap: 22px !important; }
+  .dashboard { gap: 16px !important; }
+  .stat { padding: 24px 20px !important; }
+  .cli { padding: 24px !important; }
+  .cli-lab { gap: 24px !important; }
+}
+@media (hover: hover) and (pointer: fine) {
+  .card, .timeline-item, .cert-item, .edu-item, .info-item, .status-card, .stat {
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease !important;
   }
-  window.addEventListener('resize', setupMobileHeader);
-  window.addEventListener('load', setupMobileHeader);
-  setupMobileHeader();
-})();
-<\/script>`;
-  const heroOld = `<div class="eyebrow">
-            <span class="badge">Sysadmin · Networks · Infrastructure</span>
-          </div>
-          <h1>Teo Carballo de Cortazar</h1>`;
-  const heroOldFallback = `<div class="eyebrow">
-            <span class="badge">Sysadmin Â· Networks Â· Infrastructure</span>
-          </div>
-          <h1>Teo Carballo de Cortazar</h1>`;
-  const heroNew = `<div class="hero-intro">
+  .card:hover, .timeline-item:hover, .cert-item:hover, .edu-item:hover, .info-item:hover, .status-card:hover, .stat:hover {
+    transform: translateY(-3px);
+    border-color: rgba(134, 224, 255, 0.28) !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+  }
+}`;
+
+      const chunks = await Promise.all(
+        parts.map((path) =>
+          fetch(path, { cache: "no-store" }).then((response) => {
+            if (!response.ok) throw new Error(`No se pudo cargar ${path}`);
+            return response.text();
+          })
+        )
+      );
+
+      const normalized = chunks.map((chunk) => chunk.replace(/[^A-Za-z0-9+/=]/g, ""));
+
+      if (normalized[1] && normalized[1].length === 11547) {
+        normalized[1] += part02TailPatch;
+      }
+
+      let joined = normalized.join("");
+      if (joined.length % 4 !== 0) {
+        joined = joined.padEnd(joined.length + (4 - (joined.length % 4)), "=");
+      }
+
+      const binary = atob(joined);
+      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+      let html = new TextDecoder("utf-8").decode(bytes);
+
+      if (!/^<!doctype html>/i.test(html.trimStart())) {
+        throw new Error("Payload decodificado inv&aacute;lido");
+      }
+
+      html = html.replace("Teo Carballo | Network Engineer Profile", "Teo Carballo | Perfil profesional");
+
+      if (!html.includes("scroll-margin-top: 118px")) {
+        html = html.replace("</style>", `${desktopPatch}\n</style>`);
+      }
+
+      if (!html.includes(".hero-main h1 {\n  max-width: 13ch !important;")) {
+        html = html.replace("</style>", `${hrProfilePatch}\n</style>`);
+      }
+
+      if (!html.includes(".profile-shot-wrap")) {
+        html = html.replace("</style>", `${heroPhotoPatch}\n</style>`);
+      }
+
+      if (!html.includes(".nav-toggle")) {
+        html = html.replace("</style>", `${navResponsivePatch}\n</style>`);
+      }
+
+      if (!html.includes("assets/teo-profile.jfif")) {
+        html = html.replace(
+          /<div class="eyebrow">[\s\S]*?<h1>Teo Carballo de Cortazar<\/h1>/,
+          `<div class="hero-intro">
             <div class="profile-shot-wrap">
               <img class="profile-shot" src="assets/teo-profile.jfif" alt="Foto de perfil de Teo Carballo de Cortazar">
             </div>
             <div class="hero-copy">
               <div class="eyebrow">
-                <span class="badge">Sysadmin · Networks · Infrastructure</span>
+                <span class="badge">Sysadmin \u00b7 Networks \u00b7 Infrastructure</span>
               </div>
               <h1>Teo Carballo de Cortazar</h1>
             </div>
-          </div>`;
-  const partUrls = Array.from({ length: 6 }, (_, i) => `payload/v2/page.part${String(i + 1).padStart(2, '0')}.b64?v=20260406-mobilemenu`);
-  const setStatus = (text) => { status.textContent = text; };
-  const decodeBase64Utf8 = (b64) => {
-    const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
-    return new TextDecoder().decode(bytes);
-  };
-  try {
-    setStatus('Descargando bloques...');
-    const chunks = await Promise.all(partUrls.map(async (url, index) => {
-      const response = await fetch(url, { cache: 'no-store' });
-      if (!response.ok) throw new Error(`chunk ${index + 1}`);
-      let text = await response.text();
-      text = text.replace(/[^A-Za-z0-9+/=]/g, '');
-      if (index === 1 && text.length === 11547) text += tailPatch;
-      return text;
-    }));
-    setStatus('Validando contenido...');
-    let joined = chunks.join('');
-    joined += '='.repeat((4 - (joined.length % 4)) % 4);
-    let html = decodeBase64Utf8(joined);
-    if (!html.includes('.profile-shot-wrap')) {
-      html = html.replace('</style>', `${heroPhotoPatch}\n</style>`);
+          </div>`
+        );
+      }
+
+      html = html.replace("show profile summary", "Sobre m&iacute;");
+      html = html.replace('<span class="badge">PROFILE</span>', '<span class="badge">Perfil</span>');
+      html = html.replace(
+        /<span class="badge">Sysadmin[\s\S]*?Infrastructure<\/span>/,
+        '<span class="badge">Sistemas &middot; Soporte IT &middot; Infraestructura</span>'
+      );
+      html = html.replace(
+        /<p class="lede">[\s\S]*?<\/p>/,
+        `<p class="lede">T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT y operaciones, soporte t&eacute;cnico y gesti&oacute;n de hosting. Me caracteriza la <span class="highlight">atenci&oacute;n al usuario, la resoluci&oacute;n de incidencias y la capacidad de adaptaci&oacute;n</span>, mientras sigo reforzando mi perfil con la preparaci&oacute;n del CCNA y un nivel B2 de ingl&eacute;s.</p>`
+      );
+      html = html.replace(
+        /\s*<aside class="panel reveal">[\s\S]*?<\/aside>(\s*<\/section>)/,
+        "$1"
+      );
+      html = html.replace(
+        /\s*<section class="panel section reveal playground" id="lab">[\s\S]*?<\/section>/,
+        ""
+      );
+      html = html.replace(
+        /<div class="meta-value">Castellano[\s\S]*?English B2<\/div>/,
+        '<div class="meta-value">Castellano &middot; Catal&aacute;n &middot; Ingl&eacute;s B2</div>'
+      );
+      html = html.replace('<span class="pill good">Multilingual</span>', '<span class="pill good">Idiomas</span>');
+      html = html.replace(
+        /Castellano nativo,[\s\S]*?English nivel B2\./,
+        "Castellano y catal&aacute;n nativos, e ingl&eacute;s nivel B2."
+      );
+
+      if (!html.includes('href="#projects"')) {
+        html = html.replace(
+          `<a href="#experience">Experiencia</a>
+        <a href="#certs">Certs</a>`,
+          projectsNavPatch
+        );
+      }
+
+      if (!html.includes('class="nav-toggle"')) {
+        html = html.replace(
+          /<nav class="nav">[\s\S]*?<\/nav>/,
+          `<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+        <span>Menu</span>
+      </button>
+
+      $&`.replace("$&", (html.match(/<nav class="nav">[\s\S]*?<\/nav>/) || [""])[0]).replace('<nav class="nav">', '<nav class="nav" id="site-nav">')
+        );
+      }
+
+      if (!html.includes('id="projects"')) {
+        html = html.replace(
+          /(<section class="panel section reveal" id="experience">[\s\S]*?<\/section>)(\s*<\/main>)/,
+          `$1\n\n${projectsSectionPatch}$2`
+        );
+      }
+
+      if (!html.includes('const nav = document.getElementById("site-nav");')) {
+        html = html.replace(
+          'const navLinks = document.querySelectorAll(".nav a");',
+          'const navLinks = document.querySelectorAll(".nav a");\n    const nav = document.getElementById("site-nav");\n    const navToggle = document.querySelector(".nav-toggle");'
+        );
+      }
+
+      if (!html.includes('function syncMobileNav()')) {
+        html = html.replace(
+          '    window.addEventListener("scroll", () => {',
+          `    function syncMobileNav() {
+      if (window.innerWidth > 760) {
+        nav?.classList.remove("is-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      }
     }
-    if (!html.includes('assets/teo-profile.jfif')) {
-      html = html.replace(heroOld, heroNew).replace(heroOldFallback, heroNew);
-    }
-    if (!html.includes('mobileHeaderPatchMarker')) {
-      html = html.replace('</style>', `\n/* mobileHeaderPatchMarker */${mobileHeaderPatch}\n</style>`);
-    }
-    if (!html.includes('nav-toggle-mobile')) {
-      html = html.replace('</body>', `${mobileNavScript}\n</body>`);
-    }
-    if (!html.includes('<div class="shell">') || !html.includes('Teo Carballo')) {
-      throw new Error('decoded-html-invalid');
-    }
-    document.open();
-    document.write(html);
-    document.close();
-  } catch (error) {
-    console.error(error);
-    setStatus('Error al cargar la web. Prueba con Ctrl+F5 en 1 minuto.');
-  }
-})();
-</script>
+
+    navToggle?.addEventListener("click", () => {
+      const isOpen = nav?.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 760) {
+          nav?.classList.remove("is-open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    window.addEventListener("resize", syncMobileNav);
+    syncMobileNav();
+
+    window.addEventListener("scroll", () => {`
+        );
+      }
+
+      document.open();
+      document.write(html);
+      document.close();
+    })().catch(() => {
+      document.body.innerHTML = '<div class="loader"><h1>Error al cargar la web</h1><p class="small">Haz una recarga fuerte con Ctrl+F5 dentro de unos segundos.</p></div>';
+    });
+  </script>
 </body>
 </html>
