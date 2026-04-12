@@ -372,7 +372,8 @@
             </article>
 
             <article class="cert-item">
-              <div class="cert-logo" aria-hidden="true">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
                   <svg viewBox="0 0 32 32">
                     <path d="M16 4l8 3v7c0 5-3.4 9.1-8 11-4.6-1.9-8-6-8-11V7l8-3z"></path>
                     <path d="M12 16l2.6 2.6L20 13"></path>
@@ -392,7 +393,8 @@
             </article>
 
             <article class="cert-item">
-              <div class="cert-logo" aria-hidden="true">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
                   <svg viewBox="0 0 32 32">
                     <path d="M16 4l8 3v7c0 5-3.4 9.1-8 11-4.6-1.9-8-6-8-11V7l8-3z"></path>
                     <path d="M12 16l2.6 2.6L20 13"></path>
@@ -417,18 +419,18 @@
         <a href="#projects">Proyectos</a>
         <a href="#certs">Certificaciones</a>`;
 
-      const projectsSectionPatch = `
+            const projectsSectionPatch = `
         <section class="panel section reveal" id="projects">
           <div class="section-heading">
-            <h2>Proyectos y casos prÃ¡cticos</h2>
-            <p>Bloques concretos para enseÃ±ar criterio tÃ©cnico, prÃ¡ctica operativa y foco real en redes.</p>
+            <h2>Proyectos y casos pr&aacute;cticos</h2>
+            <p>Bloques concretos para ense&ntilde;ar criterio t&eacute;cnico, pr&aacute;ctica operativa y foco real en redes.</p>
           </div>
 
           <div class="cards">
             <article class="card">
               <span class="mini-label">Cisco Lab</span>
-              <h3>PrÃ¡ctica de configuraciÃ³n IOS</h3>
-              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuraciÃ³n de interfaces, direccionamiento IP, verificaciÃ³n y guardado de configuraciÃ³n.</p>
+              <h3>Pr&aacute;ctica de configuraci&oacute;n IOS</h3>
+              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuraci&oacute;n de interfaces, direccionamiento IP, verificaci&oacute;n y guardado de configuraci&oacute;n.</p>
               <div class="tags">
                 <span class="tag">Enable</span>
                 <span class="tag">Conf T</span>
@@ -439,8 +441,8 @@
 
             <article class="card">
               <span class="mini-label">DNS & Hosting</span>
-              <h3>GestiÃ³n operativa de servicios</h3>
-              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resoluciÃ³n de incidencias y seguimiento tÃ©cnico a cliente.</p>
+              <h3>Gesti&oacute;n operativa de servicios</h3>
+              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resoluci&oacute;n de incidencias y seguimiento t&eacute;cnico a cliente.</p>
               <div class="tags">
                 <span class="tag">DNS</span>
                 <span class="tag">Dominios</span>
@@ -451,25 +453,25 @@
 
             <article class="card">
               <span class="mini-label">Systems Ops</span>
-              <h3>Entornos en producciÃ³n</h3>
-              <p>Mantenimiento de sistemas y servidores, atenciÃ³n a incidencias y soporte tÃ©cnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
+              <h3>Entornos en producci&oacute;n</h3>
+              <p>Mantenimiento de sistemas y servidores, atenci&oacute;n a incidencias y soporte t&eacute;cnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
               <div class="tags">
                 <span class="tag">Linux</span>
                 <span class="tag">Windows Server</span>
-                <span class="tag">ProducciÃ³n</span>
+                <span class="tag">Producci&oacute;n</span>
                 <span class="tag">L1/L2</span>
               </div>
             </article>
 
             <article class="card">
               <span class="mini-label">Security Support</span>
-              <h3>RevisiÃ³n y diagnÃ³stico tÃ©cnico</h3>
-              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de anÃ¡lisis con una visiÃ³n prÃ¡ctica de infraestructura.</p>
+              <h3>Revisi&oacute;n y diagn&oacute;stico t&eacute;cnico</h3>
+              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de an&aacute;lisis con una visi&oacute;n pr&aacute;ctica de infraestructura.</p>
               <div class="tags">
                 <span class="tag">Wireshark</span>
                 <span class="tag">Nmap</span>
                 <span class="tag">Troubleshooting</span>
-                <span class="tag">AnÃ¡lisis</span>
+                <span class="tag">An&aacute;lisis</span>
               </div>
             </article>
           </div>
@@ -488,354 +490,4 @@
   flex: 0 0 auto !important;
 }
 .nav-toggle {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid rgba(134, 224, 255, 0.22);
-  border-radius: 12px;
-  background: rgba(76, 194, 255, 0.08);
-  color: var(--accent-strong);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.nav-toggle-bars {
-  display: inline-grid;
-  gap: 4px;
-}
-.nav-toggle-bars span {
-  display: block;
-  width: 14px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-}
-@media (min-width: 761px) and (max-width: 1180px) {
-  .topbar { gap: 12px !important; padding: 14px 16px !important; }
-  .brand { gap: 10px !important; }
-  .brand-mark { width: 38px !important; height: 38px !important; }
-  .brand-copy strong { font-size: 0.92rem !important; }
-  .brand-copy span { font-size: 0.7rem !important; }
-  .nav { gap: 4px !important; }
-  .nav a { padding: 8px 9px !important; font-size: 0.68rem !important; letter-spacing: 0.05em !important; }
-  .topbar-status { gap: 8px !important; font-size: 0.68rem !important; }
-}
-@media (max-width: 760px) {
-  .topbar {
-    grid-template-columns: 1fr auto !important;
-    align-items: start !important;
-    gap: 12px !important;
-  }
-  .brand { order: 1 !important; }
-  .nav-toggle { order: 2 !important; display: inline-flex !important; }
-  .topbar-status { order: 3 !important; grid-column: 1 / -1 !important; }
-  .nav {
-    order: 4 !important;
-    grid-column: 1 / -1 !important;
-    display: none !important;
-    width: 100% !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 8px !important;
-    padding-top: 4px !important;
-  }
-  .nav.is-open { display: flex !important; }
-  .nav a { width: 100% !important; }
-}
-@media (max-width: 480px) {
-  .nav-toggle {
-    min-height: 40px;
-    padding: 0 12px;
-    font-size: 0.68rem;
-  }
-}`;
-
-      const desktopPatch = `
-section[id] { scroll-margin-top: 118px; }
-@media (min-width: 1081px) {
-  .shell { max-width: 1320px !important; padding: 34px 36px 72px !important; }
-  .topbar { gap: 24px !important; padding: 18px 24px !important; margin-bottom: 48px !important; }
-  .nav { gap: 14px !important; }
-  .nav a { padding: 10px 14px !important; }
-  .hero { gap: 40px !important; margin-bottom: 56px !important; }
-  .hero-main { padding: 46px !important; }
-  .hero-side { padding: 34px !important; gap: 28px !important; }
-  .meta-grid { gap: 22px !important; margin-bottom: 38px !important; }
-  .meta-card, .card, .status-card, .cert-item, .edu-item, .info-item { padding: 24px !important; }
-  .hero-actions { margin-bottom: 34px !important; }
-  .layout { gap: 40px !important; }
-  .stack { gap: 38px !important; }
-  .section { padding: 40px !important; }
-  .section-heading { margin-bottom: 32px !important; }
-  .cards, .timeline, .cert-list, .edu-list, .info-list { gap: 22px !important; }
-  .dashboard { gap: 16px !important; }
-  .stat { padding: 24px 20px !important; }
-  .cli { padding: 24px !important; }
-  .cli-lab { gap: 24px !important; }
-}
-@media (hover: hover) and (pointer: fine) {
-  .card, .timeline-item, .cert-item, .edu-item, .info-item, .status-card, .stat {
-    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease !important;
-  }
-  .card:hover, .timeline-item:hover, .cert-item:hover, .edu-item:hover, .info-item:hover, .status-card:hover, .stat:hover {
-    transform: translateY(-3px);
-    border-color: rgba(134, 224, 255, 0.28) !important;
-    background: rgba(255, 255, 255, 0.035) !important;
-  }
-}`;
-
-      const chunks = await Promise.all(
-        parts.map((path) =>
-          fetch(path, { cache: "no-store" }).then((response) => {
-            if (!response.ok) throw new Error(`No se pudo cargar ${path}`);
-            return response.text();
-          })
-        )
-      );
-
-      const normalized = chunks.map((chunk) => chunk.replace(/[^A-Za-z0-9+/=]/g, ""));
-
-      if (normalized[1] && normalized[1].length === 11547) {
-        normalized[1] += part02TailPatch;
-      }
-
-      let joined = normalized.join("");
-      if (joined.length % 4 !== 0) {
-        joined = joined.padEnd(joined.length + (4 - (joined.length % 4)), "=");
-      }
-
-      const binary = atob(joined);
-      const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
-      let html = new TextDecoder("utf-8").decode(bytes);
-
-      if (!/^<!doctype html>/i.test(html.trimStart())) {
-        throw new Error("Payload decodificado inv\u00e1lido");
-      }
-
-      html = html.replace("Teo Carballo | Network Engineer Profile", "Teo Carballo | Perfil profesional");
-
-      if (!html.includes("scroll-margin-top: 118px")) {
-        html = html.replace("</style>", `${desktopPatch}\n</style>`);
-      }
-
-      if (!html.includes(".hero-main h1 {\n  max-width: 13ch !important;")) {
-        html = html.replace("</style>", `${hrProfilePatch}\n</style>`);
-      }
-
-      if (!html.includes(".profile-shot-wrap")) {
-        html = html.replace("</style>", `${heroPhotoPatch}\n</style>`);
-      }
-
-      if (!html.includes(".nav-toggle")) {
-        html = html.replace("</style>", `${navResponsivePatch}\n</style>`);
-      }
-
-      if (!html.includes("assets/teo-profile.jfif")) {
-        html = html.replace(
-          /<div class="eyebrow">[\s\S]*?<h1>Teo Carballo de Cortazar<\/h1>/,
-          `<div class="hero-intro">
-            <div class="profile-shot-wrap">
-              <img class="profile-shot" src="assets/teo-profile.jfif" alt="Foto de perfil de Teo Carballo de Cortazar">
-            </div>
-            <div class="hero-copy">
-              <div class="eyebrow">
-                <span class="badge">Sysadmin \u00b7 Networks \u00b7 Infrastructure</span>
-              </div>
-              <h1>Teo Carballo de Cortazar</h1>
-            </div>
-          </div>`
-        );
-      }
-
-      html = html.replace(
-        /<nav class="nav">[\s\S]*?<\/nav>/,
-        `<nav class="nav">
-        <a href="#overview" class="active">Inicio</a>
-        <a href="#experience">Experiencia</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#certs">Certificaciones</a>
-        <a href="#education">Formaci&oacute;n</a>
-        <a href="#skills">Capacidades</a>
-        <a href="#contact">Contacto</a>
-      </nav>`
-      );
-      html = html.replace("Network & Systems Profile Interface", "Especializaci&oacute;n en redes Cisco y sistemas");
-      html = html.replace("AVAILABLE FOR HIRE", "DISPONIBLE PARA INCORPORARME");
-
-      html = html.replace("show profile summary", "Sobre m&iacute;");
-      html = html.replace('<span class="badge">PROFILE</span>', '<span class="badge">Perfil</span>');
-      html = html.replace(
-        /<span class="badge">Sysadmin[\s\S]*?Infrastructure<\/span>/,
-        '<span class="badge">Especializaci&oacute;n en redes &middot; Cisco &middot; Routing &amp; Switching</span>'
-      );
-      html = html.replace(
-        /<p class="lede">[\s\S]*?<\/p>/,
-        `<p class="lede">T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT y una especializaci&oacute;n cada vez m&aacute;s clara en redes. Tras completar el <span class="highlight">Cisco Certified Network Associate (CCNA)</span>, oriento mi perfil hacia conectividad, routing, switching, troubleshooting e infraestructura Cisco, combinando base operativa real con un enfoque profesional en networking.</p>
-          <div class="focus-strip">
-            <span class="focus-kicker">Foco profesional</span>
-            <div class="focus-points">
-              <span class="focus-point">CCNA completado</span>
-              <span class="focus-point">Routing &amp; Switching</span>
-              <span class="focus-point">Troubleshooting</span>
-              <span class="focus-point">Infraestructura Cisco</span>
-            </div>
-          </div>`
-      );
-      html = html.replace(
-        /<article class="timeline-item">\s*<span class="timeline-date">2023 - 2024<\/span>[\s\S]*?<h3>INEEW<\/h3>[\s\S]*?<\/article>/,
-        `<article class="timeline-item">
-              <span class="timeline-date">2023 - 2024</span>
-              <h3>INEEW</h3>
-              <div class="timeline-role">Pr&aacute;cticas &middot; Soporte t&eacute;cnico y validaci&oacute;n de conectividad</div>
-              <ul>
-                <li>Apoyo en comprobaciones de conectividad, acceso a servicios internos y validaci&oacute;n del funcionamiento de red en entorno de trabajo real.</li>
-                <li>Preparaci&oacute;n b&aacute;sica de equipos, soporte al usuario y resoluci&oacute;n de incidencias funcionales junto al equipo t&eacute;cnico.</li>
-                <li>Primer contacto con revisi&oacute;n de configuraciones, comprobaci&oacute;n de direccionamiento y validaci&oacute;n b&aacute;sica de comunicaciones entre equipos y servicios.</li>
-              </ul>
-            </article>`
-      );
-      html = html.replace(
-        '<span class="meta-label">Certificaci&oacute;n foco</span>',
-        '<span class="meta-label">Certificaci&oacute;n principal</span>'
-      );
-      html = html.replace(
-        /<div class="meta-value">Cisco[\s\S]*?<\/div>/,
-        '<div class="meta-value">CCNA completado &middot; Objetivo CCNP</div>'
-      );
-      html = html.replace(
-        /Objetivo: aportar valor[\s\S]*?operaci&oacute;n\./,
-        'Objetivo: aportar valor en entornos IT donde la conectividad, la estabilidad de red, el soporte t&eacute;cnico y la infraestructura de red tengan un impacto directo en la operaci&oacute;n.'
-      );
-      html = html.replace(
-        /\s*<aside class="panel reveal">[\s\S]*?<\/aside>(\s*<\/section>)/,
-        "$1"
-      );
-      if (!html.includes(".layout-wide")) {
-        html = html.replace("</style>", `${wideSectionsPatch}\n</style>`);
-      }
-      const extractSection = (pattern) => {
-        const match = html.match(pattern);
-        return match ? match[0] : "";
-      };
-      const skillsSection = extractSection(/<section class="panel section reveal" id="skills">[\s\S]*?<\/section>/);
-      const experienceSection = extractSection(/<section class="panel section reveal" id="experience">[\s\S]*?<\/section>/);
-      const educationSection = extractSection(/<section class="panel section reveal" id="education">[\s\S]*?<\/section>/);
-      const extraInfoSection = extractSection(/<section class="panel section reveal">\s*<div class="section-heading">\s*<h2>Perfil adicional<\/h2>[\s\S]*?<\/section>/);
-      const contactSection = extractSection(/<section class="panel section reveal" id="contact">[\s\S]*?<\/section>/);
-      if (skillsSection && experienceSection && educationSection && contactSection) {
-        html = html.replace(
-          /<div class="layout">[\s\S]*?<\/div>\s*<section class="panel section reveal playground" id="lab">/,
-          `<div class="layout layout-wide">
-      <main class="stack stack-wide">
-        ${experienceSection}
-
-${rebuiltCertsSection}
-
-        ${educationSection}
-
-        ${skillsSection}
-
-        <div class="dual-panels">
-          ${extraInfoSection}
-
-          ${contactSection}
-        </div>
-      </main>
-    </div>
-
-    <section class="panel section reveal playground" id="lab">`
-        );
-      }
-      html = html.replace(
-        /\s*<section class="panel section reveal playground" id="lab">[\s\S]*?<\/section>/,
-        ""
-      );
-      html = html.replace(
-        /<div class="meta-value">Castellano[\s\S]*?English B2<\/div>/,
-        '<div class="meta-value">Castellano &middot; Catal&aacute;n &middot; Ingl&eacute;s B2</div>'
-      );
-      html = html.replace('<span class="pill good">Multilingual</span>', '<span class="pill good">Idiomas</span>');
-      html = html.replace(
-        /Castellano nativo,[\s\S]*?English nivel B2\./,
-        "Castellano y catal&aacute;n nativos, e ingl&eacute;s nivel B2."
-      );
-
-      if (!html.includes('href="#projects"')) {
-        html = html.replace(
-          `<a href="#experience">Experiencia</a>
-        <a href="#certs">Certs</a>`,
-          projectsNavPatch
-        );
-      }
-
-      if (!html.includes('class="nav-toggle"')) {
-        html = html.replace(
-          /<nav class="nav">[\s\S]*?<\/nav>/,
-          `<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
-        <span>Men&uacute;</span>
-      </button>
-
-      $&`.replace("$&", (html.match(/<nav class="nav">[\s\S]*?<\/nav>/) || [""])[0]).replace('<nav class="nav">', '<nav class="nav" id="site-nav">')
-        );
-      }
-
-      if (!html.includes('id="projects"')) {
-        html = html.replace(
-          /(<section class="panel section reveal" id="experience">[\s\S]*?<\/section>)(\s*<\/main>)/,
-          `$1\n\n${projectsSectionPatch}$2`
-        );
-      }
-
-      if (!html.includes('const nav = document.getElementById("site-nav");')) {
-        html = html.replace(
-          'const navLinks = document.querySelectorAll(".nav a");',
-          'const navLinks = document.querySelectorAll(".nav a");\n    const nav = document.getElementById("site-nav");\n    const navToggle = document.querySelector(".nav-toggle");'
-        );
-      }
-
-      if (!html.includes('function syncMobileNav()')) {
-        html = html.replace(
-          '    window.addEventListener("scroll", () => {',
-          `    function syncMobileNav() {
-      if (window.innerWidth > 760) {
-        nav?.classList.remove("is-open");
-        navToggle?.setAttribute("aria-expanded", "false");
-      }
-    }
-
-    navToggle?.addEventListener("click", () => {
-      const isOpen = nav?.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
-    });
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (window.innerWidth <= 760) {
-          nav?.classList.remove("is-open");
-          navToggle?.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-
-    window.addEventListener("resize", syncMobileNav);
-    syncMobileNav();
-
-    window.addEventListener("scroll", () => {`
-        );
-      }
-
-      document.open();
-      document.write(html);
-      document.close();
-    })().catch(() => {
-      document.body.innerHTML = '<div class="loader"><h1>Error al cargar la web</h1><p class="small">Haz una recarga fuerte con Ctrl+F5 dentro de unos segundos.</p></div>';
-    });
-  </script>
-</body>
-</html>
+  di
