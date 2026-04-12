@@ -135,7 +135,7 @@
 
           const subtitle = document.querySelector(".brand-copy span");
           if (subtitle) {
-            subtitle.innerHTML = "Especializaci&oacute;n en redes Cisco,<br>conectividad e infraestructura";
+            subtitle.innerHTML = "Perfil de redes y sistemas";
           }
 
           const availability = document.querySelector(".topbar-status span:last-child");
@@ -180,7 +180,23 @@
 
           const certNote = document.querySelector("#certs .cert-item.featured .cert-note");
           if (certNote) {
-            certNote.innerHTML = "Certificaci&oacute;n clave dentro de mi perfil, porque valida conocimientos s&oacute;lidos en routing, switching, direccionamiento IP y resoluci&oacute;n de incidencias en entornos Cisco.";
+            certNote.remove();
+          }
+          const certTags = document.querySelector("#certs .cert-item.featured .cert-tags");
+          if (certTags) {
+            certTags.remove();
+          }
+
+          const skillCards = document.querySelectorAll("#skills .card");
+          if (skillCards[3]) {
+            const label = skillCards[3].querySelector(".mini-label");
+            const title = skillCards[3].querySelector("h3");
+            const text = skillCards[3].querySelector("p");
+            if (label) label.textContent = "Analisis tecnico";
+            if (title) title.textContent = "Diagnostico y revision";
+            if (text) {
+              text.innerHTML = "Conocimientos de diagn&oacute;stico t&eacute;cnico y an&aacute;lisis de tr&aacute;fico para detectar incidencias de conectividad y apoyar su resoluci&oacute;n en entornos de red.";
+            }
           }
 
           const educationItems = document.querySelectorAll("#education .edu-item");
