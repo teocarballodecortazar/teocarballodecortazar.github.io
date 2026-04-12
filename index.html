@@ -138,6 +138,191 @@
   }
 }`;
 
+      const wideSectionsPatch = `
+.layout {
+  grid-template-columns: 1fr !important;
+}
+.layout-wide {
+  display: block !important;
+}
+.stack-wide {
+  display: grid;
+  gap: 34px;
+}
+#skills .cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+#certs .cert-list {
+  display: grid;
+  gap: 18px;
+}
+#certs .cert-item {
+  padding: 24px;
+}
+#certs .cert-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+#certs .cert-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  border: 1px solid rgba(134, 224, 255, 0.24);
+  background: rgba(76, 194, 255, 0.08);
+  color: var(--accent-strong);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+#certs .cert-logo svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#certs .cert-content {
+  flex: 1;
+  min-width: 0;
+}
+#certs .cert-top {
+  margin-bottom: 10px !important;
+}
+#certs .cert-item.featured {
+  border-color: rgba(134, 224, 255, 0.34);
+  background: linear-gradient(135deg, rgba(76, 194, 255, 0.13), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 0 0 1px rgba(134, 224, 255, 0.08);
+}
+#certs .cert-item.featured h3 {
+  font-size: 1.18rem;
+}
+#certs .cert-item.featured .cert-note {
+  color: var(--accent-strong);
+}
+#certs .cert-note {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+#certs .pill.core {
+  color: var(--accent-strong);
+  background: rgba(76, 194, 255, 0.08);
+  border: 1px solid rgba(134, 224, 255, 0.24);
+}
+@media (min-width: 1081px) {
+  #skills .cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  #certs .cert-row {
+    flex-direction: column;
+  }
+  #skills .cards {
+    grid-template-columns: 1fr;
+  }
+}`;
+
+      const rebuiltCertsSection = `
+        <section class="panel section reveal" id="certs">
+          <div class="section-heading">
+            <h2>Certificaciones</h2>
+            <p>Ruta clara hacia ingeniería de redes, con el CCNA como credencial principal del perfil.</p>
+          </div>
+
+          <div class="cert-list">
+            <article class="cert-item featured">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <circle cx="16" cy="6" r="3"></circle>
+                    <circle cx="7" cy="22" r="3"></circle>
+                    <circle cx="25" cy="22" r="3"></circle>
+                    <path d="M16 9v7M10 20l6-4 6 4"></path>
+                  </svg>
+                </div>
+                <div class="cert-content">
+                  <div class="cert-top">
+                    <div>
+                      <h3>Cisco Certified Network Associate (CCNA)</h3>
+                      <p>Mi certificación más fuerte y la base principal de mi perfil de redes: routing, switching, direccionamiento IP, troubleshooting y fundamentos sólidos de infraestructura Cisco.</p>
+                    </div>
+                    <span class="pill core">Completada</span>
+                  </div>
+                  <span class="cert-note">Certificación clave sobre la que estoy construyendo mi evolución hacia entornos de networking con más responsabilidad técnica.</span>
+                  <div class="progress"><span style="width: 100%"></span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <path d="M6 10h20M10 16h12M8 22h16"></path>
+                    <rect x="5" y="6" width="22" height="20" rx="4"></rect>
+                  </svg>
+                </div>
+                <div class="cert-content">
+                  <div class="cert-top">
+                    <div>
+                      <h3>Cisco Networking Basics</h3>
+                      <p>Fundamentos de redes, protocolos, topologías y conceptos de comunicación de datos aplicados a entornos Cisco.</p>
+                    </div>
+                    <span class="pill good">Completada</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <path d="M16 4l8 3v7c0 5-3.4 9.1-8 11-4.6-1.9-8-6-8-11V7l8-3z"></path>
+                    <path d="M12 16l2.6 2.6L20 13"></path>
+                  </svg>
+                </div>
+                <div class="cert-content">
+                  <div class="cert-top">
+                    <div>
+                      <h3>Cisco Cybersecurity Basics</h3>
+                      <p>Base de seguridad orientada a amenazas, buenas prácticas, protección de servicios y visión complementaria para entornos de infraestructura.</p>
+                    </div>
+                    <span class="pill good">Completada</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="cert-item">
+              <div class="cert-row">
+                <div class="cert-logo" aria-hidden="true">
+                  <svg viewBox="0 0 32 32">
+                    <path d="M6 24h8l4-8h8"></path>
+                    <path d="M20 10h6v6"></path>
+                    <path d="M14 18l12-12"></path>
+                  </svg>
+                </div>
+                <div class="cert-content">
+                  <div class="cert-top">
+                    <div>
+                      <h3>Cisco Certified Network Professional (CCNP)</h3>
+                      <p>Siguiente paso formativo para seguir creciendo en routing, switching y diseño de soluciones de red con mayor profundidad técnica.</p>
+                    </div>
+                    <span class="pill warn">En progreso</span>
+                  </div>
+                  <div class="progress"><span style="width: 42%"></span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>`;
+
       const projectsNavPatch = `<a href="#experience">Experiencia</a>
         <a href="#projects">Proyectos</a>
         <a href="#certs">Certs</a>`;
@@ -145,15 +330,15 @@
       const projectsSectionPatch = `
         <section class="panel section reveal" id="projects">
           <div class="section-heading">
-            <h2>Proyectos y casos pr&aacute;cticos</h2>
-            <p>Bloques concretos para ense&ntilde;ar criterio t&eacute;cnico, pr&aacute;ctica operativa y foco real en redes.</p>
+            <h2>Proyectos y casos prácticos</h2>
+            <p>Bloques concretos para enseñar criterio técnico, práctica operativa y foco real en redes.</p>
           </div>
 
           <div class="cards">
             <article class="card">
               <span class="mini-label">Cisco Lab</span>
-              <h3>Pr&aacute;ctica de configuraci&oacute;n IOS</h3>
-              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuraci&oacute;n de interfaces, direccionamiento IP, verificaci&oacute;n y guardado de configuraci&oacute;n.</p>
+              <h3>Práctica de configuración IOS</h3>
+              <p>Laboratorios orientados a CLI Cisco para reforzar modo privilegiado, configuración de interfaces, direccionamiento IP, verificación y guardado de configuración.</p>
               <div class="tags">
                 <span class="tag">Enable</span>
                 <span class="tag">Conf T</span>
@@ -163,9 +348,9 @@
             </article>
 
             <article class="card">
-              <span class="mini-label">DNS &amp; Hosting</span>
-              <h3>Gesti&oacute;n operativa de servicios</h3>
-              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resoluci&oacute;n de incidencias y seguimiento t&eacute;cnico a cliente.</p>
+              <span class="mini-label">DNS & Hosting</span>
+              <h3>Gestión operativa de servicios</h3>
+              <p>Trabajo con dominios, hosting y registros DNS en contexto real, asegurando continuidad de servicio, resolución de incidencias y seguimiento técnico a cliente.</p>
               <div class="tags">
                 <span class="tag">DNS</span>
                 <span class="tag">Dominios</span>
@@ -176,25 +361,25 @@
 
             <article class="card">
               <span class="mini-label">Systems Ops</span>
-              <h3>Entornos en producci&oacute;n</h3>
-              <p>Mantenimiento de sistemas y servidores, atenci&oacute;n a incidencias y soporte t&eacute;cnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
+              <h3>Entornos en producción</h3>
+              <p>Mantenimiento de sistemas y servidores, atención a incidencias y soporte técnico con enfoque operativo, priorizando estabilidad, trazabilidad y tiempos de respuesta.</p>
               <div class="tags">
                 <span class="tag">Linux</span>
                 <span class="tag">Windows Server</span>
-                <span class="tag">Producci&oacute;n</span>
+                <span class="tag">Producción</span>
                 <span class="tag">L1/L2</span>
               </div>
             </article>
 
             <article class="card">
               <span class="mini-label">Security Support</span>
-              <h3>Revisi&oacute;n y diagn&oacute;stico t&eacute;cnico</h3>
-              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de an&aacute;lisis con una visi&oacute;n pr&aacute;ctica de infraestructura.</p>
+              <h3>Revisión y diagnóstico técnico</h3>
+              <p>Uso de herramientas como Wireshark o Nmap para revisar conectividad, detectar fallos y apoyar tareas de análisis con una visión práctica de infraestructura.</p>
               <div class="tags">
                 <span class="tag">Wireshark</span>
                 <span class="tag">Nmap</span>
                 <span class="tag">Troubleshooting</span>
-                <span class="tag">An&aacute;lisis</span>
+                <span class="tag">Análisis</span>
               </div>
             </article>
           </div>
@@ -339,7 +524,7 @@ section[id] { scroll-margin-top: 118px; }
       let html = new TextDecoder("utf-8").decode(bytes);
 
       if (!/^<!doctype html>/i.test(html.trimStart())) {
-        throw new Error("Payload decodificado inv&aacute;lido");
+        throw new Error("Payload decodificado inv\u00e1lido");
       }
 
       html = html.replace("Teo Carballo | Network Engineer Profile", "Teo Carballo | Perfil profesional");
@@ -377,6 +562,19 @@ section[id] { scroll-margin-top: 118px; }
         );
       }
 
+      html = html.replace(
+        /<nav class="nav">[\s\S]*?<\/nav>/,
+        `<nav class="nav">
+        <a href="#overview" class="active">Overview</a>
+        <a href="#experience">Experiencia</a>
+        <a href="#projects">Proyectos</a>
+        <a href="#certs">Certs</a>
+        <a href="#education">Formaci&oacute;n</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contacto</a>
+      </nav>`
+      );
+
       html = html.replace("show profile summary", "Sobre m&iacute;");
       html = html.replace('<span class="badge">PROFILE</span>', '<span class="badge">Perfil</span>');
       html = html.replace(
@@ -388,9 +586,53 @@ section[id] { scroll-margin-top: 118px; }
         `<p class="lede">T&eacute;cnico en Administraci&oacute;n de Sistemas y Redes con m&aacute;s de 2 a&ntilde;os de experiencia en entornos IT y operaciones, soporte t&eacute;cnico y gesti&oacute;n de hosting. Me caracteriza la <span class="highlight">atenci&oacute;n al usuario, la resoluci&oacute;n de incidencias y la capacidad de adaptaci&oacute;n</span>, mientras sigo reforzando mi perfil con la preparaci&oacute;n del CCNA y un nivel B2 de ingl&eacute;s.</p>`
       );
       html = html.replace(
+        /<div class="timeline-role">Pr[\s\S]*?Odoo<\/div>/,
+        '<div class="timeline-role">Pr&aacute;cticas &middot; Soporte t&eacute;cnico y validaci&oacute;n de conectividad</div>'
+      );
+      html = html.replace(
+        /<li>Gesti[\s\S]*?plataforma Odoo\.<\/li>\s*<li>B[\s\S]*?seguridad web\.<\/li>/,
+        `<li>Apoyo en comprobaciones de conectividad, red local y acceso a servicios internos en entorno de trabajo real.</li>
+                <li>Preparaci&oacute;n b&aacute;sica de equipos, soporte t&eacute;cnico al usuario y resoluci&oacute;n de incidencias funcionales junto al equipo.</li>
+                <li>Primer contacto con validaci&oacute;n de comunicaciones, revisi&oacute;n de configuraciones y l&oacute;gica operativa de red.</li>`
+      );
+      html = html.replace(
         /\s*<aside class="panel reveal">[\s\S]*?<\/aside>(\s*<\/section>)/,
         "$1"
       );
+      if (!html.includes(".layout-wide")) {
+        html = html.replace("</style>", `${wideSectionsPatch}\n</style>`);
+      }
+      const extractSection = (pattern) => {
+        const match = html.match(pattern);
+        return match ? match[0] : "";
+      };
+      const skillsSection = extractSection(/<section class="panel section reveal" id="skills">[\s\S]*?<\/section>/);
+      const experienceSection = extractSection(/<section class="panel section reveal" id="experience">[\s\S]*?<\/section>/);
+      const educationSection = extractSection(/<section class="panel section reveal" id="education">[\s\S]*?<\/section>/);
+      const extraInfoSection = extractSection(/<section class="panel section reveal">\s*<div class="section-heading">\s*<h2>Perfil adicional<\/h2>[\s\S]*?<\/section>/);
+      const contactSection = extractSection(/<section class="panel section reveal" id="contact">[\s\S]*?<\/section>/);
+      if (skillsSection && experienceSection && educationSection && contactSection) {
+        html = html.replace(
+          /<div class="layout">[\s\S]*?<\/div>\s*<section class="panel section reveal playground" id="lab">/,
+          `<div class="layout layout-wide">
+      <main class="stack stack-wide">
+        ${experienceSection}
+
+${rebuiltCertsSection}
+
+        ${educationSection}
+
+        ${skillsSection}
+
+        ${extraInfoSection}
+
+        ${contactSection}
+      </main>
+    </div>
+
+    <section class="panel section reveal playground" id="lab">`
+        );
+      }
       html = html.replace(
         /\s*<section class="panel section reveal playground" id="lab">[\s\S]*?<\/section>/,
         ""
