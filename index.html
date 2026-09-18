@@ -1212,6 +1212,7 @@
     border-radius: 11px;
   }
 
+  .brand-badge.wide { width: 78px; }
   .item-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
   .item-head h3 { margin: 0; }
 
@@ -1249,6 +1250,62 @@
     .brand-badge { width: 38px; height: 38px; }
     .cert-top { flex-wrap: wrap; }
   }
+
+  /* ---------- realce visual ---------- */
+
+  /* Barra de acento a la izquierda de cada titular de seccion */
+  .section-heading h2 {
+    position: relative;
+    padding-left: 16px;
+  }
+  .section-heading h2::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.18em; bottom: 0.18em;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent-strong), var(--good));
+  }
+
+  /* Las tarjetas responden al raton: da sensacion de sitio vivo */
+  .cert-item, .card, .timeline-item {
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+  .cert-item:hover, .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-strong);
+  }
+
+  /* El proyecto de banca es una señal fuerte: que se vea */
+  .project-line {
+    background: linear-gradient(90deg, rgba(76,194,255,0.12), rgba(76,194,255,0.02));
+    border-color: rgba(134, 224, 255, 0.35);
+    font-size: 0.86rem;
+    padding: 12px 14px;
+  }
+  .project-line strong { font-size: 0.95rem; }
+
+  /* Logos mas grandes en certificaciones: son el gancho visual */
+  #certs .brand-badge { width: 58px; height: 58px; }
+
+  /* El puesto actual, destacado sobre los anteriores */
+  #experience .timeline-item:first-child {
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+    background: linear-gradient(90deg, rgba(76,194,255,0.05), transparent 40%);
+    border-radius: 0 14px 14px 0;
+  }
+
+  /* Etiquetas de tecnologia con mas presencia */
+  .tag {
+    border-color: rgba(134, 224, 255, 0.24);
+    background: rgba(76, 194, 255, 0.07);
+  }
+
+  @media (max-width: 480px) {
+    #certs .brand-badge { width: 44px; height: 44px; }
+    #experience .timeline-item:first-child { padding-left: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -1262,14 +1319,7 @@
 <span>Analista de ciberseguridad · SOC</span>
 </div>
 </div>
-<nav class="nav">
-<a class="active" href="#overview">Overview</a>
-<a href="#skills">Skills</a>
-<a href="#experience">Experiencia</a>
-<a href="#certs">Certs</a>
-<a href="#education">Formación</a>
-<a href="#contact">Contacto</a>
-</nav>
+<nav class="nav"><a class="active" href="#overview">Perfil</a><a href="#experience">Experiencia</a><a href="#skills">Capacidades</a><a href="#certs">Certificaciones</a><a href="#education">Formación</a><a href="#contact">Contacto</a></nav>
 <div class="topbar-status">
 <span class="dot"></span>
 <span>DISPONIBLE</span>
@@ -1360,48 +1410,6 @@
 </section>
 <div class="layout">
 <main class="stack">
-<section class="panel section reveal" id="skills">
-<div class="section-heading">
-<h2>Capacidades técnicas</h2>
-<p>Ordenadas como áreas de trabajo: dónde estoy ahora y qué base traigo debajo.</p>
-</div>
-<div class="cards">
-<article class="card">
-<span class="mini-label">Seguridad · Blue Team</span>
-<h3>Detección y análisis</h3>
-<p>Monitorización y análisis de eventos en SIEM, EDR y SOAR; gestión de alertas de IDS/IPS, respuesta a incidentes y contención de amenazas.</p>
-<div class="tags"><span class="tag">SIEM</span><span class="tag">EDR</span><span class="tag">SOAR</span><span class="tag">IDS/IPS</span><span class="tag">Blue Team</span><span class="tag">Wireshark</span><span class="tag">BTL1</span></div>
-</article>
-<article class="card">
-<span class="mini-label">Systems Administration</span>
-<h3>Operación y soporte</h3>
-<p>Administración de sistemas, soporte técnico, mantenimiento de servidores y atención a incidencias con foco en continuidad del servicio.</p>
-<div class="tags">
-<span class="tag">Linux</span>
-<span class="tag">Windows Server</span>
-<span class="tag">Help Desk</span>
-<span class="tag">Producción</span>
-</div>
-</article>
-<article class="card">
-<span class="mini-label">Hosting &amp; Services</span>
-<h3>Infraestructura de cliente</h3>
-<p>Gestión de dominios, DNS, hosting y tareas operativas relacionadas con alta, renovación, transferencia y soporte del servicio.</p>
-<div class="tags">
-<span class="tag">Hosting</span>
-<span class="tag">Dominios</span>
-<span class="tag">DNS Management</span>
-<span class="tag">Odoo</span>
-</div>
-</article>
-<article class="card">
-<span class="mini-label">Routing &amp; Switching</span>
-<h3>Base de red sólida</h3>
-<p>Fundamentos de TCP/IP, routing, switching, direccionamiento y diagnóstico en entorno Cisco. Es la base que permite entender por qué una alerta es lo que es.</p>
-<div class="tags"><span class="tag">Cisco CCNA</span><span class="tag">TCP/IP</span><span class="tag">Routing</span><span class="tag">Switching</span><span class="tag">DNS</span></div>
-</article>
-</div>
-</section>
 <section class="panel section reveal" id="experience">
 <div class="section-heading">
 <h2>Experiencia</h2>
@@ -1411,14 +1419,14 @@
 <article class="timeline-item">
 <span class="timeline-date">Junio 2025 - Actualidad</span>
 <div class="item-head">
-<span class="brand-badge" data-mark="EXPERIS"><img alt="Experis" onerror="this.remove()" src="assets/logo-experis.svg"/></span>
+<span class="brand-badge wide" data-mark="EXPERIS"><img alt="Experis" onerror="this.remove()" src="assets/logo-experis.jpg"/></span>
 <div>
 <h3>Experis España</h3>
 <div class="timeline-role">Analista de ciberseguridad (SOC N1) · Jornada completa · Híbrido</div>
 </div>
 </div>
 <div class="project-line">
-<span class="brand-badge" data-mark="CAIXA BANK"><img alt="CaixaBank" onerror="this.remove()" src="assets/logo-caixabank.svg"/></span>
+<span class="brand-badge" data-mark="CAIXA BANK"><img alt="CaixaBank" onerror="this.remove()" src="assets/logo-caixabank.png"/></span>
 <span>Proyecto: <strong>CaixaBank</strong></span>
 </div>
 <ul>
@@ -1466,7 +1474,49 @@
 </ul>
 </article>
 </div>
+</section><section class="panel section reveal" id="skills">
+<div class="section-heading">
+<h2>Capacidades técnicas</h2>
+<p>Ordenadas como áreas de trabajo: dónde estoy ahora y qué base traigo debajo.</p>
+</div>
+<div class="cards">
+<article class="card">
+<span class="mini-label">Seguridad · Blue Team</span>
+<h3>Detección y análisis</h3>
+<p>Monitorización y análisis de eventos en SIEM, EDR y SOAR; gestión de alertas de IDS/IPS, respuesta a incidentes y contención de amenazas.</p>
+<div class="tags"><span class="tag">SIEM</span><span class="tag">EDR</span><span class="tag">SOAR</span><span class="tag">IDS/IPS</span><span class="tag">Blue Team</span><span class="tag">Wireshark</span><span class="tag">BTL1</span></div>
+</article>
+<article class="card">
+<span class="mini-label">Systems Administration</span>
+<h3>Operación y soporte</h3>
+<p>Administración de sistemas, soporte técnico, mantenimiento de servidores y atención a incidencias con foco en continuidad del servicio.</p>
+<div class="tags">
+<span class="tag">Linux</span>
+<span class="tag">Windows Server</span>
+<span class="tag">Help Desk</span>
+<span class="tag">Producción</span>
+</div>
+</article>
+<article class="card">
+<span class="mini-label">Hosting &amp; Services</span>
+<h3>Infraestructura de cliente</h3>
+<p>Gestión de dominios, DNS, hosting y tareas operativas relacionadas con alta, renovación, transferencia y soporte del servicio.</p>
+<div class="tags">
+<span class="tag">Hosting</span>
+<span class="tag">Dominios</span>
+<span class="tag">DNS Management</span>
+<span class="tag">Odoo</span>
+</div>
+</article>
+<article class="card">
+<span class="mini-label">Routing &amp; Switching</span>
+<h3>Base de red sólida</h3>
+<p>Fundamentos de TCP/IP, routing, switching, direccionamiento y diagnóstico en entorno Cisco. Es la base que permite entender por qué una alerta es lo que es.</p>
+<div class="tags"><span class="tag">Cisco CCNA</span><span class="tag">TCP/IP</span><span class="tag">Routing</span><span class="tag">Switching</span><span class="tag">DNS</span></div>
+</article>
+</div>
 </section>
+
 </main>
 <aside class="stack">
 <section class="panel section reveal" id="certs">
@@ -1477,7 +1527,7 @@
 <div class="cert-list">
 <article class="cert-item">
 <div class="cert-top">
-<span class="brand-badge" data-mark="BTL1"><img alt="Security Blue Team" onerror="this.remove()" src="assets/logo-btl1.png"/></span>
+<span class="brand-badge" data-mark="BTL1"><img alt="Security Blue Team" onerror="this.remove()" src="assets/logo-btl1.jpg"/></span>
 <div>
 <h3>Blue Team Level 1 (BTL1)</h3>
 <p>Security Blue Team · Certificación práctica de blue team: análisis de phishing, forense digital, SIEM, respuesta a incidentes e inteligencia de amenazas.</p>
@@ -1538,23 +1588,23 @@
 </article>
 </div>
 </section>
-<section class="panel section reveal">
+<section class="panel section reveal" id="extra">
 <div class="section-heading">
 <h2>Perfil adicional</h2>
-<p>Pequeños datos que ayudan a cerrar candidatura.</p>
+<p>Datos prácticos que suelen preguntarse en una primera llamada.</p>
 </div>
 <div class="info-list">
 <article class="info-item">
 <div class="info-top">
 <h3>Idiomas</h3>
-<span class="pill good">Multilingual</span>
+<span class="pill good">Nativo + B2</span>
 </div>
 <p>Castellano nativo, Català natiu y English nivel B2.</p>
 </article>
 <article class="info-item">
 <div class="info-top">
 <h3>Movilidad</h3>
-<span class="pill good">Ready</span>
+<span class="pill good">Disponible</span>
 </div>
 <p>Carnet B, vehículo propio y disponibilidad para incorporación.</p>
 </article>
@@ -1588,11 +1638,9 @@
 </div>
 <section class="panel section reveal playground" id="lab">
 <div class="section-heading">
-<h2>Mini-Lab de Red</h2>
+<h2>Mini-Lab: consola Cisco IOS</h2>
 </div>
-<p class="lab-note">
-        Un guiño más acorde al perfil: una mini CLI estilo Cisco donde puedes probar comandos básicos como `enable`, `conf t`, `interface g0/1`, `ip address`, `no shutdown`, `show ip interface brief` o `write memory`.
-      </p>
+<p class="lab-note">Una consola interactiva estilo Cisco IOS. Pruébala: configura una interfaz, levántala y guarda la configuración.</p>
 <div class="cli-lab">
 <div class="cli-shell">
 <div class="cli-topbar">
