@@ -1180,6 +1180,75 @@
     .reveal { opacity: 1 !important; transform: none !important; }
     .topbar, .cli, .playground { display: none !important; }
   }
+
+  /* --- logos de marca: si el archivo no existe, se ve el nombre --- */
+  .brand-badge {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 46px; height: 46px;
+    flex: 0 0 auto;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+  .brand-badge::before {
+    content: attr(data-mark);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.54rem;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    padding: 3px;
+  }
+  .brand-badge img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: contain;
+    padding: 5px;
+    background: #fff;
+    border-radius: 11px;
+  }
+
+  .item-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .item-head h3 { margin: 0; }
+
+  .project-line {
+    display: flex; align-items: center; gap: 12px;
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(76, 194, 255, 0.05);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .project-line strong { color: var(--accent-strong); }
+
+  .cert-top { display: flex; align-items: flex-start; gap: 14px; }
+  .cert-top > div { flex: 1 1 auto; min-width: 0; }
+  .cert-top .pill { flex: 0 0 auto; }
+
+  .timeline-item .tags { margin-top: 14px; }
+
+  /* foto: más contenida, que acompañe sin dominar */
+  .profile-photo {
+    width: 100%;
+    max-width: 168px;
+    height: auto;          /* imprescindible: el atributo height="400" ganaba a aspect-ratio */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .brand-badge { width: 38px; height: 38px; }
+    .cert-top { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
@@ -1248,7 +1317,7 @@
 <span class="panel-title">show system health</span>
 <span class="badge">LIVE PROFILE</span>
 </div>
-<div class="hero-side"><img src="assets/teo-profile.jpg" alt="Teo Carballo de Cortázar" width="400" height="400" decoding="async" fetchpriority="high" class="profile-photo"/>
+<div class="hero-side"><img alt="Teo Carballo de Cortázar" class="profile-photo" decoding="async" fetchpriority="high" height="400" src="assets/teo-profile.jpg" width="400"/>
 <div class="dashboard">
 <div class="stat">
 <strong>SOC</strong>
@@ -1300,8 +1369,8 @@
 <article class="card">
 <span class="mini-label">Seguridad · Blue Team</span>
 <h3>Detección y análisis</h3>
-<p>Monitorización y triaje de alertas, investigación de phishing y accesos anómalos, y análisis de tráfico para llegar al origen real de cada incidente.</p>
-<div class="tags"><span class="tag">SOC</span><span class="tag">Blue Team</span><span class="tag">BTL1</span><span class="tag">Wireshark</span><span class="tag">Análisis de tráfico</span></div>
+<p>Monitorización y análisis de eventos en SIEM, EDR y SOAR; gestión de alertas de IDS/IPS, respuesta a incidentes y contención de amenazas.</p>
+<div class="tags"><span class="tag">SIEM</span><span class="tag">EDR</span><span class="tag">SOAR</span><span class="tag">IDS/IPS</span><span class="tag">Blue Team</span><span class="tag">Wireshark</span><span class="tag">BTL1</span></div>
 </article>
 <article class="card">
 <span class="mini-label">Systems Administration</span>
@@ -1340,41 +1409,60 @@
 </div>
 <div class="timeline">
 <article class="timeline-item">
-<span class="timeline-date">Mayo 2026 - Actualidad</span>
+<span class="timeline-date">Junio 2025 - Actualidad</span>
+<div class="item-head">
+<span class="brand-badge" data-mark="EXPERIS"><img alt="Experis" onerror="this.remove()" src="assets/logo-experis.svg"/></span>
+<div>
 <h3>Experis España</h3>
-<div class="timeline-role">Analista de ciberseguridad (SOC N1) · Proyecto del sector bancario</div>
+<div class="timeline-role">Analista de ciberseguridad (SOC N1) · Jornada completa · Híbrido</div>
+</div>
+</div>
+<div class="project-line">
+<span class="brand-badge" data-mark="CAIXA BANK"><img alt="CaixaBank" onerror="this.remove()" src="assets/logo-caixabank.svg"/></span>
+<span>Proyecto: <strong>CaixaBank</strong></span>
+</div>
 <ul>
-<li>Monitorización y triaje de alertas de seguridad en un SOC de banca.</li>
-<li>Investigación de phishing, malware y accesos anómalos, y escalado a segundo nivel cuando el caso lo requiere.</li>
-<li>Análisis de tráfico y revisión de conectividad para determinar el alcance real de cada alerta.</li>
+<li>Monitorización y análisis de eventos de seguridad mediante plataformas <strong>SIEM</strong>, <strong>EDR</strong> y <strong>SOAR</strong>.</li>
+<li>Respuesta a incidentes, contención de amenazas y gestión de alertas generadas por <strong>IDS/IPS</strong>.</li>
+<li>Detección y análisis de ataques <strong>DoS/DDoS</strong> mediante monitorización de tráfico en tiempo real y herramientas de análisis de red.</li>
+<li>Colaboración con equipos técnicos para la mitigación de riesgos y la mejora continua de la postura de seguridad.</li>
+<li>Redacción de informes diarios de actividad e incidencias.</li>
 </ul>
+<div class="tags">
+<span class="tag">SIEM</span><span class="tag">EDR</span><span class="tag">SOAR</span>
+<span class="tag">IDS/IPS</span><span class="tag">Respuesta a incidentes</span>
+<span class="tag">DoS/DDoS</span><span class="tag">Análisis de tráfico</span>
+</div>
 </article>
 <article class="timeline-item">
 <span class="timeline-date">Abril 2025 - Mayo 2026</span>
+<div class="item-head">
+<div>
 <h3>Doria Global Media</h3>
-<div class="timeline-role">Administrador de Sistemas · Help Desk &amp; Hosting</div>
+<div class="timeline-role">Administrador de Sistemas · Jornada parcial</div>
+</div>
+</div>
 <ul>
 <li>Administración y mantenimiento de sistemas y servidores en producción.</li>
 <li>Soporte técnico a usuarios y clientes en incidencias habituales y avanzadas.</li>
 <li>Gestión operativa de dominios, hosting y registros DNS.</li>
 </ul>
+<div class="tags">
+<span class="tag">Linux</span><span class="tag">Windows Server</span>
+<span class="tag">DNS</span><span class="tag">Hosting</span>
+</div>
 </article>
 <article class="timeline-item">
 <span class="timeline-date">Noviembre 2023 - Agosto 2024</span>
+<div class="item-head">
+<div>
 <h3>INEEW</h3>
 <div class="timeline-role">Prácticas · Desarrollo web con Odoo</div>
+</div>
+</div>
 <ul>
 <li>Gestión de usuarios y privilegios dentro de plataforma Odoo.</li>
 <li>Búsqueda de fallos funcionales y revisión básica de seguridad web.</li>
-</ul>
-</article>
-<article class="timeline-item">
-<span class="timeline-date">Experiencia transversal</span>
-<h3>Atención al cliente y coordinación</h3>
-<div class="timeline-role">Bar Familia Kikis · Revista Mongolia</div>
-<ul>
-<li>Comunicación efectiva, respuesta bajo presión y trabajo en equipo.</li>
-<li>Experiencia remota y disciplina de entrega en entornos de trabajo reales.</li>
 </ul>
 </article>
 </div>
@@ -1389,9 +1477,10 @@
 <div class="cert-list">
 <article class="cert-item">
 <div class="cert-top">
+<span class="brand-badge" data-mark="BTL1"><img alt="Security Blue Team" onerror="this.remove()" src="assets/logo-btl1.png"/></span>
 <div>
 <h3>Blue Team Level 1 (BTL1)</h3>
-<p>Certificación práctica de blue team: análisis de phishing, forense digital, SIEM, respuesta a incidentes e inteligencia de amenazas.</p>
+<p>Security Blue Team · Certificación práctica de blue team: análisis de phishing, forense digital, SIEM, respuesta a incidentes e inteligencia de amenazas.</p>
 </div>
 <span class="pill warn">En progreso</span>
 </div>
@@ -1399,27 +1488,30 @@
 </article>
 <article class="cert-item">
 <div class="cert-top">
+<span class="brand-badge" data-mark="CCNA"><img alt="Cisco Certified CCNA" onerror="this.remove()" src="assets/logo-ccna.jpg"/></span>
 <div>
 <h3>Cisco Certified Network Associate (CCNA)</h3>
-<p>Routing, switching, direccionamiento IP, troubleshooting y fundamentos de infraestructura Cisco.</p>
+<p>Cisco · Routing, switching, direccionamiento IP, troubleshooting y fundamentos de infraestructura.</p>
 </div>
 <span class="pill good">Completada</span>
 </div>
 </article>
 <article class="cert-item">
 <div class="cert-top">
+<span class="brand-badge" data-mark="CISCO"><img alt="Cisco" onerror="this.remove()" src="assets/logo-cisco.svg"/></span>
 <div>
 <h3>Cisco Networking Basics</h3>
-<p>Fundamentos de redes, protocolos, topologías y comunicación de datos.</p>
+<p>Cisco · Fundamentos de redes, protocolos, topologías y comunicación de datos.</p>
 </div>
 <span class="pill good">Completada</span>
 </div>
 </article>
 <article class="cert-item">
 <div class="cert-top">
+<span class="brand-badge" data-mark="CISCO"><img alt="Cisco" onerror="this.remove()" src="assets/logo-cisco.svg"/></span>
 <div>
 <h3>Cisco Cybersecurity Basics</h3>
-<p>Amenazas, buenas prácticas y protección de servicios como base de seguridad.</p>
+<p>Cisco · Amenazas, buenas prácticas y protección de servicios como base de seguridad.</p>
 </div>
 <span class="pill good">Completada</span>
 </div>
