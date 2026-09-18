@@ -1306,6 +1306,30 @@
     #certs .brand-badge { width: 44px; height: 44px; }
     #experience .timeline-item:first-child { padding-left: 12px; }
   }
+
+  /* ---------- una sola columna: el menu vuelve a funcionar ---------- */
+
+  /* Antes: .layout era una rejilla de dos columnas, asi que Experiencia
+     y Formacion quedaban a la misma altura y los enlaces "saltaban raro". */
+  .layout { grid-template-columns: 1fr !important; }
+  .layout > .stack { display: grid; gap: 24px; align-content: start; }
+
+  /* La cabecera es fija: sin esto, el titulo de cada seccion queda debajo */
+  section[id], .section[id] { scroll-margin-top: 104px; }
+
+  /* Al ir a ancho completo, estas listas se reparten en rejilla
+     para no quedar como una columna interminable */
+  @media (min-width: 860px) {
+    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    .edu-list  { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    .contact-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  }
+  @media (min-width: 1180px) {
+    .edu-list { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Un poco mas de aire entre secciones ahora que van apiladas */
+  .layout > .stack > .section { margin-bottom: 0; }
 </style>
 </head>
 <body>
