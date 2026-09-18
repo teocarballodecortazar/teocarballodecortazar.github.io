@@ -1141,8 +1141,49 @@
     "https://github.com/teocarballodecortazar"
   ],
   "knowsAbout": ["SOC", "Blue Team", "Routing", "Switching", "TCP/IP", "Linux", "Windows Server", "DNS"]
-}</script></head>
+}</script>
+<style id="fixes">
+  .profile-photo {
+    width: 100%;
+    max-width: 210px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center top;
+    margin: 0 auto 18px;
+    border-radius: 18px;
+    border: 1px solid var(--line-strong);
+  }
+  .reveal { opacity: 1; transform: none; }
+  html.anim .reveal:not(.is-visible) { opacity: 0; transform: translateY(18px); }
+  @media (max-width: 900px) {
+    .topbar { flex-wrap: wrap; gap: 12px; }
+    .nav {
+      flex-wrap: wrap !important;
+      overflow-x: visible !important;
+      justify-content: flex-start;
+      width: 100%;
+      gap: 6px;
+    }
+    .nav a { font-size: 0.72rem; padding: 8px 10px; }
+    .topbar-status { margin-left: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html.anim .reveal:not(.is-visible) { opacity: 1; transform: none; }
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent-strong);
+    outline-offset: 3px;
+  }
+  @media print {
+    body { background: #fff; color: #000; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .topbar, .cli, .playground { display: none !important; }
+  }
+</style>
+</head>
 <body>
+<script>document.documentElement.classList.add("anim");</script>
 <div class="shell">
 <header class="topbar">
 <div class="brand">
@@ -1207,7 +1248,7 @@
 <span class="panel-title">show system health</span>
 <span class="badge">LIVE PROFILE</span>
 </div>
-<div class="hero-side"><img alt="Teo Carballo de Cortázar" height="320" decoding="async" fetchpriority="high" src="assets/teo-profile.jpg" style="width:100%;max-width:220px;margin:0 auto 18px;border-radius:18px;border:1px solid rgba(120,175,232,0.42);" width="320"/>
+<div class="hero-side"><img src="assets/teo-profile.jpg" alt="Teo Carballo de Cortázar" width="400" height="400" decoding="async" fetchpriority="high" class="profile-photo"/>
 <div class="dashboard">
 <div class="stat">
 <strong>SOC</strong>
