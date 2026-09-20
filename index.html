@@ -1330,6 +1330,66 @@
 
   /* Un poco mas de aire entre secciones ahora que van apiladas */
   .layout > .stack > .section { margin-bottom: 0; }
+
+  /* ---------- contacto: el cierre de la pagina ---------- */
+  .contact-cta {
+    border-color: rgba(134, 224, 255, 0.35);
+    background:
+      radial-gradient(circle at top right, rgba(76, 194, 255, 0.12), transparent 55%),
+      var(--panel-strong);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+  }
+  .contact-card {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(8, 16, 29, 0.55);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+  .contact-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-strong);
+    background: rgba(76, 194, 255, 0.08);
+  }
+  .contact-card.static:hover { transform: none; background: rgba(8, 16, 29, 0.55); border-color: var(--line); }
+  .contact-card.primary {
+    border-color: rgba(134, 224, 255, 0.5);
+    background: linear-gradient(135deg, rgba(76, 194, 255, 0.16), rgba(82, 214, 162, 0.06));
+  }
+  .contact-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .contact-value {
+    color: var(--title);
+    font-weight: 500;
+    font-size: 1rem;
+    word-break: break-word;
+  }
+  .contact-action {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    color: var(--accent-strong);
+  }
+  .contact-card.static .contact-action { color: var(--muted); }
+
+  /* "Contacto" destacado en el menu */
+  .nav a.nav-cta {
+    color: var(--title) !important;
+    border-color: rgba(134, 224, 255, 0.45) !important;
+    background: rgba(76, 194, 255, 0.14) !important;
+  }
+  .nav a.nav-cta:hover { background: rgba(76, 194, 255, 0.24) !important; }
 </style>
 </head>
 <body>
@@ -1343,7 +1403,7 @@
 <span>Analista de ciberseguridad · SOC</span>
 </div>
 </div>
-<nav class="nav"><a class="active" href="#overview">Perfil</a><a href="#experience">Experiencia</a><a href="#skills">Capacidades</a><a href="#certs">Certificaciones</a><a href="#education">Formación</a><a href="#contact">Contacto</a></nav>
+<nav class="nav"><a class="active" href="#overview">Perfil</a><a href="#experience">Experiencia</a><a href="#skills">Capacidades</a><a href="#certs">Certificaciones</a><a href="#education">Formación</a><a class="nav-cta" href="#contact">Contacto</a></nav>
 <div class="topbar-status">
 <span class="dot"></span>
 <span>DISPONIBLE</span>
@@ -1382,7 +1442,7 @@
 <div class="hero-actions">
 <a class="btn btn-primary" href="mailto:carballoteo@gmail.com">Contactar</a>
 <a class="btn btn-secondary" href="https://www.linkedin.com/in/teo-carballo-de-cortazar" rel="noreferrer" target="_blank">Ver LinkedIn</a>
-</div>
+<a class="btn btn-secondary" href="https://github.com/teocarballodecortazar" rel="noreferrer" target="_blank">GitHub</a></div>
 <p class="hero-note">Objetivo: crecer dentro del blue team —detección, análisis e investigación de incidentes— apoyándome en la base de redes y sistemas que traigo de antes.</p>
 </div>
 </article>
@@ -1540,7 +1600,6 @@
 </article>
 </div>
 </section>
-
 </main>
 <aside class="stack">
 <section class="panel section reveal" id="certs">
@@ -1634,30 +1693,7 @@
 </article>
 </div>
 </section>
-<section class="panel section reveal" id="contact">
-<div class="section-heading">
-<h2>Contacto</h2>
-<p>Vías directas de contacto.</p>
-</div>
-<div class="contact-list">
-<a class="contact-link" href="mailto:carballoteo@gmail.com">
-<span>Email</span>
-<span>carballoteo@gmail.com</span>
-</a>
-<a class="contact-link" href="tel:608161579">
-<span>Teléfono</span>
-<span>608 161 579</span>
-</a>
-<a class="contact-link" href="https://www.linkedin.com/in/teo-carballo-de-cortazar" rel="noreferrer" target="_blank">
-<span>LinkedIn</span>
-<span>linkedin.com/in/teo-carballo-de-cortazar</span>
-</a>
-<div class="contact-link">
-<span>Ubicación</span>
-<span>Barcelona, España</span>
-</div>
-</div>
-</section>
+
 </aside>
 </div>
 <section class="panel section reveal playground" id="lab">
@@ -1725,6 +1761,38 @@
 <div class="check-item" id="task-up"><span class="check-dot"></span><span>Levantar interfaz</span></div>
 <div class="check-item" id="task-save"><span class="check-dot"></span><span>Guardar configuración</span></div>
 </div>
+</div>
+</div>
+</section><section class="panel section reveal contact-cta" id="contact">
+<div class="section-heading">
+<h2>Contacto</h2>
+<p>Abierto a hablar de oportunidades en blue team, SOC y seguridad de red. Respondo en el día.</p>
+</div>
+<div class="contact-grid">
+<a class="contact-card primary" href="mailto:carballoteo@gmail.com">
+<span class="contact-label">Email</span>
+<span class="contact-value">carballoteo@gmail.com</span>
+<span class="contact-action">Escribir →</span>
+</a>
+<a class="contact-card" href="https://www.linkedin.com/in/teo-carballo-de-cortazar" rel="noreferrer" target="_blank">
+<span class="contact-label">LinkedIn</span>
+<span class="contact-value">teo-carballo-de-cortazar</span>
+<span class="contact-action">Ver perfil →</span>
+</a>
+<a class="contact-card" href="https://github.com/teocarballodecortazar" rel="noreferrer" target="_blank">
+<span class="contact-label">GitHub</span>
+<span class="contact-value">teocarballodecortazar</span>
+<span class="contact-action">Ver repositorios →</span>
+</a>
+<a class="contact-card" href="tel:+34608161579">
+<span class="contact-label">Teléfono</span>
+<span class="contact-value">608 161 579</span>
+<span class="contact-action">Llamar →</span>
+</a>
+<div class="contact-card static">
+<span class="contact-label">Ubicación</span>
+<span class="contact-value">Barcelona, España</span>
+<span class="contact-action">Híbrido o presencial</span>
 </div>
 </div>
 </section>
