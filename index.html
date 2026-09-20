@@ -1546,6 +1546,62 @@
   @media (prefers-reduced-motion: reduce) {
     .contact-prompt::after { animation: none; }
   }
+
+  /* ================= MOVIL: cabecera y botones ================= */
+  @media (max-width: 720px) {
+    /* La cabecera fija se comia media pantalla al repartirse en filas.
+       En movil va estatica: se gana alto y no tapa nada. */
+    .topbar {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand { align-items: center; }
+    .brand-mark { width: 38px; height: 38px; }
+    .brand-copy strong { font-size: 0.95rem; line-height: 1.25; }
+    .brand-copy span { font-size: 0.72rem; }
+
+    .topbar-status {
+      order: -1;
+      justify-content: flex-start;
+      font-size: 0.68rem;
+    }
+
+    /* Botones en rejilla: nada oculto tras un scroll lateral,
+       y area de pulsacion comoda */
+    .nav {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+    }
+    .nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 8px !important;
+      font-size: 0.72rem !important;
+      text-align: center;
+      border-color: var(--line) !important;
+      background: rgba(255, 255, 255, 0.03);
+      white-space: normal;
+      line-height: 1.2;
+    }
+    /* Contacto ocupa la fila entera: es la accion que importa */
+    .nav a.nav-cta { grid-column: 1 / -1; }
+
+    /* Sin cabecera fija, el anclaje necesita mucho menos margen */
+    section[id], .section[id] { scroll-margin-top: 16px; }
+  }
+
+  /* La consola de la cabecera: altura estable pase lo que pase */
+  .hero-side .cli { min-height: 190px; }
+  .hero-side .cli .cli-line { min-height: 1.5em; }
 </style>
 </head>
 <body>
@@ -1657,7 +1713,7 @@
 </div>
 <div class="timeline">
 <article class="timeline-item">
-<span class="timeline-date">Junio 2025 - Actualidad</span>
+<span class="timeline-date">Mayo 2026 - Actualidad</span>
 <div class="item-head">
 <span class="brand-badge wide" data-mark="EXPERIS"><img alt="Experis" onerror="this.remove()" src="assets/logo-experis.jpg"/></span>
 <div>
@@ -1956,18 +2012,9 @@
       });
     });
 
-    const cliMessages = [
-      "status: ready_for_next_challenge",
-      "focus: routing_switching_and_support",
-      "availability: interviewing_now",
-      "signal: practical_and_reliable_operator"
-    ];
-
-    let cliIndex = 0;
-    setInterval(() => {
-      cliIndex = (cliIndex + 1) % cliMessages.length;
-      rotatingLine.textContent = cliMessages[cliIndex];
-    }, 2200);
+    // Linea fija: antes rotaba cada 2,2s y cambiaba la altura del panel,
+    // lo que hacia saltar la pagina en moviles.
+    if (rotatingLine) rotatingLine.textContent = "signal: soc_tier1_banca";
 
     const lab = {
       mode: "user",
