@@ -1602,6 +1602,30 @@
   /* La consola de la cabecera: altura estable pase lo que pase */
   .hero-side .cli { min-height: 190px; }
   .hero-side .cli .cli-line { min-height: 1.5em; }
+
+  /* Cabecera movil mas compacta: marca y estado comparten fila */
+  @media (max-width: 720px) {
+    .topbar {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+    }
+    .brand { grid-column: 1; min-width: 0; }
+    .topbar-status {
+      grid-column: 2;
+      order: 0;
+      justify-self: end;
+      white-space: nowrap;
+      font-size: 0.62rem;
+      gap: 6px;
+    }
+    .topbar-status .dot { width: 8px; height: 8px; }
+    .nav { grid-column: 1 / -1; }
+    .brand-copy strong { font-size: 0.88rem; }
+    .brand-copy span { font-size: 0.68rem; }
+    .nav a { min-height: 40px; font-size: 0.7rem !important; }
+  }
 </style>
 </head>
 <body>
