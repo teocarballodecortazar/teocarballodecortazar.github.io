@@ -1390,6 +1390,35 @@
     background: rgba(76, 194, 255, 0.14) !important;
   }
   .nav a.nav-cta:hover { background: rgba(76, 194, 255, 0.24) !important; }
+
+  /* ---------- certificaciones enlazadas ---------- */
+  .cert-item { display: flex; flex-direction: column; }
+  .cert-link {
+    margin-top: 14px;
+    align-self: flex-start;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--accent-strong);
+    border: 1px solid rgba(134, 224, 255, 0.28);
+    border-radius: 999px;
+    padding: 7px 13px;
+    transition: background 160ms ease, border-color 160ms ease;
+  }
+  .cert-link:hover {
+    background: rgba(76, 194, 255, 0.14);
+    border-color: rgba(134, 224, 255, 0.55);
+  }
+
+  /* Verificar credencial: en verde, que es la señal de "esto es comprobable" */
+  .cert-link.verify {
+    color: var(--good);
+    border-color: rgba(82, 214, 162, 0.42);
+  }
+  .cert-link.verify:hover {
+    background: rgba(82, 214, 162, 0.14);
+    border-color: rgba(82, 214, 162, 0.7);
+  }
 </style>
 </head>
 <body>
@@ -1577,7 +1606,7 @@
 <span class="pill warn">En progreso</span>
 </div>
 <div class="progress"><span style="width: 60%"></span></div>
-</article>
+<a class="cert-link" href="https://www.centri.org/certifications/blue-team-level-1" rel="noreferrer" target="_blank">Sobre la certificación ↗</a></article>
 <article class="cert-item">
 <div class="cert-top">
 <span class="brand-badge" data-mark="CCNA"><img alt="Cisco Certified CCNA" onerror="this.remove()" src="assets/logo-ccna.jpg"/></span>
@@ -1587,7 +1616,7 @@
 </div>
 <span class="pill good">Completada</span>
 </div>
-</article>
+<a class="cert-link verify" href="https://www.credly.com/badges/fef1c2a1-ace0-4097-9daa-e3d4e8d4e941/public_url" rel="noreferrer" target="_blank">Verificar credencial ↗</a></article>
 <article class="cert-item">
 <div class="cert-top">
 <span class="brand-badge" data-mark="CISCO"><img alt="Cisco" onerror="this.remove()" src="assets/logo-cisco.svg"/></span>
@@ -1597,7 +1626,7 @@
 </div>
 <span class="pill good">Completada</span>
 </div>
-</article>
+<a class="cert-link verify" href="https://www.credly.com/badges/7df303d6-c6fc-4e24-ad6c-900e91499538/public_url" rel="noreferrer" target="_blank">Verificar credencial ↗</a></article>
 <article class="cert-item">
 <div class="cert-top">
 <span class="brand-badge" data-mark="CISCO"><img alt="Cisco" onerror="this.remove()" src="assets/logo-cisco.svg"/></span>
